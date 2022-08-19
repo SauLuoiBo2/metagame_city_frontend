@@ -1,7 +1,8 @@
-export const BASE_PATH = {
+export const MAIN_PATH = {
     ALL: "*",
     SLASH: "slash",
-    DIRT_NAME: "/",
+    PUBLIC: "/",
+    HOME: "",
     CUP: "archievement",
     MARKET: "market",
 };

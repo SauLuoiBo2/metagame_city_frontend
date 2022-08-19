@@ -7,17 +7,17 @@ import { SplashAppLayout } from "@/widgets/layout";
 import { PATH } from "../pathname";
 import { appRoute, authRoute, errorRoute } from "../routes";
 
-const { ERROR_PATH } = PATH;
+const { ERROR_PATH, MAIN_PATH } = PATH;
 
 const Router = memo(() => {
     return useRoutes([
         {
-            path: PATH.BASE_PATH.DIRT_NAME,
+            path: MAIN_PATH.PUBLIC,
             element: <SplashAppLayout />,
-            children: [appRoute(false), authRoute(false), errorRoute()],
+            children: [appRoute(true), authRoute(true), errorRoute()],
         },
         {
-            path: PATH.BASE_PATH.ALL,
+            path: MAIN_PATH.ALL,
             element: <Navigate to={"/" + ERROR_PATH.ERROR_404} />,
         },
     ]);

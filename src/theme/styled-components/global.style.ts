@@ -49,6 +49,18 @@ export const GlobalStyle = createGlobalStyle<Props>`
     cursor: pointer;
     text-decoration: none;
     }
+
+    /* button */
+    button {
+    background-color: transparent;
+    width: fit-content;
+    cursor: pointer;
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+    border: 0;
+    :hover{
+      transform: translateY(-3px);
+    }
+  }
     /* fill input */
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
@@ -58,6 +70,26 @@ export const GlobalStyle = createGlobalStyle<Props>`
     }
     input:-webkit-autofill{
     -webkit-text-fill-color: var(--color-main) !important;
+    }
+
+    .app_container{
+      width: 140rem;
+      margin: auto;
+      max-width: 95%;
+
+      @media ${({ theme }) => theme.breakpoint.xl} {
+        width: 100rem;
+    }
+
+      @media ${(props) => props.theme.breakpoint.lg} {
+        width: 80rem;
+    }
+      @media ${(props) => props.theme.breakpoint.md} {
+        width: 50rem;
+    }
+      @media ${(props) => props.theme.breakpoint.sm} {
+        width: 95%;
+    }
     }
 }
 `;
