@@ -1,6 +1,5 @@
 import { Grid, Stack } from "@mui/material";
 import React from "react";
-import styled from "styled-components";
 import { useBoolean } from "usehooks-ts";
 
 import { ICONS_URL } from "@/assets/icons";
@@ -46,9 +45,13 @@ const BuyModalView = () => {
                         <ItemNftValueCom>
                             <Styles.Position.Center>
                                 <Stack direction={"row"} spacing={1}>
-                                    <h3>1</h3>
-                                    <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20px" }} />
-                                    <h3>= 0.1USDT</h3>
+                                    <h3 className='text_big'>
+                                        1
+                                        <span>
+                                            <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20px" }} />
+                                        </span>
+                                        = 0.1USDT
+                                    </h3>
                                 </Stack>
                             </Styles.Position.Center>
                         </ItemNftValueCom>

@@ -24,11 +24,12 @@ import FRAME_VICTORY from "./frame/frame_victorya.png";
 import FRAME_VICTORY_VER from "./frame/frame_victorya_ver.png";
 // game
 import GAME_CARO from "./game/caro.png";
+// logo
+import LOGO_REGISTER from "./logo/logo_splash.png";
 // title
 import TITLE_AFILIATE from "./title/affiate.png";
 import TITLE_HISTORY from "./title/history.png";
 import TITLE_VICTORY from "./title/victorya.png";
-
 export const IMAGE_URL = {
     BG: {
         BG_1,
@@ -63,5 +64,8 @@ export const IMAGE_URL = {
         TITLE_VICTORY,
         TITLE_HISTORY,
         TITLE_AFILIATE,
+    },
+    LOGO: {
+        LOGO_REGISTER,
     },
 };

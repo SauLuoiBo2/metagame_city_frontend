@@ -128,6 +128,40 @@ export const GlobalStyle = createGlobalStyle<Props>`
         }
     }
 
+    .text_big {
+      font-size: 2.5rem;
+      font-weight: 600;
+
+      @media ${({ theme }) => theme.breakpoint.lg} {
+            font-size: 2rem;
+        }
+
+        @media ${({ theme }) => theme.breakpoint.md} {
+            font-size: 1.5rem;
+        }
+
+        @media ${(props) => props.theme.breakpoint.sm} {
+            font-size: 1.1rem;
+        }
+    }
+
+    .body_big {
+      font-size: 3rem;
+      font-weight: 600;
+
+      @media ${({ theme }) => theme.breakpoint.lg} {
+            font-size: 2.5rem;
+        }
+
+        @media ${({ theme }) => theme.breakpoint.md} {
+            font-size: 2.2rem;
+        }
+
+        @media ${(props) => props.theme.breakpoint.sm} {
+            font-size: 2rem;
+        }
+    }
+
     .text_align_center {
       text-align: center;
     }

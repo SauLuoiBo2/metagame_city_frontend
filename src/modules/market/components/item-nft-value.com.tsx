@@ -26,7 +26,7 @@ const ItemNftValueCom: React.FC<ItemNftValueComProps> = ({ children, icon, value
                     <img src={icon} />
                 </Style.ImgLabel>
                 <Style.Content>
-                    <h3 className='text_medium'>{value || 0}</h3>
+                    <h3 className='text_big'>{value || 0}</h3>
                     <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20%" }} />
                 </Style.Content>
             </Stack>

@@ -42,6 +42,11 @@ const Style = {
         align-items: center;
         min-height: 40rem;
 
+        @media ${(props) => props.theme.breakpoint.md} {
+            padding: 5rem 0;
+            min-height: 30rem;
+        }
+
         img {
             width: 100%;
         }

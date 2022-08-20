@@ -37,16 +37,15 @@ export const ListMarketWidget: React.FC<ListMarketWidgetProps> = () => {
                     <Grid item xs={12}>
                         <Stack sx={{ borderTop: "solid gray 2px" }} mx={"10%"} />
                     </Grid>
-
                     {/* boottmm */}
                     <GridItemHalf>
                         <ItemNftValueCom>
-                            <h3 className='text_medium'>Total : 12000</h3>
+                            <h3 className='text_big'>Total : 12000</h3>
                         </ItemNftValueCom>
                     </GridItemHalf>
                     <GridItemHalf>
                         <ItemNftValueCom>
-                            <h3 className='text_medium'>Total NFT: 12000</h3>
+                            <h3 className='text_big'>Total NFT: 12000</h3>
                         </ItemNftValueCom>
                     </GridItemHalf>
                 </Grid>

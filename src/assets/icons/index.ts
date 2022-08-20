@@ -1,4 +1,5 @@
 // button
+import BACK_AUTH from "./button/back_auth.png";
 import GIVE from "./button/box.svg";
 import DOWNLOAD from "./button/download.svg";
 import NFT from "./button/nft.svg";
@@ -37,6 +38,7 @@ const BUTTON = {
     NFT,
     DOWNLOAD,
     GIVE,
+    BACK_AUTH,
 };
 
 export const ICONS_URL = { HEADER, SOCIAL, BUTTON };
