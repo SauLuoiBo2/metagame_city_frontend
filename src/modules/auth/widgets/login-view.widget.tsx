@@ -24,6 +24,10 @@ const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
             <Stack>
                 <Button onClick={() => navigate("/" + PATH.AUTH_PATH.LOGIN)}>Forgot Password</Button>
             </Stack>
+
+            <Styles.Button.Basic style={{ backgroundColor: "transparent", border: "solid 2px white" }}>
+                CREATE ACCOUNT
+            </Styles.Button.Basic>
         </ViewAuthCom>
     );
 };

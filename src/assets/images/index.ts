@@ -8,6 +8,7 @@ import BG_6 from "./bg/bg_6.png";
 import BG_7 from "./bg/bg_7.png";
 import BG_MARKET from "./bg/bg_market.png";
 import HEADER from "./bg/header.png";
+import FRAME_ACCOUNT from "./frame/frame_account.png";
 import FRAME_AFFLIATE from "./frame/frame_affliate.png";
 // frame
 import FRAME_BUTTON from "./frame/frame_button.png";
@@ -56,6 +57,7 @@ export const IMAGE_URL = {
         FRAME_MODAL_NFT,
         FRAME_AFFLIATE,
         FRAME_VICTORY_VER,
+        FRAME_ACCOUNT,
     },
     GAME: {
         GAME_CARO,

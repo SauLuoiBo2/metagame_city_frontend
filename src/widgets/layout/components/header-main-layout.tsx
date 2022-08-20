@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { ASSETS } from "@/assets";
 import { PATH } from "@/router/pathname";
+import { Styles } from "@/theme";
 
 export interface HeaderMainLayoutProps {}
 
@@ -29,8 +30,15 @@ const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
                         <NavLink icon={HEADER.COMUNICATE} to={"/" + MAIN_PATH.AFFILIATE} />
                     </Style.IconWrapper>
 
-                    <Style.NavLink to={"/" + MAIN_PATH.AFFILIATE}>
+                    <Style.NavLink to={"/" + MAIN_PATH.ACCOUNT}>
                         <img src={ASSETS.IMAGE_URL.FRAME.FRAME_USER} />
+                        <Style.Inner>
+                            <Styles.Position.Center style={{ transform: "translateY(0.5rem)" }}>
+                                <p className='text_big' style={{ color: "white" }}>
+                                    User
+                                </p>
+                            </Styles.Position.Center>
+                        </Style.Inner>
                     </Style.NavLink>
                 </Style.Inner>
             </Style.Wrapper>
@@ -94,6 +102,7 @@ const Style = {
         height: 100%;
         display: flex;
         align-items: center;
+        position: relative;
         :hover {
             transform: translateY(-3px);
         }
