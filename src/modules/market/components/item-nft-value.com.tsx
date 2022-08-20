@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useCallback } from "react";
 import styled from "styled-components";
 
 import { ICONS_URL } from "@/assets/icons";
@@ -12,7 +12,7 @@ export interface ItemNftValueComProps extends PropsWithChildren {
 }
 
 const ItemNftValueCom: React.FC<ItemNftValueComProps> = ({ children, icon, value }) => {
-    function renderBasic() {
+    const renderBasic = useCallback(() => {
         return (
             <Stack
                 px={{ xs: 1, sm: 2, md: 4 }}
@@ -26,12 +26,13 @@ const ItemNftValueCom: React.FC<ItemNftValueComProps> = ({ children, icon, value
                     <img src={icon} />
                 </Style.ImgLabel>
                 <Style.Content>
-                    <h3 style={{ fontSize: "20px" }}>{value || 0}</h3>
-                    <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20px" }} />
+                    <h3 className='text_medium'>{value || 0}</h3>
+                    <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20%" }} />
                 </Style.Content>
             </Stack>
         );
-    }
+    }, []);
+
     return (
         <Style.Wrapper>
             <img src={IMAGE_URL.FRAME.FRAME_ITEM_NFT} />

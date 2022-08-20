@@ -3,7 +3,7 @@ import React from "react";
 
 import { ICONS_URL } from "@/assets/icons";
 import { IMAGE_URL } from "@/assets/images";
-import { FrameTableCom, GridItemHalf, GridItemHalfFull } from "@/components";
+import { FrameTableCom, GridItemHalf } from "@/components";
 
 import ItemNftValueCom from "../components/item-nft-value.com";
 
@@ -14,40 +14,41 @@ export const ListMarketWidget: React.FC<ListMarketWidgetProps> = () => {
         <>
             <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_NFT}>
                 <Grid
+                    className='hidden_scroll'
                     container
                     columnSpacing={2}
                     rowSpacing={1}
                     mx={"10%"}
                     sx={{ overflowY: "auto", maxHeight: "70%" }}
                 >
-                    <GridItemHalfFull>
+                    <GridItemHalf>
                         <ItemNftValueCom icon={ICONS_URL.BUTTON.DOWNLOAD} />
-                    </GridItemHalfFull>
-                    <GridItemHalfFull>
+                    </GridItemHalf>
+                    <GridItemHalf>
                         <ItemNftValueCom icon={ICONS_URL.HEADER.COMUNICATE} />
-                    </GridItemHalfFull>
-                    <GridItemHalfFull>
+                    </GridItemHalf>
+                    <GridItemHalf>
                         <ItemNftValueCom icon={ICONS_URL.BUTTON.GIVE} />
-                    </GridItemHalfFull>
-                    <GridItemHalfFull>
+                    </GridItemHalf>
+                    <GridItemHalf>
                         <ItemNftValueCom icon={ICONS_URL.HEADER.CUP} />
-                    </GridItemHalfFull>
+                    </GridItemHalf>
 
                     <Grid item xs={12}>
                         <Stack sx={{ borderTop: "solid gray 2px" }} mx={"10%"} />
                     </Grid>
 
                     {/* boottmm */}
-                    <GridItemHalfFull>
+                    <GridItemHalf>
                         <ItemNftValueCom>
-                            <h3>Total : 12000</h3>
+                            <h3 className='text_medium'>Total : 12000</h3>
                         </ItemNftValueCom>
-                    </GridItemHalfFull>
-                    <GridItemHalfFull>
+                    </GridItemHalf>
+                    <GridItemHalf>
                         <ItemNftValueCom>
-                            <h3>Total NFT: 12000</h3>
+                            <h3 className='text_medium'>Total NFT: 12000</h3>
                         </ItemNftValueCom>
-                    </GridItemHalfFull>
+                    </GridItemHalf>
                 </Grid>
             </FrameTableCom>
         </>

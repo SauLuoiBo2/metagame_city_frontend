@@ -11,11 +11,11 @@ export interface FrameTableComProps extends PropsWithChildren {
 
 export const FrameTableCom: React.FC<FrameTableComProps> = ({ children, imgTitle, imgFrame }) => {
     return (
-        <Style.Wrapper isImgTitle={imgTitle}>
+        <Style.Wrapper isImgTitle={imgTitle} imgBg={imgFrame}>
             {/* background */}
-            <img src={imgFrame || IMAGE_URL.FRAME.FRAME_VICTORY} />
+            {/* <img src={imgFrame || IMAGE_URL.FRAME.FRAME_VICTORY} /> */}
             {/* content */}
-            <Style.Inner>
+            <Style.Inner className='hidden_scroll'>
                 <Styles.Position.Center>{children}</Styles.Position.Center>
             </Style.Inner>
             {/* title */}
@@ -26,12 +26,21 @@ export const FrameTableCom: React.FC<FrameTableComProps> = ({ children, imgTitle
 
 interface StyleProps {
     isImgTitle?: boolean;
+    imgBg?: any;
 }
 
 const Style = {
     Wrapper: styled.section<StyleProps>`
         position: relative;
+        background-image: ${({ imgBg }) => `url(${imgBg || IMAGE_URL.FRAME.FRAME_VICTORY})`};
+        background-repeat: no-repeat;
+        background-size: 100% 100%, cover;
+        background-position: center;
+        padding: 10rem 0;
         margin-top: ${({ isImgTitle }) => (isImgTitle ? "10%" : null)};
+        display: flex;
+        align-items: center;
+        min-height: 40rem;
 
         img {
             width: 100%;
@@ -39,8 +48,8 @@ const Style = {
     `,
 
     Inner: styled.div`
-        position: absolute;
-        top: 0;
+        /* position: absolute;
+        top: 0; */
         width: 100%;
         height: 100%;
     `,
@@ -54,6 +63,10 @@ const Style = {
 
         img {
             max-width: 30%;
+
+            @media ${(props) => props.theme.breakpoint.md} {
+                max-width: 50%;
+            }
         }
     `,
 };

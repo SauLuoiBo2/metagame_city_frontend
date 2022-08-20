@@ -82,6 +82,17 @@ export const GlobalStyle = createGlobalStyle<Props>`
       overflow-x: hidden;
     }
 
+    /* scroll */
+
+    .hidden_scroll {
+      ::-webkit-scrollbar {
+      display: none;
+      overflow-y: auto;
+      }
+    }
+
+    /* container */
+
     .app_container{
       width: 140rem;
       margin: auto;
@@ -100,6 +111,25 @@ export const GlobalStyle = createGlobalStyle<Props>`
       @media ${(props) => props.theme.breakpoint.sm} {
         width: 95%;
     }
+    }
+
+    /* text */
+
+    .text_medium {
+      font-size: 2rem;
+      font-weight: 600;
+
+        @media ${({ theme }) => theme.breakpoint.md} {
+            font-size: 1.5rem;
+        }
+
+        @media ${(props) => props.theme.breakpoint.sm} {
+            font-size: 1.1rem;
+        }
+    }
+
+    .text_align_center {
+      text-align: center;
     }
 }
 `;

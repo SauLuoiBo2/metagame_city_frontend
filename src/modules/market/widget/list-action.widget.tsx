@@ -1,5 +1,6 @@
 import { Grid, Stack } from "@mui/material";
 import React from "react";
+import styled from "styled-components";
 import { useBoolean } from "usehooks-ts";
 
 import { ICONS_URL } from "@/assets/icons";
@@ -166,13 +167,13 @@ const AffliateModalView = () => {
             <MuiModal open={open.value} onClose={open.setFalse} widthModal={800}>
                 <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_AFFLIATE}>
                     <Stack {...styleStack}>
-                        <h3>
+                        <h3 className='text_medium text_align_center'>
                             You need to buy business agency rights with 1000 stars to receive the following benefits
                         </h3>
                         <ItemNftValueCom>
-                            <h3>
+                            <p className='text_medium text_align_center'>
                                 You need to buy business agency rights with 1000 stars to receive the following benefits
-                            </h3>
+                            </p>
                         </ItemNftValueCom>
                         <Stack sx={{ borderTop: "gray 2px solid" }} width={"100%"}>
                             <Styles.Button.Basic style={{ marginTop: "2rem" }}>GIVE</Styles.Button.Basic>
