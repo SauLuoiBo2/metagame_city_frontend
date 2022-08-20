@@ -5,4 +5,5 @@ export const MAIN_PATH = {
     HOME: "",
     CUP: "archievement",
     MARKET: "market",
+    AFFILIATE: "affiliate",
 };

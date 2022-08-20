@@ -72,6 +72,16 @@ export const GlobalStyle = createGlobalStyle<Props>`
     -webkit-text-fill-color: var(--color-main) !important;
     }
 
+    input {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 1.6rem;
+      font-weight: 600;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
     .app_container{
       width: 140rem;
       margin: auto;

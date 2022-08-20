@@ -9,6 +9,8 @@ export interface HeaderMainLayoutProps {}
 
 const { MAIN_PATH } = PATH;
 
+const { HEADER } = ASSETS.ICONS_URL;
+
 const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
     return (
         <Style.Header>
@@ -19,15 +21,15 @@ const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
 
                 <Style.Inner>
                     <Style.IconWrapper>
-                        <NavLink icon={ASSETS.ICONS_URL.CUP} to={"/" + MAIN_PATH.CUP} />
-                        <NavLink icon={ASSETS.ICONS_URL.BOX} to={"/" + MAIN_PATH.MARKET} />
+                        <NavLink icon={HEADER.CUP} to={"/" + MAIN_PATH.CUP} />
+                        <NavLink icon={HEADER.BOX} to={"/" + MAIN_PATH.MARKET} />
                         <Style.NavLink to='/'>
-                            <img src={ASSETS.ICONS_URL.HOME} style={{ height: "40%" }} />
+                            <img src={HEADER.HOME} style={{ height: "40%" }} />
                         </Style.NavLink>
-                        <NavLink icon={ASSETS.ICONS_URL.COMUNICATE} />
+                        <NavLink icon={HEADER.COMUNICATE} to={"/" + MAIN_PATH.AFFILIATE} />
                     </Style.IconWrapper>
 
-                    <Style.NavLink to='/'>
+                    <Style.NavLink to={"/" + MAIN_PATH.AFFILIATE}>
                         <img src={ASSETS.IMAGE_URL.FRAME.FRAME_USER} />
                     </Style.NavLink>
                 </Style.Inner>
@@ -53,10 +55,9 @@ const NavLink: React.FC<NavLinkProps> = ({ icon, to }) => {
 
 const Style = {
     Header: styled.header`
-        position: fixed;
-        top: 0;
-        left: 0;
+        position: relative;
         width: 100%;
+        z-index: 10;
     `,
 
     Wrapper: styled.div`
