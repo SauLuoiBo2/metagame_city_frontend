@@ -1,9 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { useQueryUser } from "@/api/auth/useQueryUser";
 import { ASSETS } from "@/assets";
 import { PATH } from "@/router/pathname";
+import { AUTH_PATH } from "@/router/pathname/auth.path";
 import { Styles } from "@/theme";
 
 export interface HeaderMainLayoutProps {}
@@ -13,6 +15,13 @@ const { MAIN_PATH } = PATH;
 const { HEADER } = ASSETS.ICONS_URL;
 
 const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
+    const { useGetUser } = useQueryUser();
+    const navigate = useNavigate();
+
+    const { data } = useGetUser();
+
+    const linkLogin = data ? "/" + MAIN_PATH.ACCOUNT : "/" + AUTH_PATH.LOGIN;
+
     return (
         <Style.Header>
             <Style.Wrapper className='app_container'>
@@ -30,12 +39,12 @@ const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
                         <NavLink icon={HEADER.COMUNICATE} to={"/" + MAIN_PATH.AFFILIATE} />
                     </Style.IconWrapper>
 
-                    <Style.NavLink to={"/" + MAIN_PATH.ACCOUNT}>
+                    <Style.NavLink to={linkLogin}>
                         <img src={ASSETS.IMAGE_URL.FRAME.FRAME_USER} />
                         <Style.Inner>
                             <Styles.Position.Center style={{ transform: "translateY(0.5rem)" }}>
                                 <p className='text_big' style={{ color: "white" }}>
-                                    User
+                                    {data?.data?.username ? data?.data?.username : "login"}
                                 </p>
                             </Styles.Position.Center>
                         </Style.Inner>
