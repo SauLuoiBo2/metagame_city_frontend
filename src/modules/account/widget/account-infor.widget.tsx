@@ -41,6 +41,7 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                 <CustomInput placeholder='Email' value={user?.email} disabled />
                 <CustomInput placeholder='Phone number' />
                 <CustomInput
+                    type='password'
                     name='password'
                     placeholder='Password'
                     value={formik.values.password}
@@ -48,6 +49,7 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                     error={supportErrorFormik(formik, "password")}
                 />
                 <CustomInput
+                    type='password'
                     name='passwordConfirm'
                     placeholder='Confirm password'
                     value={formik.values.passwordConfirm}

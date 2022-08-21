@@ -2,7 +2,6 @@ import { Button, Stack } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useQueryUser } from "@/api/auth/useQueryUser";
 import { CustomInput } from "@/components";
 import { supportErrorFormik } from "@/libs";
 import { PATH } from "@/router/pathname";
@@ -16,10 +15,7 @@ export interface LoginViewWidgetProps {}
 const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
     const navigate = useNavigate();
     const { formik } = useFormLogin();
-    const { useGetUser } = useQueryUser();
-    const { data } = useGetUser();
 
-    console.log(data?.data?.avatar);
     return (
         <ViewAuthCom title={"LOGIN"}>
             <CustomInput

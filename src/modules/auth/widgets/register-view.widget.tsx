@@ -26,6 +26,7 @@ const RegisterViewWidget: React.FC<RegisterViewWidgetProps> = () => {
                 error={supportErrorFormik(formik, "username")}
             />
             <CustomInput
+                type='email'
                 name='email'
                 placeholder='Email'
                 value={formik.values.email}
@@ -34,6 +35,7 @@ const RegisterViewWidget: React.FC<RegisterViewWidgetProps> = () => {
             />
             <CustomInput placeholder='Phone number' />
             <CustomInput
+                type='password'
                 name='password'
                 placeholder='Password'
                 value={formik.values.password}
@@ -41,6 +43,7 @@ const RegisterViewWidget: React.FC<RegisterViewWidgetProps> = () => {
                 error={supportErrorFormik(formik, "password")}
             />
             <CustomInput
+                type='password'
                 name='passwordConfirm'
                 placeholder='Confirm password'
                 value={formik.values.passwordConfirm}
