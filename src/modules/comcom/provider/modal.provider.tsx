@@ -5,7 +5,7 @@ import { useBearStore } from "@/store/useBearStore";
 
 export interface ModalProviderProps {}
 
-const ModalProvider: React.FC<ModalProviderProps> = () => {
+export const ModalProvider: React.FC<ModalProviderProps> = () => {
     const { modal, modalOnClose } = useBearStore();
 
     return (
@@ -14,5 +14,3 @@ const ModalProvider: React.FC<ModalProviderProps> = () => {
         </MuiModal>
     );
 };
-
-export default ModalProvider;

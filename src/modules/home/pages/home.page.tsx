@@ -16,7 +16,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
         <>
             <GameBgWidget name='CARO' linkGame={linkHome + "caro" + "?token=" + token?.access_token} />
             <GameBgWidget
-                linkGame={linkHome + "pacman"}
+                linkGame={linkHome + "pacman" + "?token=" + token?.access_token}
                 bgImg={IMAGE_URL.BG.BG_2}
                 name='PACMAN'
                 icon={IMAGE_URL.GAME.GAME_PACMAN}

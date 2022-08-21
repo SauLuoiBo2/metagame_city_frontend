@@ -3,7 +3,7 @@ import { Navigate, useRoutes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 
 import { useQueryUser } from "@/api";
-import { SplashAppLayout } from "@/widgets/layout";
+import AppProvider from "@/app/app.provider";
 
 import { PATH } from "../pathname";
 import { appRoute, authRoute, errorRoute } from "../routes";
@@ -19,7 +19,7 @@ const Router = memo(() => {
     return useRoutes([
         {
             path: MAIN_PATH.PUBLIC,
-            element: <SplashAppLayout />,
+            element: <AppProvider />,
             children: [appRoute(isLogin), authRoute(isLogin), errorRoute()],
         },
         {
