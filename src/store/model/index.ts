@@ -1,8 +1,9 @@
 import { AuthStore, ThemeStore } from "../slices";
+import { ModalStore } from "../slices/modal/modal.slice";
 
 // ZustandStore
 
-export interface ZustandStore {}
+export interface ZustandStore extends ModalStore {}
 
 export type SetZustandType = (
     partial: ZustandStore | Partial<ZustandStore> | ((state: ZustandStore) => ZustandStore | Partial<ZustandStore>),
@@ -16,7 +17,7 @@ export type GetZustandType = () => ZustandStore;
 export interface PersistStore extends ThemeStore, AuthStore {}
 
 export type SetPersistType = (
-    partial: ZustandStore | Partial<PersistStore> | ((state: PersistStore) => PersistStore | Partial<PersistStore>),
+    partial: PersistStore | Partial<PersistStore> | ((state: PersistStore) => PersistStore | Partial<PersistStore>),
     replace?: boolean | undefined
 ) => void;
 

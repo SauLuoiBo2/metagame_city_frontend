@@ -26,7 +26,7 @@ export const ListAffliateWidget: React.FC<ListAffliateWidgetProps> = () => {
 
     return (
         <MaxWidthCenterView maxWidth='800px'>
-            <FrameTableCom imgTitle={IMAGE_URL.TITLE.TITLE_AFILIATE}>dsadas</FrameTableCom>
+            <FrameTableCom imgTitle={IMAGE_URL.TITLE.TITLE_AFILIATE}>no data</FrameTableCom>
         </MaxWidthCenterView>
     );
 };

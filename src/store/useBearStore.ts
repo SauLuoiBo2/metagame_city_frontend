@@ -5,22 +5,15 @@ import { KEY } from "@/config";
 
 import { PersistStore, ZustandStore } from "./model";
 import { authSlice, themeSlice } from "./slices";
+import { modalSlice } from "./slices/modal/modal.slice";
 
-export const useBearStore = create<ZustandStore>();
+// export const useBearStore = create<ZustandStore>();
 
-// export const useBearStore = create<BearState>()(
-//     devtools((set, get) => ({
-//         bears: 0,
-//         increase: (by) => set((state) => ({ bears: state.bears + by })),
-//     }))
-// );
-
-// export const useBearStore = create<ZustandStore>()(
-//     devtools((set, get) => ({
-//         bears: 0,
-//         increase: (by) => set((state) => ({ bears: state.bears + by })),
-//     }))
-// );
+export const useBearStore = create<ZustandStore>()(
+    devtools((set, get) => ({
+        ...modalSlice(set, get),
+    }))
+);
 
 export const usePersistStore = create<PersistStore>()(
     persist(
