@@ -1,4 +1,4 @@
-import { request } from "@/config";
+import { useRequest } from "@/config";
 import {
     ActivationAccountProps,
     LoginProps,
@@ -14,7 +14,8 @@ import { ApiUrl } from "../apiUrl";
 // auth
 const { login_url, register_url, resend_email_url } = ApiUrl.auth;
 
-export function authApi() {
+export function useAuthApi() {
+    const { request } = useRequest();
     function signin(data: LoginProps) {
         return request({ url: login_url, method: "POST", data });
     }
@@ -41,7 +42,8 @@ export function authApi() {
 // user
 const { user_url, user_balance_url, user_update_url } = ApiUrl.user;
 
-export function userApi() {
+export function useUserApi() {
+    const { request } = useRequest();
     function getProfile(): Promise<ApiResponseData<UserProps>> {
         return request({ url: user_url, method: "GET" });
     }

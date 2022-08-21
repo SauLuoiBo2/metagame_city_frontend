@@ -16,7 +16,6 @@ const { HEADER } = ASSETS.ICONS_URL;
 
 const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
     const { useGetUser } = useQueryUser();
-    const navigate = useNavigate();
 
     const { data } = useGetUser();
 

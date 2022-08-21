@@ -9,7 +9,7 @@ export interface MainLayoutProps {}
 
 export const MainLayout: React.FC<MainLayoutProps> = () => {
     useScrollToTop();
-    console.log(process.env.NODE_ENV);
+
     return (
         <>
             <HeaderMainLayout />

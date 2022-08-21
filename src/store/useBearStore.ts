@@ -29,7 +29,7 @@ export const usePersistStore = create<PersistStore>()(
             ...authSlice(set, get),
         }),
         {
-            name: KEY.PERSIST_STORE,
+            name: "persist_store",
             // unique name
         }
     )

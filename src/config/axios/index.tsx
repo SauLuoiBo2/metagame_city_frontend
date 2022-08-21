@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import querySting from "query-string";
 
-import { getStoredAuth } from "@/libs";
+import { usePersistStore } from "@/store/useBearStore";
 
 import { ENV } from "../env";
 
@@ -25,28 +25,33 @@ const axiosClient = axios.create({
     paramsSerializer: (params) => querySting.stringify(params),
 });
 
-export const request = (options: AxiosRequestConfig) => {
-    const token = getStoredAuth();
-    if (token?.access_token) {
-        axiosClient.defaults.headers.common.Authorization = "Bearer " + token.access_token;
+export const useRequest = () => {
+    const { auth } = usePersistStore();
+    if (auth.access_token) {
+        axiosClient.defaults.headers.common.Authorization = "Bearer " + auth.access_token;
+    } else {
+        axiosClient.defaults.headers.common.Authorization = "";
     }
 
-    const onSuccess = (response: AxiosResponse) => {
-        // logger.debug('Response API:', response?.data);
-        return response?.data;
-    };
-    const onError = async (error: AxiosError) => {
-        // logger.debug('Axios Options:', options);
-        // optionally catch errors and add additional logging here
-        await Promise.reject({
-            statusCode: error.status,
-            message: error.message,
-            statusText: error?.response?.statusText,
-            status: error?.response?.status,
-            data: error?.response?.data,
-        });
-    };
-    return axiosClient(options).then(onSuccess).catch(onError);
+    function request(options: AxiosRequestConfig) {
+        const onSuccess = (response: AxiosResponse) => {
+            // logger.debug('Response API:', response?.data);
+            return response?.data;
+        };
+        const onError = async (error: AxiosError) => {
+            // logger.debug('Axios Options:', options);
+            // optionally catch errors and add additional logging here
+            await Promise.reject({
+                statusCode: error.status,
+                message: error.message,
+                statusText: error?.response?.statusText,
+                status: error?.response?.status,
+                data: error?.response?.data,
+            });
+        };
+        return axiosClient(options).then(onSuccess).catch(onError);
+    }
+    return { request };
 };
 
 // axiosClient.interceptors.response.use(

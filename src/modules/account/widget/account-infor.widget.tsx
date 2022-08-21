@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { ICONS_URL } from "@/assets/icons";
 import { IMAGE_URL } from "@/assets/images";
 import { CustomIconButton, CustomInput, FrameTableCom } from "@/components";
-import { QUERY_KEY } from "@/config";
 import { supportErrorFormik } from "@/libs";
 import { usePersistStore } from "@/store/useBearStore";
 import { Styles } from "@/theme";
@@ -25,7 +24,7 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
 
     function onLogout() {
         authClear();
-        queryClient.refetchQueries();
+        queryClient.clear();
         navigate("/");
     }
 
