@@ -3,16 +3,18 @@ import styled from "styled-components";
 
 import { ASSETS } from "@/assets";
 
-export interface CardGameProps {}
+export interface CardGameProps {
+    icon?: any;
+}
 
 const { FRAME, GAME } = ASSETS.IMAGE_URL;
 
-export const CardImageGame: React.FC<CardGameProps> = () => {
+export const CardImageGame: React.FC<CardGameProps> = ({ icon }) => {
     return (
         <Style.Wrapper>
             <img src={FRAME.FRAME_GAME_PC} />
             <Style.ImgWrapper>
-                <img src={GAME.GAME_CARO} />
+                <img src={icon || GAME.GAME_CARO} />
                 <div>
                     <h5>
                         METAGAME <br></br> GAME

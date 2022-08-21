@@ -8,7 +8,7 @@ import { Styles } from "@/theme";
 
 export interface ItemNftValueComProps extends PropsWithChildren {
     icon?: any;
-    value?: number;
+    value?: number | undefined;
 }
 
 const ItemNftValueCom: React.FC<ItemNftValueComProps> = ({ children, icon, value }) => {

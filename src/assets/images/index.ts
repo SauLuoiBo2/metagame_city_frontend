@@ -25,6 +25,7 @@ import FRAME_VICTORY from "./frame/frame_victorya.png";
 import FRAME_VICTORY_VER from "./frame/frame_victorya_ver.png";
 // game
 import GAME_CARO from "./game/caro.png";
+import GAME_PACMAN from "./game/pacman.png";
 // logo
 import LOGO_REGISTER from "./logo/logo_splash.png";
 // title
@@ -61,6 +62,7 @@ export const IMAGE_URL = {
     },
     GAME: {
         GAME_CARO,
+        GAME_PACMAN,
     },
     TITLE: {
         TITLE_VICTORY,

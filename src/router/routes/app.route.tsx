@@ -17,6 +17,10 @@ const AffiliateHomePage = React.lazy(() =>
     import("@/modules").then(({ AffiliateHomePage }) => ({ default: AffiliateHomePage }))
 );
 
+const AffiliateBuyPage = React.lazy(() =>
+    import("@/modules").then(({ AffiateBuyPage }) => ({ default: AffiateBuyPage }))
+);
+
 const AccountHomePage = React.lazy(() =>
     import("@/modules").then(({ AccountHomePage }) => ({ default: AccountHomePage }))
 );
@@ -32,6 +36,7 @@ export const appRoute = (isLoggedIn: boolean) => {
             { path: MAIN_PATH.CUP, element: <ArchievementHomePage /> },
             { path: MAIN_PATH.MARKET, element: <MarketHomePage /> },
             { path: MAIN_PATH.AFFILIATE, element: <AffiliateHomePage /> },
+            { path: MAIN_PATH.AFFILIATE_BUY, element: <AffiliateBuyPage /> },
             { path: MAIN_PATH.ACCOUNT, element: <AccountHomePage /> },
         ],
     };

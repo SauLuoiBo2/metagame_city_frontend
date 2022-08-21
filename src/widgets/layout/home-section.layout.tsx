@@ -26,6 +26,11 @@ const Style = {
         /* height: 100vh; */
         min-height: 50vh;
 
-        padding: 25rem 0;
+        padding-top: 25rem;
+        padding-bottom: 25rem;
+        @media ${(props) => props.theme.breakpoint.md} {
+            padding-bottom: 5rem;
+            min-height: 70vh;
+        }
     `,
 };

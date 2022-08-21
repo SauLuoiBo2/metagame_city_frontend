@@ -6,5 +6,6 @@ export const MAIN_PATH = {
     CUP: "archievement",
     MARKET: "market",
     AFFILIATE: "affiliate",
+    AFFILIATE_BUY: "affiliate-buy",
     ACCOUNT: "account",
 };

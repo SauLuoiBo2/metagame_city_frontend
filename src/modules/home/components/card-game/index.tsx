@@ -4,13 +4,18 @@ import styled from "styled-components";
 import { CardImageGame } from "./CardImageGame";
 import CardNameGame from "./CardNameGame";
 
-export interface CardGameProps {}
+export interface CardGameProps {
+    name: string;
+    icon?: any;
+    linkGame?: string;
+}
 
-const CardGame: React.FC<CardGameProps> = () => {
+// href='http://google.vn' target={"_blank"}
+const CardGame: React.FC<CardGameProps> = ({ name, icon, linkGame }) => {
     return (
-        <Style.Wrapper>
-            <CardImageGame />
-            <CardNameGame />
+        <Style.Wrapper href={linkGame} target={"_blank"}>
+            <CardImageGame icon={icon} />
+            <CardNameGame name={name} />
         </Style.Wrapper>
     );
 };
@@ -18,12 +23,13 @@ const CardGame: React.FC<CardGameProps> = () => {
 export default CardGame;
 
 const Style = {
-    Wrapper: styled.div`
+    Wrapper: styled.a`
         width: fit-content;
         display: flex;
         align-items: flex-end;
         transform: scale(1.5);
         transform-origin: left top;
+        color: white;
 
         @media ${({ theme }) => theme.breakpoint.xl} {
             transform: scale(1.3);

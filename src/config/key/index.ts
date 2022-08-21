@@ -5,12 +5,18 @@ export const KEY = {
 export const QUERY_KEY = {
     USER: {
         PROFILE_KEY: "profile",
+        PROFILE_BALANCE_KEY: "profile_balance",
+        PROFILE_REFERRAL_KEY: "profile_referral",
     },
     GAMES: {
         LIST_GAME: "games",
         LIST_VICTORY: "games_victory",
     },
     FINANCS: {
-        STAR: "star",
+        STAR: "finance_star",
+    },
+    AFFILIATE: {
+        LIST_HISTOTRY: "affiliate_list_histories",
+        LIST_MEMBERS: "affiliate_list_members",
     },
 };

@@ -129,7 +129,9 @@ const NftModalView = () => {
                             </ButtonAction>
                         </GridItemHalfFull>
                         <GridItemHalfFull>
-                            <AffliateModalView />
+                            <ButtonAction style={{ margin: "0 2rem" }} onClick={open.setTrue}>
+                                <LabelButon title={"tai khoan affiate"} label='24' aftIcon={ICONS_URL.BUTTON.STAR} />
+                            </ButtonAction>
                         </GridItemHalfFull>
                         <GridItemHalfFull>
                             <ButtonAction />
@@ -153,35 +155,6 @@ const NftModalView = () => {
                             </ButtonAction>
                         </GridItemHalfFull>
                     </Grid>
-                </FrameTableCom>
-            </MuiModal>
-        </>
-    );
-};
-
-const AffliateModalView = () => {
-    const open = useBoolean();
-
-    return (
-        <>
-            <ButtonAction style={{ margin: "0 2rem" }} onClick={open.setTrue}>
-                <LabelButon title={"tai khoan affiate"} label='24' aftIcon={ICONS_URL.BUTTON.STAR} />
-            </ButtonAction>
-            <MuiModal open={open.value} onClose={open.setFalse} widthModal={800}>
-                <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_AFFLIATE}>
-                    <Stack {...styleStack}>
-                        <h3 className='text_medium text_align_center'>
-                            You need to buy business agency rights with 1000 stars to receive the following benefits
-                        </h3>
-                        <ItemNftValueCom>
-                            <p className='text_medium text_align_center'>
-                                You need to buy business agency rights with 1000 stars to receive the following benefits
-                            </p>
-                        </ItemNftValueCom>
-                        <Stack sx={{ borderTop: "gray 2px solid" }} width={"100%"}>
-                            <Styles.Button.Basic style={{ marginTop: "2rem" }}>GIVE</Styles.Button.Basic>
-                        </Stack>
-                    </Stack>
                 </FrameTableCom>
             </MuiModal>
         </>

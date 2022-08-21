@@ -2,7 +2,7 @@ import { memo } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 
-import { useQueryUser } from "@/api/auth/useQueryUser";
+import { useQueryUser } from "@/api";
 import { SplashAppLayout } from "@/widgets/layout";
 
 import { PATH } from "../pathname";

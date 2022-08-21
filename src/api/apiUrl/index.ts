@@ -11,6 +11,7 @@ export const ApiUrl = {
         user_url: "user",
         user_balance_url: "user/balance",
         user_update_url: "user/profile",
+        user_referral_url: "user/referral",
     },
     game: {
         games_url: "games",
@@ -19,5 +20,10 @@ export const ApiUrl = {
     finance: {
         star_url: "finance/star",
         send_star_url: "finance/sendStar",
+    },
+    affiliate: {
+        affiliate_commission_url: "affiliate/commission",
+        affiliate_members_url: "affiliate/members",
+        affiliate_buyVip_url: "affiliate/buyVip",
     },
 };

@@ -3,17 +3,19 @@ import styled from "styled-components";
 
 import { ASSETS } from "@/assets";
 
-export interface CardNameGameProps {}
+export interface CardNameGameProps {
+    name?: string;
+}
 
 const { FRAME } = ASSETS.IMAGE_URL;
 
-const CardNameGame: React.FC<CardNameGameProps> = () => {
+const CardNameGame: React.FC<CardNameGameProps> = ({ name }) => {
     return (
         <Style.Wrapper>
             <img src={FRAME.FRAME_GAME_NAME} />
             {/* text */}
             <Style.Inner>
-                <h4>CARO</h4>
+                <h4>{name || "CARO"}</h4>
             </Style.Inner>
         </Style.Wrapper>
     );

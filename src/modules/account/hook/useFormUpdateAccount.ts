@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { useQueryUser } from "@/api/auth/useQueryUser";
+import { useQueryUser } from "@/api";
 import { yupChema } from "@/libs";
 
 const { password, username, passwordConfirm } = yupChema;

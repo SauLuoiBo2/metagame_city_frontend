@@ -1,13 +1,5 @@
 import { useRequest } from "@/config";
-import {
-    ActivationAccountProps,
-    LoginProps,
-    RegisterProps,
-    ResendEmailProps,
-    ResetPasswordProps,
-    UserProps,
-} from "@/models";
-import { ApiResponseData } from "@/models/api.model";
+import { ActivationAccountProps, LoginProps, RegisterProps, ResendEmailProps, ResetPasswordProps } from "@/models";
 
 import { ApiUrl } from "../apiUrl";
 
@@ -37,22 +29,4 @@ export function useAuthApi() {
     }
 
     return { signin, register, activation, resendEmail, resetPassword };
-}
-
-// user
-const { user_url, user_balance_url, user_update_url } = ApiUrl.user;
-
-export function useUserApi() {
-    const { request } = useRequest();
-    function getProfile(): Promise<ApiResponseData<UserProps>> {
-        return request({ url: user_url, method: "GET" });
-    }
-    function getBalance() {
-        return request({ url: user_balance_url, method: "GET" });
-    }
-    function updateProfile(data: any) {
-        return request({ url: user_update_url, method: "POST", data });
-    }
-
-    return { getProfile, getBalance, updateProfile };
 }
