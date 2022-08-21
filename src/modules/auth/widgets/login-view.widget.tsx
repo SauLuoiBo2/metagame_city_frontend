@@ -28,6 +28,7 @@ const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
             />
 
             <CustomInput
+                type='password'
                 name='password'
                 placeholder='Password'
                 value={formik.values.password}
