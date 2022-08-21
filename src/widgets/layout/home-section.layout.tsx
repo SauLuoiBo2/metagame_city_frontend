@@ -29,6 +29,7 @@ const Style = {
         padding-top: 25rem;
         padding-bottom: 25rem;
         @media ${(props) => props.theme.breakpoint.md} {
+            padding-top: 5rem;
             padding-bottom: 5rem;
             min-height: 70vh;
         }

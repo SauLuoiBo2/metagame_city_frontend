@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-import { useScrollToTop } from "@/hooks/comcom";
+import { useScrollPostion, useScrollToTop } from "@/hooks/comcom";
 
 // import { usePersistStore } from "@/store/useBearStore";
 import HeaderMainLayout from "./components/header-main-layout";
@@ -9,11 +9,12 @@ export interface MainLayoutProps {}
 
 export const MainLayout: React.FC<MainLayoutProps> = () => {
     useScrollToTop();
-
+    const scrollPosition = useScrollPostion();
     return (
         <>
-            <HeaderMainLayout />
-            <main style={{ width: "100%", transform: "translateY(-25rem)" }}>
+            {scrollPosition < 100 && <HeaderMainLayout />}
+
+            <main style={{ width: "100%" }}>
                 <React.Suspense fallback={<div>loanding ...</div>}>
                     <Outlet />
                 </React.Suspense>

@@ -1,6 +1,8 @@
 import { Stack } from "@mui/material";
 import React from "react";
 
+import { useQueryAffiliate } from "@/api";
+import { useAffiliateApi } from "@/api/affiliate/useAffiliateApi";
 import { IMAGE_URL } from "@/assets/images";
 import { FrameTableCom } from "@/components";
 import MaxWidthCenterView from "@/components/views/position/max-width-center";
@@ -17,6 +19,11 @@ const styleStack = {
 };
 
 const BuyAffiliateWidget: React.FC<BuyAffiliateWidgetProps> = () => {
+    const { useBuyVip } = useQueryAffiliate();
+    const { mutate } = useBuyVip();
+    function handleBuy() {
+        mutate("");
+    }
     return (
         <MaxWidthCenterView maxWidth='600px'>
             <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_AFFLIATE}>
@@ -35,7 +42,7 @@ const BuyAffiliateWidget: React.FC<BuyAffiliateWidgetProps> = () => {
                         </p>
                     </ItemNftValueCom>
                     <Stack pt={2} width={"100%"}>
-                        <ButtonBuyAffiliateCom onBuy={{}} />
+                        <ButtonBuyAffiliateCom onBuy={handleBuy} />
                     </Stack>
                 </Stack>
             </FrameTableCom>

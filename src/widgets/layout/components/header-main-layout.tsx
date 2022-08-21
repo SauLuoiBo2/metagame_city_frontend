@@ -71,7 +71,7 @@ const NavLink: React.FC<NavLinkProps> = ({ icon, to }) => {
 
 const Style = {
     Header: styled.header`
-        position: relative;
+        position: fixed;
         width: 100%;
         z-index: 10;
     `,

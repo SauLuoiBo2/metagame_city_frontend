@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 import { QUERY_KEY } from "@/config";
-import { BalanceDtoProps, UserProps } from "@/models";
+import { BalanceDtoProps, ReferralDtoProps, UserProps } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
 
 import { useUserApi } from "./useUserApi";
@@ -27,7 +27,7 @@ export function useQueryUser() {
     }
 
     function useGetUserReferral() {
-        return useQuery<ApiResponseData<BalanceDtoProps>, AxiosError>([QUERY_KEY.USER.PROFILE_REFERRAL_KEY], () =>
+        return useQuery<ApiResponseData<ReferralDtoProps>, AxiosError>([QUERY_KEY.USER.PROFILE_REFERRAL_KEY], () =>
             userApi.getReferral()
         );
     }

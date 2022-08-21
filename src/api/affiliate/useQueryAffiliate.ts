@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 import { QUERY_KEY } from "@/config";
@@ -8,6 +8,7 @@ import { useAffiliateApi } from "./useAffiliateApi";
 
 export function useQueryAffiliate() {
     const affiliateApi = useAffiliateApi();
+    const queryClient = useQueryClient();
     function useGetListCommission() {
         return useQuery<ApiResponseData<any>, AxiosError>([QUERY_KEY.AFFILIATE.LIST_HISTOTRY], () =>
             affiliateApi.getListHistories()
@@ -21,8 +22,14 @@ export function useQueryAffiliate() {
     }
 
     function useBuyVip() {
-        return useMutation<ApiResponseData, AxiosError, any>([QUERY_KEY.AFFILIATE.LIST_MEMBERS], () =>
-            affiliateApi.buyVip()
+        return useMutation<ApiResponseData, AxiosError, any>(
+            [QUERY_KEY.AFFILIATE.LIST_MEMBERS],
+            () => affiliateApi.buyVip(),
+            {
+                onSuccess: () => {
+                    queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_REFERRAL_KEY]);
+                },
+            }
         );
     }
 
