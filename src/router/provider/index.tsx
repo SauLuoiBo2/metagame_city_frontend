@@ -2,6 +2,7 @@ import { memo } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 
+import { useQueryUser } from "@/api/auth/useQueryUser";
 import { SplashAppLayout } from "@/widgets/layout";
 
 import { PATH } from "../pathname";
@@ -10,11 +11,16 @@ import { appRoute, authRoute, errorRoute } from "../routes";
 const { ERROR_PATH, MAIN_PATH } = PATH;
 
 const Router = memo(() => {
+    const { useGetUser } = useQueryUser();
+
+    const { data } = useGetUser();
+
+    const isLogin = data?.data ? true : false;
     return useRoutes([
         {
             path: MAIN_PATH.PUBLIC,
             element: <SplashAppLayout />,
-            children: [appRoute(true), authRoute(false), errorRoute()],
+            children: [appRoute(isLogin), authRoute(isLogin), errorRoute()],
         },
         {
             path: MAIN_PATH.ALL,
