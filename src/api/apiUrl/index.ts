@@ -12,4 +12,12 @@ export const ApiUrl = {
         user_balance_url: "user/balance",
         user_update_url: "user/profile",
     },
+    game: {
+        games_url: "games",
+        games_victory_url: "games/victory",
+    },
+    finance: {
+        star_url: "finance/star",
+        send_star_url: "finance/sendStar",
+    },
 };

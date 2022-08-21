@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 
-import { QUERY_KEY } from "@/config";
 import { LoginProps, RegisterProps, UserDtoProps } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
 import { usePersistStore } from "@/store/useBearStore";
