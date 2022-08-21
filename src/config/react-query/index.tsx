@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React, { memo, PropsWithChildren } from "react";
-
 export interface QueryProviderProps extends PropsWithChildren {}
 
 function getMillisecondsFromMinute(minute: number) {

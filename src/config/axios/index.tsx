@@ -1,6 +1,8 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import querySting from "query-string";
 
+import { getStoredAuth } from "@/libs";
+
 import { ENV } from "../env";
 
 const { API_ENDPOINT, API_TIMEOUT, BASE_URL } = ENV.API;
@@ -24,6 +26,11 @@ const axiosClient = axios.create({
 });
 
 export const request = (options: AxiosRequestConfig) => {
+    const token = getStoredAuth();
+    if (token?.access_token) {
+        axiosClient.defaults.headers.common.Authorization = "Bearer " + token.access_token;
+    }
+
     const onSuccess = (response: AxiosResponse) => {
         // logger.debug('Response API:', response?.data);
         return response?.data;

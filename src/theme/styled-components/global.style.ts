@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
+import { dark_colors } from "../base/dark-color";
 import { ThemeStyledType } from "./theme";
 // import { IMG_CONFIG } from 'src/assets/config/imgConfig';
 
@@ -36,7 +37,7 @@ export const GlobalStyle = createGlobalStyle<Props>`
     font-weight: 400;
     line-height: 1.6;
     text-decoration: none;
-    background-color: ${({ theme }) => theme.colors.background.default} !important;
+    background-color: ${dark_colors.background.default} !important;
     color: ${({ theme }) => theme.colors.text.main} !important;
     transition: all .2s linear;
     margin: 0;
