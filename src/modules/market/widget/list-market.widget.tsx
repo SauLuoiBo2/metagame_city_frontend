@@ -18,7 +18,7 @@ export const ListMarketWidget: React.FC<ListMarketWidgetProps> = () => {
 
     return (
         <>
-            <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_NFT}>
+            <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_NFT} maxWidth={"80rem"}>
                 <Grid
                     className='hidden_scroll'
                     container

@@ -14,13 +14,17 @@ import ItemNftValueCom from "../components/item-nft-value.com";
 
 export interface ListActionWidgetProps {}
 
+const wi = "800px";
+
 export const ListActionWidget: React.FC<ListActionWidgetProps> = () => {
     return (
         <>
-            <Stack justifyContent={"space-around"} direction={"row"} flexWrap={"wrap"}>
-                <BuyModalView />
-                <GiveModalView />
-                <NftModalView />
+            <Stack maxWidth={"800px"} justifyContent={"space-around"} direction={"row"} flexWrap={"wrap"}>
+                <Grid container>
+                    <BuyModalView />
+                    <GiveModalView />
+                    <NftModalView />
+                </Grid>
             </Stack>
         </>
     );
@@ -36,10 +40,13 @@ const BuyModalView = () => {
 
     return (
         <>
-            <ButtonAction style={{ margin: "0 2rem" }} onClick={open.setTrue}>
-                <LabelButon label='BUY' preIcon={ICONS_URL.BUTTON.STAR} />
-            </ButtonAction>
-            <MuiModal open={open.value} onClose={open.setFalse} widthModal={800}>
+            <Grid item xs={4}>
+                <ButtonAction style={{ margin: "0 2rem" }} onClick={open.setTrue}>
+                    <LabelButon label='BUY' preIcon={ICONS_URL.BUTTON.STAR} />
+                </ButtonAction>
+            </Grid>
+
+            <MuiModal open={open.value} onClose={open.setFalse} widthModal={600}>
                 <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_BUY}>
                     <Stack {...styleStack} spacing={1}>
                         <ItemNftValueCom>
@@ -86,9 +93,12 @@ const GiveModalView = () => {
 
     return (
         <>
-            <ButtonAction style={{ margin: "0 2rem" }} onClick={open.setTrue}>
-                <LabelButon label='GIVE' preIcon={ICONS_URL.BUTTON.STAR} />
-            </ButtonAction>
+            <Grid item xs={4}>
+                <ButtonAction style={{ margin: "0 2rem" }} onClick={open.setTrue}>
+                    <LabelButon label='GIVE' preIcon={ICONS_URL.BUTTON.STAR} />
+                </ButtonAction>
+            </Grid>
+
             <MuiModal open={open.value} onClose={open.setFalse} widthModal={800}>
                 <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_GIVE}>
                     <Stack {...styleStack}>
@@ -111,9 +121,12 @@ const NftModalView = () => {
 
     return (
         <>
-            <ButtonAction style={{ margin: "0 2rem" }} onClick={open.setTrue}>
-                <LabelButon label='NFT' preIcon={ICONS_URL.BUTTON.NFT} />
-            </ButtonAction>
+            <Grid item xs={4}>
+                <ButtonAction style={{ margin: "0 2rem" }} onClick={open.setTrue}>
+                    <LabelButon label='NFT' preIcon={ICONS_URL.BUTTON.NFT} />
+                </ButtonAction>
+            </Grid>
+
             <MuiModal open={open.value} onClose={open.setFalse} widthModal={800}>
                 <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_MODAL_NFT}>
                     <Grid
