@@ -1,17 +1,13 @@
 import { Stack } from "@mui/material";
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
 import { useQueryAffiliate } from "@/api";
-import { useQueryUser } from "@/api";
 import { IMAGE_URL } from "@/assets/images";
 import { FrameTableCom } from "@/components";
 import MaxWidthCenterView from "@/components/views/position/max-width-center";
 import ItemNftValueCom from "@/modules/market/components/item-nft-value.com";
-import { PATH } from "@/router/pathname";
 
 import ButtonBuyAffiliateCom from "../components/button-buy-affiliate.com";
-import { checkIsAffiliate } from "../function/checkIsAffiliate";
 
 export interface BuyAffiliateWidgetProps {}
 
@@ -28,17 +24,6 @@ const BuyAffiliateWidget: React.FC<BuyAffiliateWidgetProps> = () => {
         mutate("");
     }
 
-    const { useGetUserReferral } = useQueryUser();
-    const navigate = useNavigate();
-    const { data } = useGetUserReferral();
-
-    const refferal = data?.data;
-
-    useEffect(() => {
-        if (checkIsAffiliate(refferal)) {
-            navigate("/" + PATH.MAIN_PATH.AFFILIATE);
-        }
-    }, []);
     return (
         <MaxWidthCenterView maxWidth='600px'>
             <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_AFFLIATE}>

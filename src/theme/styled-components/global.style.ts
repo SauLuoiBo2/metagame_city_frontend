@@ -55,7 +55,8 @@ export const GlobalStyle = createGlobalStyle<Props>`
       font-family:${({ theme }) => theme.fonts.title} ;
     }
 
-    a ,p {
+    a ,p, input {
+      color: white;
       font-family:${({ theme }) => theme.fonts.main} ;
     }
 
@@ -78,7 +79,11 @@ export const GlobalStyle = createGlobalStyle<Props>`
     transition: background-color 5000s ease-in-out 0s;
     }
     input:-webkit-autofill{
-    -webkit-text-fill-color: var(--color-main) !important;
+    -webkit-text-fill-color: white !important;
+    }
+    input::placeholder {
+      color: white;
+      opacity: 0.5;
     }
 
     input {

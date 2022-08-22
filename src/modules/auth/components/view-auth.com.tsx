@@ -15,7 +15,7 @@ const ViewAuthCom: React.FC<ViewAuthComProps> = ({ children, title }) => {
     return (
         <Box width='100%'>
             <FrameTableCom>
-                <Stack px={6} spacing={3} width={"100%"} alignItems={"center"}>
+                <Stack pt={2} px={{ lg: 10, md: 8, xs: 5 }} spacing={3} width={"100%"} alignItems={"center"}>
                     {/* title */}
                     <Grid container>
                         <Grid item xs={2}>
