@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 import { IMAGE_URL } from "@/assets/images";
 import { FrameTableCom } from "@/components";
-import ItemNftValueCom from "@/modules/market/components/item-nft-value.com";
 import { PATH } from "@/router/pathname";
 import { useBearStore } from "@/store/useBearStore";
 import { Styles } from "@/theme";

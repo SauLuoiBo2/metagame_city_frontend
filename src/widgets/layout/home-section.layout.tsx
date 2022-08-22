@@ -18,6 +18,7 @@ export const HomeSectionLayout: React.FC<HomeSectionLayoutProps> = ({ isAlone, b
 
 const Style = {
     Wrapper: styled.section<HomeSectionLayoutProps>`
+        width: 100%;
         background-image: ${({ bg_url }) => `url(${bg_url})`};
         background-repeat: no-repeat;
         background-size: cover;

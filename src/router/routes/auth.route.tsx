@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 
-import { MainLayout } from "@/widgets";
+import { AuthLayout } from "@/widgets";
 
 import { PATH } from "../pathname";
 
@@ -13,7 +13,7 @@ const { AUTH_PATH } = PATH;
 export const authRoute = (isLoggedIn: boolean) => {
     return {
         path: "/",
-        element: !isLoggedIn ? <MainLayout /> : <Navigate to='/' />,
+        element: !isLoggedIn ? <AuthLayout /> : <Navigate to='/' />,
         children: [
             { path: "", element: <Navigate to={"/" + AUTH_PATH.LOGIN} /> },
             { path: AUTH_PATH.LOGIN, element: <LoginPage /> },

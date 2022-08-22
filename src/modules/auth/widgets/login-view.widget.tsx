@@ -2,7 +2,7 @@ import { Button, Stack } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { CustomInput } from "@/components";
+import { CustomButton, CustomInput } from "@/components";
 import { supportErrorFormik } from "@/libs";
 import { PATH } from "@/router/pathname";
 import { Styles } from "@/theme";
@@ -14,7 +14,8 @@ export interface LoginViewWidgetProps {}
 
 const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
     const navigate = useNavigate();
-    const { formik } = useFormLogin();
+    const { formik, useMutationLogin } = useFormLogin();
+    const { isLoading } = useMutationLogin();
 
     return (
         <ViewAuthCom title={"LOGIN"}>
@@ -36,12 +37,13 @@ const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
                     onChange={formik.handleChange}
                     error={supportErrorFormik(formik, "password")}
                 />
-                <Styles.Button.Basic type='submit'>LOGIN</Styles.Button.Basic>
+                <CustomButton type='submit' isLoading={isLoading}>
+                    LOGIN
+                </CustomButton>
                 <Stack>
-                    <Button onClick={() => navigate("/" + PATH.AUTH_PATH.LOGIN)}>Forgot Password</Button>
+                    <Button onClick={() => navigate("/" + PATH.AUTH_PATH.FORGOT_PASSWORD)}>Forgot Password</Button>
                 </Stack>
             </Stack>
-
             <Styles.Button.Basic
                 onClick={() => navigate("/" + PATH.AUTH_PATH.REGISTER)}
                 style={{ backgroundColor: "transparent", border: "solid 2px white" }}

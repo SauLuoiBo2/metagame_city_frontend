@@ -14,8 +14,6 @@ import ItemNftValueCom from "../components/item-nft-value.com";
 
 export interface ListActionWidgetProps {}
 
-const wi = "800px";
-
 export const ListActionWidget: React.FC<ListActionWidgetProps> = () => {
     return (
         <>

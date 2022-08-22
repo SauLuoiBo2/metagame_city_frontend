@@ -23,4 +23,20 @@ export const SplashLottieErrorDoodle: React.FC<CustomLottieProps> = ({ eventList
     );
 };
 
+export const SplashLottieLoading: React.FC<CustomLottieProps> = ({ eventListeners }) => {
+    return (
+        <div style={{ maxWidth: "90rem" }}>
+            <Lottie options={optionsLottie.loadingRocket} isClickToPauseDisabled eventListeners={eventListeners} />
+        </div>
+    );
+};
+
+export const ButtonLottieLoading: React.FC<CustomLottieProps> = ({ eventListeners }) => {
+    return (
+        <div style={{ maxWidth: "10rem" }}>
+            <Lottie options={optionsLottie.loadingHearth} isClickToPauseDisabled eventListeners={eventListeners} />
+        </div>
+    );
+};
+
 export * from "./config";

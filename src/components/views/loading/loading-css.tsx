@@ -8,13 +8,6 @@ export interface LoadingCssTypeProps {
     loading?: LoadingCssEnum;
 }
 
-function getDivElement(number: number) {
-    const arr = new Array(number);
-    return arr.map((_item, i) => {
-        return <div key={i} />;
-    });
-}
-
 const COLOR_DEFAULT = "#fff";
 
 export enum LoadingCssEnum {
@@ -27,7 +20,20 @@ export enum LoadingCssEnum {
 export const LoadingCssSpinLine: React.FC<LoadingCssTypeProps> = (props) => {
     return (
         <Style.LoadingCssSpinLine {...props}>
-            <div className='lds-spinner'>{getDivElement(12)}</div>
+            <div className='lds-spinner'>
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+            </div>
         </Style.LoadingCssSpinLine>
     );
 };
@@ -36,7 +42,12 @@ export const LoadingCssSpinLine: React.FC<LoadingCssTypeProps> = (props) => {
 export const LoadingCssDotLine: React.FC<LoadingCssTypeProps> = (props) => {
     return (
         <Style.LoadingCssDotLine {...props}>
-            <div className='lds-ellipsis'>{getDivElement(4)}</div>
+            <div className='lds-ellipsis'>
+                <div />
+                <div />
+                <div />
+                <div />
+            </div>
         </Style.LoadingCssDotLine>
     );
 };
@@ -45,7 +56,10 @@ export const LoadingCssDotLine: React.FC<LoadingCssTypeProps> = (props) => {
 export const LoadingCssCircle: React.FC<LoadingCssTypeProps> = (props) => {
     return (
         <Style.LoadingCssCircle {...props}>
-            <div className='lds-ellipsis'>{getDivElement(2)}</div>
+            <div className='lds-ellipsis'>
+                <div />
+                <div />
+            </div>
         </Style.LoadingCssCircle>
     );
 };
