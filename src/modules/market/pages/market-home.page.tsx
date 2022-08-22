@@ -1,4 +1,3 @@
-import { Grid } from "@mui/material";
 import React from "react";
 
 import { IMAGE_URL } from "@/assets/images";
@@ -14,11 +13,6 @@ export const MarketHomePage: React.FC<MarketHomePageProps> = () => {
             <ListMarketWidget />
             <ListActionWidget />
             <ListHistoryWidget />
-            <Grid container>
-                <Grid item xs={8}>
-                    dsadsa
-                </Grid>
-            </Grid>
         </HomeSectionLayout>
     );
 };

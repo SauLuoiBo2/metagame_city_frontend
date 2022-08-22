@@ -29,7 +29,7 @@ const { MAIN_PATH } = PATH;
 
 export const appRoute = (isLoggedIn: boolean) => {
     return {
-        path: MAIN_PATH.PUBLIC,
+        path: "",
         element: isLoggedIn ? <MainLayout /> : <Navigate to='/login' />,
         children: [
             { path: MAIN_PATH.HOME, element: <HomePage /> },

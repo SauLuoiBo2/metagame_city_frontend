@@ -51,6 +51,14 @@ export const GlobalStyle = createGlobalStyle<Props>`
     text-decoration: none;
     }
 
+    h1, h2,h3 ,h4 ,h5 {
+      font-family:${({ theme }) => theme.fonts.title} ;
+    }
+
+    a ,p {
+      font-family:${({ theme }) => theme.fonts.main} ;
+    }
+
     /* button */
     button {
     background-color: transparent;

@@ -9,7 +9,7 @@ export interface ArchievementHomePageProps {}
 
 export const ArchievementHomePage: React.FC<ArchievementHomePageProps> = () => {
     return (
-        <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_1}>
+        <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_1} isAlone>
             <ListVictoryWidget />
         </HomeSectionLayout>
     );

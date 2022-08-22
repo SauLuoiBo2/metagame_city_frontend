@@ -9,7 +9,7 @@ export interface ListVictoryWidgetProps {}
 const ListVictoryWidget: React.FC<ListVictoryWidgetProps> = () => {
     return (
         <>
-            <FrameTableCom imgTitle={IMAGE_URL.TITLE.TITLE_VICTORY}>
+            <FrameTableCom imgTitle={IMAGE_URL.TITLE.TITLE_VICTORY} maxWidth={"80rem"}>
                 <Stack></Stack>
             </FrameTableCom>
         </>

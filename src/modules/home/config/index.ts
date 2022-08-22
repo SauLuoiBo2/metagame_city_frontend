@@ -1,4 +1,5 @@
 import { ASSETS } from "@/assets";
+import { IMAGE_URL } from "@/assets/images";
 
 const { SOCIAL } = ASSETS.ICONS_URL;
 
@@ -27,6 +28,18 @@ export const config = {
         {
             icon: SOCIAL.TIKTOK,
             link: "/",
+        },
+    ],
+    game: [
+        {
+            name: "CARO",
+            linkGame: "caro",
+            icon: IMAGE_URL.GAME.GAME_CARO,
+        },
+        {
+            name: "PACMAN",
+            linkGame: "pacman",
+            icon: IMAGE_URL.GAME.GAME_PACMAN,
         },
     ],
 };

@@ -7,13 +7,12 @@ import { Styles } from "@/theme";
 export interface FrameTableComProps extends PropsWithChildren {
     imgTitle?: any;
     imgFrame?: any;
+    maxWidth?: string;
 }
 
-export const FrameTableCom: React.FC<FrameTableComProps> = ({ children, imgTitle, imgFrame }) => {
+export const FrameTableCom: React.FC<FrameTableComProps> = ({ children, imgTitle, imgFrame, maxWidth }) => {
     return (
-        <Style.Wrapper isImgTitle={imgTitle} imgBg={imgFrame}>
-            {/* background */}
-            {/* <img src={imgFrame || IMAGE_URL.FRAME.FRAME_VICTORY} /> */}
+        <Style.Wrapper isImgTitle={imgTitle} imgBg={imgFrame} maxWidth={maxWidth}>
             {/* content */}
             <Style.Inner className='hidden_scroll'>
                 <Styles.Position.Center>{children}</Styles.Position.Center>
@@ -27,10 +26,11 @@ export const FrameTableCom: React.FC<FrameTableComProps> = ({ children, imgTitle
 interface StyleProps {
     isImgTitle?: boolean;
     imgBg?: any;
+    maxWidth?: string;
 }
 
 const Style = {
-    Wrapper: styled.section<StyleProps>`
+    Wrapper: styled.div<StyleProps>`
         position: relative;
         background-image: ${({ imgBg }) => `url(${imgBg || IMAGE_URL.FRAME.FRAME_VICTORY})`};
         background-repeat: no-repeat;
@@ -41,6 +41,8 @@ const Style = {
         display: flex;
         align-items: center;
         min-height: 40rem;
+        width: 100%;
+        max-width: ${({ maxWidth }) => maxWidth || null};
 
         @media ${(props) => props.theme.breakpoint.md} {
             padding: 5rem 0;

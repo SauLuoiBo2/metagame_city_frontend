@@ -18,26 +18,28 @@ const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
 
     return (
         <ViewAuthCom title={"LOGIN"}>
-            <CustomInput
-                name='username'
-                type={"email"}
-                placeholder='Email'
-                value={formik.values.username}
-                onChange={formik.handleChange}
-                error={supportErrorFormik(formik, "username")}
-            />
+            <Stack spacing={3} width={"100%"} alignItems={"center"} component={"form"} onSubmit={formik.handleSubmit}>
+                <CustomInput
+                    name='username'
+                    type={"email"}
+                    placeholder='Email'
+                    value={formik.values.username}
+                    onChange={formik.handleChange}
+                    error={supportErrorFormik(formik, "username")}
+                />
 
-            <CustomInput
-                type='password'
-                name='password'
-                placeholder='Password'
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                error={supportErrorFormik(formik, "password")}
-            />
-            <Styles.Button.Basic onClick={() => formik.handleSubmit()}>LOGIN</Styles.Button.Basic>
-            <Stack>
-                <Button onClick={() => navigate("/" + PATH.AUTH_PATH.LOGIN)}>Forgot Password</Button>
+                <CustomInput
+                    type='password'
+                    name='password'
+                    placeholder='Password'
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    error={supportErrorFormik(formik, "password")}
+                />
+                <Styles.Button.Basic type='submit'>LOGIN</Styles.Button.Basic>
+                <Stack>
+                    <Button onClick={() => navigate("/" + PATH.AUTH_PATH.LOGIN)}>Forgot Password</Button>
+                </Stack>
             </Stack>
 
             <Styles.Button.Basic

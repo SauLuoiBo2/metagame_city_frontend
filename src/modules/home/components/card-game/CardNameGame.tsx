@@ -27,6 +27,7 @@ const Style = {
     Wrapper: styled.div`
         position: relative;
         cursor: pointer;
+
         :hover {
             transform: translateY(-3px) scale(1.01);
         }

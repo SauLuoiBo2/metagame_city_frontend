@@ -8,7 +8,7 @@ export interface AffiateBuyPageProps {}
 
 export const AffiateBuyPage: React.FC<AffiateBuyPageProps> = () => {
     return (
-        <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_MARKET}>
+        <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_MARKET} isAlone>
             <BuyAffiliateWidget />
         </HomeSectionLayout>
     );

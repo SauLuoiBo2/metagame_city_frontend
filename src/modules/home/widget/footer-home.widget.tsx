@@ -11,7 +11,7 @@ export interface FooterHomeWidgetProps {}
 
 const FooterHomeWidget: React.FC<FooterHomeWidgetProps> = () => {
     return (
-        <HomeSectionLayout bg_url={ASSETS.IMAGE_URL.BG.BG_7}>
+        <HomeSectionLayout bg_url={ASSETS.IMAGE_URL.BG.BG_7} style={{ padding: "5rem 0", minHeight: "fit-content" }}>
             <Style.Wrapper>
                 <Style.TextWrapper>
                     <h1>METAGAMECITY</h1>
@@ -37,6 +37,7 @@ const Style = {
     `,
 
     TextWrapper: styled.div`
+        margin-bottom: 3rem;
         opacity: 0.15;
         text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.06);
     `,

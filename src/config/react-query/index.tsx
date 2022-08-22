@@ -1,11 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React, { memo, PropsWithChildren } from "react";
-export interface QueryProviderProps extends PropsWithChildren {}
 
-function getMillisecondsFromMinute(minute: number) {
-    return minute * 60 * 1000;
-}
+import { convertMiliSeconds } from "@/utils";
+export interface QueryProviderProps extends PropsWithChildren {}
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -14,8 +12,8 @@ const queryClient = new QueryClient({
             refetchIntervalInBackground: false,
             refetchOnReconnect: false,
             refetchOnMount: false,
-            staleTime: getMillisecondsFromMinute(10), // 10 minutes
-            cacheTime: getMillisecondsFromMinute(15), // 15 minutes
+            staleTime: convertMiliSeconds(10).getFromMinute(), // 10 minutes
+            cacheTime: convertMiliSeconds(15).getFromMinute(), // 15 minutes
             retry: 0,
         },
     },

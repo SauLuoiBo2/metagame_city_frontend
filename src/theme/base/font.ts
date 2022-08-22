@@ -1,6 +1,6 @@
 export const fonts = {
-    title: "DFMRG9",
-    main: "DFMRG9",
+    title: "Oswald, sans-serif",
+    main: "Poppins, sans-serif",
 };
 
 export type FontThemeType = typeof fonts;

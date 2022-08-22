@@ -1,14 +1,17 @@
 import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 
-export interface HomeSectionLayoutProps extends PropsWithChildren {
+export interface HomeSectionLayoutProps extends PropsWithChildren, React.HtmlHTMLAttributes<HTMLDivElement> {
     bg_url?: any;
+    isAlone?: boolean;
 }
 
-export const HomeSectionLayout: React.FC<HomeSectionLayoutProps> = ({ bg_url, children }) => {
+export const HomeSectionLayout: React.FC<HomeSectionLayoutProps> = ({ isAlone, bg_url, children, ...props }) => {
     return (
-        <Style.Wrapper bg_url={bg_url}>
-            <Style.Inner>{children}</Style.Inner>
+        <Style.Wrapper bg_url={bg_url} isAlone={isAlone}>
+            <Style.Inner className='app_container' {...props}>
+                {children}
+            </Style.Inner>
         </Style.Wrapper>
     );
 };
@@ -18,20 +21,23 @@ const Style = {
         background-image: ${({ bg_url }) => `url(${bg_url})`};
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center;
+        min-height: ${({ isAlone }) => (isAlone ? "100vh" : null)};
     `,
 
-    Inner: styled.div.attrs({
-        className: "app_container",
-    })`
+    Inner: styled.div`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         /* height: 100vh; */
         min-height: 50vh;
 
-        padding-top: 25rem;
-        padding-bottom: 25rem;
+        padding-top: 20rem;
+        padding-bottom: 20rem;
         @media ${(props) => props.theme.breakpoint.md} {
-            padding-top: 5rem;
+            padding-top: 10rem;
             padding-bottom: 5rem;
-            min-height: 70vh;
+            min-height: fit-content;
         }
     `,
 };

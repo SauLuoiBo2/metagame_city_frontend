@@ -9,7 +9,7 @@ export interface AffiliateHomePageProps {}
 
 export const AffiliateHomePage: React.FC<AffiliateHomePageProps> = () => {
     return (
-        <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_MARKET}>
+        <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_MARKET} isAlone>
             <ListAffliateWidget />
         </HomeSectionLayout>
     );
