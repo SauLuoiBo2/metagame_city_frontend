@@ -2,7 +2,6 @@ import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 
 import { IMAGE_URL } from "@/assets/images";
-import { Styles } from "@/theme";
 
 export interface FrameBgProps extends PropsWithChildren {
     imgFrame?: any;
