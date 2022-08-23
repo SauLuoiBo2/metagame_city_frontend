@@ -19,4 +19,11 @@ export const QUERY_KEY = {
         LIST_HISTOTRY: "affiliate_list_histories",
         LIST_MEMBERS: "affiliate_list_members",
     },
+    WALLET: {
+        WALLET_MESSAGE: "wallet_message",
+    },
+    CHAIN: {
+        CHAIN_LIST: "chain_list",
+        CHAIN_DETAIL: "chain_detail",
+    },
 };

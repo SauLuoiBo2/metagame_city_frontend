@@ -7,6 +7,15 @@ export const ApiUrl = {
         forgot_password_url: "auth/forgotPassword",
         reset_password_url: "auth/resetPassword",
     },
+
+    auth_wallet: {
+        sign_message: "auth/signMessage",
+        wallet_login: "auth/walletLogin",
+    },
+
+    chain: {
+        asset: "asset",
+    },
     user: {
         user_url: "user",
         user_balance_url: "user/balance",
