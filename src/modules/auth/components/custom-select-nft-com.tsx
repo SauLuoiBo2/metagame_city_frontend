@@ -47,7 +47,7 @@ export const CustomSelectNftCom: React.FC<CustomSelectNftComProps> = ({
     return (
         <Style.Total ref={ref}>
             <Style.Wrapper onClick={open.toggle}>
-                <Styles.Text.MainText style={{ opacity: label ? null : "0.5" }}>
+                <Styles.Text.MainText style={{ opacity: label ? "1" : "0.5" }}>
                     {label || placeholder}
                 </Styles.Text.MainText>
             </Style.Wrapper>
