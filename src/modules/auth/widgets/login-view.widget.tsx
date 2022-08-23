@@ -14,8 +14,8 @@ export interface LoginViewWidgetProps {}
 
 const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
     const navigate = useNavigate();
-    const { formik, useMutationLogin } = useFormLogin();
-    const { isLoading } = useMutationLogin();
+    const { formik, mutationLogin } = useFormLogin();
+    const { isLoading } = mutationLogin;
 
     return (
         <ViewAuthCom title={"LOGIN"}>

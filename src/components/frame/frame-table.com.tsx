@@ -4,15 +4,15 @@ import styled from "styled-components";
 import { IMAGE_URL } from "@/assets/images";
 import { Styles } from "@/theme";
 
-export interface FrameTableComProps extends PropsWithChildren {
+export interface FrameTableComProps extends PropsWithChildren, React.HTMLAttributes<HTMLDivElement> {
     imgTitle?: any;
     imgFrame?: any;
     maxWidth?: string;
 }
 
-export const FrameTableCom: React.FC<FrameTableComProps> = ({ children, imgTitle, imgFrame, maxWidth }) => {
+export const FrameTableCom: React.FC<FrameTableComProps> = ({ children, imgTitle, imgFrame, maxWidth, ...props }) => {
     return (
-        <Style.Wrapper isImgTitle={imgTitle} imgBg={imgFrame} maxWidth={maxWidth}>
+        <Style.Wrapper isImgTitle={imgTitle} imgBg={imgFrame} maxWidth={maxWidth} {...props}>
             {/* content */}
             <Style.Inner className='hidden_scroll'>
                 <Styles.Position.Center>{children}</Styles.Position.Center>

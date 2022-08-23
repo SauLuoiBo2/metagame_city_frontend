@@ -97,7 +97,7 @@ const GiveModalView = () => {
                 </ButtonAction>
             </Grid>
 
-            <MuiModal open={open.value} onClose={open.setFalse} widthModal={800}>
+            <MuiModal open={open.value} onClose={open.setFalse} widthModal={600}>
                 <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_GIVE}>
                     <Stack {...styleStack}>
                         <CustomInput placeholder='Email' />

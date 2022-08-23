@@ -18,6 +18,11 @@ export function useQueryAuth() {
             onSuccess: async (data) => {
                 await authSetAccessToken(data.data?.token || "");
 
+                const status: any = data.status;
+
+                if (status === "error") {
+                    return;
+                }
                 navigate("/");
                 queryClient.refetchQueries();
             },

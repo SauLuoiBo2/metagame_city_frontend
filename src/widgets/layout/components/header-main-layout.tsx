@@ -24,31 +24,30 @@ const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
     return (
         <Style.Header>
             <Style.Wrapper className='app_container'>
-                {/* background */}
-                <Style.Img src={ASSETS.IMAGE_URL.BG.HEADER} />
-                {/* content */}
+                <Styles.Container.BgFrameContainer imgFrame={ASSETS.IMAGE_URL.BG.HEADER}>
+                    <Style.Inner>
+                        <Style.IconWrapper>
+                            <NavLink icon={HEADER.CUP} to={"/" + MAIN_PATH.CUP} />
+                            <NavLink icon={HEADER.BOX} to={"/" + MAIN_PATH.MARKET} />
+                            <Style.NavLink to='/'>
+                                <Styles.ImgIcon.Basic src={HEADER.HOME} style={{ transform: "scale(1.5)" }} />
+                                {/* <img src={HEADER.HOME} style={{ height: "40%" }} /> */}
+                            </Style.NavLink>
+                            <NavLink icon={HEADER.COMUNICATE} to={"/" + MAIN_PATH.AFFILIATE} />
+                        </Style.IconWrapper>
 
-                <Style.Inner>
-                    <Style.IconWrapper>
-                        <NavLink icon={HEADER.CUP} to={"/" + MAIN_PATH.CUP} />
-                        <NavLink icon={HEADER.BOX} to={"/" + MAIN_PATH.MARKET} />
-                        <Style.NavLink to='/'>
-                            <img src={HEADER.HOME} style={{ height: "40%" }} />
+                        <Style.NavLink to={linkLogin}>
+                            {/* <img src={ASSETS.IMAGE_URL.FRAME.FRAME_USER} /> */}
+                            {/* <Style.Inner>
+                                <Styles.Position.Center style={{ transform: "translateY(0.5rem)" }}>
+                                    <p className='text_big' style={{ color: "white" }}>
+                                        {data?.data?.username ? data?.data?.username : "login"}
+                                    </p>
+                                </Styles.Position.Center>
+                            </Style.Inner> */}
                         </Style.NavLink>
-                        <NavLink icon={HEADER.COMUNICATE} to={"/" + MAIN_PATH.AFFILIATE} />
-                    </Style.IconWrapper>
-
-                    <Style.NavLink to={linkLogin}>
-                        <img src={ASSETS.IMAGE_URL.FRAME.FRAME_USER} />
-                        <Style.Inner>
-                            <Styles.Position.Center style={{ transform: "translateY(0.5rem)" }}>
-                                <p className='text_big' style={{ color: "white" }}>
-                                    {data?.data?.username ? data?.data?.username : "login"}
-                                </p>
-                            </Styles.Position.Center>
-                        </Style.Inner>
-                    </Style.NavLink>
-                </Style.Inner>
+                    </Style.Inner>
+                </Styles.Container.BgFrameContainer>
             </Style.Wrapper>
         </Style.Header>
     );
@@ -64,7 +63,7 @@ interface NavLinkProps {
 const NavLink: React.FC<NavLinkProps> = ({ icon, to }) => {
     return (
         <Style.NavLink to={to || "/"}>
-            <img src={icon} />
+            <Styles.ImgIcon.Basic src={icon} />
         </Style.NavLink>
     );
 };
@@ -86,7 +85,7 @@ const Style = {
     `,
 
     Inner: styled.div`
-        position: absolute;
+        /* position: absolute; */
         width: 100%;
         height: 100%;
         top: 0;
@@ -94,7 +93,11 @@ const Style = {
         justify-content: space-between;
         align-items: center;
         transform: translateY(-0.5rem);
-        padding: 0 10%;
+        padding: 4rem 10%;
+
+        @media ${(props) => props.theme.breakpoint.md} {
+            padding: 2rem 10%;
+        }
     `,
 
     IconWrapper: styled.div`
@@ -112,10 +115,7 @@ const Style = {
         align-items: center;
         position: relative;
         :hover {
-            transform: translateY(-3px);
-        }
-        img {
-            height: 25%;
+            transform: translateY(-3px) scale(1.05);
         }
     `,
 };

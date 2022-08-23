@@ -1,8 +1,6 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-import { KEY } from "@/config";
-
 import { PersistStore, ZustandStore } from "./model";
 import { authSlice, themeSlice } from "./slices";
 import { modalSlice } from "./slices/modal/modal.slice";

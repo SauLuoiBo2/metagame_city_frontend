@@ -18,15 +18,16 @@ const validationSchema = Yup.object().shape({
 
 export function useFormLogin() {
     const { useMutationLogin } = useQueryAuth();
-    const { mutate } = useMutationLogin();
+    const mutationLogin = useMutationLogin();
+
     const formik = useFormik({
         initialValues,
         validationSchema,
         onSubmit: (values) => {
-            mutate(values);
+            mutationLogin.mutate(values);
         },
         validateOnChange: false,
     });
 
-    return { formik, useMutationLogin };
+    return { formik, mutationLogin };
 }

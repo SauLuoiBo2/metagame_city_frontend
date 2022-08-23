@@ -5,6 +5,7 @@ import { useQueryUser } from "@/api";
 import { ICONS_URL } from "@/assets/icons";
 import { IMAGE_URL } from "@/assets/images";
 import { FrameTableCom, GridItemHalf } from "@/components";
+import { Styles } from "@/theme";
 
 import ItemNftValueCom from "../components/item-nft-value.com";
 
@@ -50,19 +51,19 @@ export const ListMarketWidget: React.FC<ListMarketWidgetProps> = () => {
                     {/* boottmm */}
                     <GridItemHalf>
                         <ItemNftValueCom>
-                            <h3 className='text_big'>
+                            <Styles.Text.BodyBig>
                                 Total{" "}
                                 <span>
-                                    <img src={ICONS_URL.BUTTON.STAR} style={{ width: "15px" }} />
+                                    <Styles.ImgIcon.Star />
                                 </span>{" "}
                                 : {banance?.balance}
-                            </h3>
+                            </Styles.Text.BodyBig>
                         </ItemNftValueCom>
                         {/* balance */}
                     </GridItemHalf>
                     <GridItemHalf>
                         <ItemNftValueCom>
-                            <h3 className='text_big'>Total NFT: 0</h3>
+                            <Styles.Text.BodyBig>Total NFT: 0</Styles.Text.BodyBig>
                         </ItemNftValueCom>
                     </GridItemHalf>
                 </Grid>

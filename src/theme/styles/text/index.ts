@@ -7,4 +7,26 @@ export const stylesText = {
         color: ${light_colors.warning.main};
         font-size: 1.3rem;
     `,
+    BodyBig: styled.h4`
+        font-size: 3.5rem;
+
+        @media ${(props) => props.theme.breakpoint.xxl} {
+            font-size: 3.5rem;
+        }
+        @media ${(props) => props.theme.breakpoint.xl} {
+            font-size: 3rem;
+        }
+        @media ${(props) => props.theme.breakpoint.lg} {
+            font-size: 2.7rem;
+        }
+        @media ${(props) => props.theme.breakpoint.md} {
+            font-size: 2.5rem;
+        }
+        @media ${(props) => props.theme.breakpoint.sm} {
+            font-size: 2rem;
+        }
+        @media ${(props) => props.theme.breakpoint.xs} {
+            font-size: 1.7rem;
+        }
+    `,
 };

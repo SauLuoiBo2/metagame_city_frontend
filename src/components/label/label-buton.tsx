@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Styles } from "@/theme";
+
 export interface LabelButonProps {
     title?: string;
     label?: React.ReactNode;
@@ -13,9 +15,9 @@ const LabelButon: React.FC<LabelButonProps> = ({ title, preIcon, aftIcon, label 
         <Style.Wrapper>
             {title && <p>{title}</p>}
             <Style.Inner>
-                {preIcon && <img src={preIcon} />}
-                {label && <h3>{label}</h3>}
-                {aftIcon && <img src={aftIcon} />}
+                {preIcon && <Styles.ImgIcon.Basic src={preIcon} />}
+                {label && <Styles.Text.BodyBig>{label}</Styles.Text.BodyBig>}
+                {aftIcon && <Styles.ImgIcon.Basic src={aftIcon} />}
             </Style.Inner>
         </Style.Wrapper>
     );

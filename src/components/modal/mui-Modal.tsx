@@ -1,4 +1,4 @@
-import { Backdrop, Box, Fade, Modal, ModalProps, Typography } from "@mui/material";
+import { Backdrop, Box, Fade, Modal, ModalProps } from "@mui/material";
 import React from "react";
 
 export interface MuiModalProps extends ModalProps {

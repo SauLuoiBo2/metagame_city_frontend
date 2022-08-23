@@ -2,7 +2,6 @@ import { Stack } from "@mui/material";
 import React, { PropsWithChildren, useCallback } from "react";
 import styled from "styled-components";
 
-import { ICONS_URL } from "@/assets/icons";
 import { IMAGE_URL } from "@/assets/images";
 import { Styles } from "@/theme";
 
@@ -15,19 +14,18 @@ const ItemNftValueCom: React.FC<ItemNftValueComProps> = ({ children, icon, value
     const renderBasic = useCallback(() => {
         return (
             <Stack
-                px={{ xs: 1, sm: 2, md: 4 }}
+                maxWidth={"100%"}
                 width={"100%"}
                 justifyContent={"flex-start"}
                 direction={"row"}
                 spacing={1}
                 alignItems={"center"}
             >
-                <Style.ImgLabel>
-                    <img src={icon} />
-                </Style.ImgLabel>
+                <Style.ImgLabel src={icon} />
                 <Style.Content>
-                    <h3 className='text_big'>{value || 0}</h3>
-                    <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20%" }} />
+                    <Styles.Text.BodyBig>{value || 0}</Styles.Text.BodyBig>
+                    <Styles.ImgIcon.Star />
+                    {/* <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20%" }} /> */}
                 </Style.Content>
             </Stack>
         );
@@ -62,13 +60,21 @@ const Style = {
         text-align: center;
     `,
 
-    ImgLabel: styled.div`
-        img {
-            width: 100%;
+    ImgLabel: styled.img`
+        width: 5rem !important;
+        height: 5rem !important;
+        @media ${(props) => props.theme.breakpoint.lg} {
+            width: 4rem !important;
+            height: 4rem !important;
         }
-        width: 15%;
-        display: flex;
-        align-items: center;
+        @media ${(props) => props.theme.breakpoint.md} {
+            width: 3rem !important;
+            height: 3rem !important;
+        }
+        @media ${(props) => props.theme.breakpoint.sm} {
+            width: 2rem !important;
+            height: 2rem !important;
+        }
     `,
 
     Content: styled.div`
