@@ -3,6 +3,7 @@ import BACK_AUTH from "./button/back_auth.png";
 import GIVE from "./button/box.svg";
 import CLOSE from "./button/close_button.svg";
 import DOWNLOAD from "./button/download.svg";
+import EXIT from "./button/exit.svg";
 import NFT from "./button/nft.svg";
 import SETTING from "./button/setting_button.svg";
 import STAR from "./button/star.svg";
@@ -43,6 +44,7 @@ const BUTTON = {
     BACK_AUTH,
     SETTING,
     CLOSE,
+    EXIT,
 };
 
 export const ICONS_URL = { HEADER, SOCIAL, BUTTON };

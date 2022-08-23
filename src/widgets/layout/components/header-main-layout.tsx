@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { ASSETS } from "@/assets";
+import { ModalAccount } from "@/modules/comcom";
 import { PATH } from "@/router/pathname";
+import { useBearStore } from "@/store/useBearStore";
 import { Styles } from "@/theme";
 
 export interface HeaderMainLayoutProps {}
@@ -13,6 +15,11 @@ const { MAIN_PATH } = PATH;
 const { HEADER, BUTTON } = ASSETS.ICONS_URL;
 
 const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
+    const { modalOnOpen } = useBearStore();
+
+    function handleOpenModal() {
+        modalOnOpen(ModalAccount);
+    }
     return (
         <Style.Header>
             <Style.Wrapper className='app_container'>
@@ -22,10 +29,17 @@ const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
                             <NavLink icon={HEADER.CUP} to={"/" + MAIN_PATH.CUP} />
                             <NavLink icon={HEADER.BOX} to={"/" + MAIN_PATH.MARKET} />
                             <Style.NavLink to='/'>
-                                <Styles.ImgIcon.Basic src={HEADER.HOME} style={{ transform: "scale(1.5)" }} />
+                                <Styles.ImgIcon.Basic
+                                    src={HEADER.HOME}
+                                    style={{ transform: "scale(1.5)", transformOrigin: "center" }}
+                                />
                             </Style.NavLink>
                             <NavLink icon={HEADER.COMUNICATE} to={"/" + MAIN_PATH.AFFILIATE} />
-                            <NavLink icon={BUTTON.SETTING} to={"/" + MAIN_PATH.ACCOUNT} />
+                            <Styles.ImgIcon.Basic
+                                style={{ cursor: "pointer" }}
+                                src={BUTTON.SETTING}
+                                onClick={handleOpenModal}
+                            />
                         </Style.IconWrapper>
                     </Style.Inner>
                 </Styles.Container.BgFrameContainer>

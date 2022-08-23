@@ -2,13 +2,18 @@ import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 
 import { IMAGE_URL } from "@/assets/images";
+import { Styles } from "@/theme";
 
 export interface FrameBgProps extends PropsWithChildren {
     imgFrame?: any;
 }
 
-export const FrameBg: React.FC<FrameBgProps> = () => {
-    return <Style.Wrapper></Style.Wrapper>;
+export const FrameBg: React.FC<FrameBgProps> = ({ children }) => {
+    return (
+        <Style.Wrapper>
+            <Style.Inner>{children}</Style.Inner>
+        </Style.Wrapper>
+    );
 };
 
 const Style = {
@@ -18,10 +23,14 @@ const Style = {
         background-repeat: no-repeat;
         background-size: 100% 100%, cover;
         background-position: center;
-        padding: 10rem 0;
+        padding: 3rem 0;
         display: flex;
-        align-items: center;
-        min-height: 40rem;
+        align-items: flex-start;
+        justify-content: center;
+        min-height: 20rem;
         width: 100%;
+    `,
+    Inner: styled.div`
+        min-height: 100%;
     `,
 };
