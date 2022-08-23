@@ -1,3 +1,6 @@
+import { ErrorMainPage } from "@/modules/error";
+import { MainLayout } from "@/widgets";
+
 import { PATH } from "../pathname";
 
 const { ERROR_PATH } = PATH;
@@ -5,6 +8,12 @@ const { ERROR_PATH } = PATH;
 export const errorRoute = () => {
     return {
         path: ERROR_PATH.ERROR_404,
-        element: <div>error 404</div>,
+        element: <MainLayout />,
+        children: [
+            {
+                path: "",
+                element: <ErrorMainPage />,
+            },
+        ],
     };
 };
