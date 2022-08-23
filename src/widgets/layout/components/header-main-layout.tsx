@@ -2,25 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { useQueryUser } from "@/api";
 import { ASSETS } from "@/assets";
 import { PATH } from "@/router/pathname";
-import { AUTH_PATH } from "@/router/pathname/auth.path";
 import { Styles } from "@/theme";
 
 export interface HeaderMainLayoutProps {}
 
 const { MAIN_PATH } = PATH;
 
-const { HEADER } = ASSETS.ICONS_URL;
+const { HEADER, BUTTON } = ASSETS.ICONS_URL;
 
 const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
-    const { useGetUser } = useQueryUser();
-
-    const { data } = useGetUser();
-
-    const linkLogin = data ? "/" + MAIN_PATH.ACCOUNT : "/" + AUTH_PATH.LOGIN;
-
     return (
         <Style.Header>
             <Style.Wrapper className='app_container'>
@@ -31,21 +23,10 @@ const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
                             <NavLink icon={HEADER.BOX} to={"/" + MAIN_PATH.MARKET} />
                             <Style.NavLink to='/'>
                                 <Styles.ImgIcon.Basic src={HEADER.HOME} style={{ transform: "scale(1.5)" }} />
-                                {/* <img src={HEADER.HOME} style={{ height: "40%" }} /> */}
                             </Style.NavLink>
                             <NavLink icon={HEADER.COMUNICATE} to={"/" + MAIN_PATH.AFFILIATE} />
+                            <NavLink icon={BUTTON.SETTING} to={"/" + MAIN_PATH.ACCOUNT} />
                         </Style.IconWrapper>
-
-                        <Style.NavLink to={linkLogin}>
-                            {/* <img src={ASSETS.IMAGE_URL.FRAME.FRAME_USER} /> */}
-                            {/* <Style.Inner>
-                                <Styles.Position.Center style={{ transform: "translateY(0.5rem)" }}>
-                                    <p className='text_big' style={{ color: "white" }}>
-                                        {data?.data?.username ? data?.data?.username : "login"}
-                                    </p>
-                                </Styles.Position.Center>
-                            </Style.Inner> */}
-                        </Style.NavLink>
                     </Style.Inner>
                 </Styles.Container.BgFrameContainer>
             </Style.Wrapper>
@@ -101,7 +82,7 @@ const Style = {
     `,
 
     IconWrapper: styled.div`
-        width: 80%;
+        width: 100%;
         height: 100%;
         display: flex;
         justify-content: space-between;

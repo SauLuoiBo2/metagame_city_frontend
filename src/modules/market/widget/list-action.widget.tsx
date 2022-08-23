@@ -4,13 +4,15 @@ import { useBoolean } from "usehooks-ts";
 
 import { ICONS_URL } from "@/assets/icons";
 import { IMAGE_URL } from "@/assets/images";
-import { CustomInput, FrameTableCom, GridItemHalfFull } from "@/components";
+import { CustomButton, CustomInput, FrameTableCom, GridItemHalfFull } from "@/components";
 import LabelButon from "@/components/label/label-buton";
 import MuiModal from "@/components/modal/mui-Modal";
+import { supportErrorFormik } from "@/libs";
 import { Styles } from "@/theme";
 import { ButtonAction } from "@/widgets";
 
 import ItemNftValueCom from "../components/item-nft-value.com";
+import { useFormGive } from "../hook";
 
 export interface ListActionWidgetProps {}
 
@@ -86,7 +88,8 @@ const BuyModalView = () => {
 
 const GiveModalView = () => {
     const open = useBoolean();
-
+    const { formik, sendStar } = useFormGive();
+    const { isLoading } = sendStar;
     return (
         <>
             <Grid item xs={4}>
@@ -97,13 +100,35 @@ const GiveModalView = () => {
 
             <MuiModal open={open.value} onClose={open.setFalse} widthModal={600}>
                 <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_GIVE}>
-                    <Stack {...styleStack}>
-                        <CustomInput placeholder='Email' />
-                        <CustomInput placeholder='Amount' />
-                        <CustomInput placeholder='Password' />
+                    <Stack {...styleStack} component={"form"} onSubmit={formik.handleSubmit}>
+                        <CustomInput
+                            name='receiver'
+                            value={formik.values.receiver}
+                            onChange={formik.handleChange}
+                            error={supportErrorFormik(formik, "receiver")}
+                            placeholder='Email/Username/Wallet'
+                        />
+                        <CustomInput
+                            name='amount'
+                            value={formik.values.amount}
+                            onChange={formik.handleChange}
+                            error={supportErrorFormik(formik, "amount")}
+                            type={"number"}
+                            placeholder='Amount'
+                        />
+                        <CustomInput
+                            type={"password"}
+                            name='password'
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
+                            error={supportErrorFormik(formik, "password")}
+                            placeholder='Password'
+                        />
 
                         <Stack sx={{ borderTop: "gray 2px solid" }} width={"100%"}>
-                            <Styles.Button.Basic style={{ marginTop: "2rem" }}>GIVE</Styles.Button.Basic>
+                            <CustomButton type='submit' isLoading={isLoading} style={{ marginTop: "2rem" }}>
+                                GIVE
+                            </CustomButton>
                         </Stack>
                     </Stack>
                 </FrameTableCom>

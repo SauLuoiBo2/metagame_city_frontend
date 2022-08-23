@@ -1,6 +1,6 @@
 export interface FinanceSendStarDtoProps {
     receiver: string;
-    amount: number;
+    amount: number | string;
     password: string;
 }
 

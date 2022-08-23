@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { toast } from "react-toastify";
 
 import { QUERY_KEY } from "@/config";
 import { ApiResponseData } from "@/models/api.model";
@@ -15,8 +16,18 @@ export const useQueryFinance = () => {
     }
 
     function useSendStar() {
-        return useMutation<ApiResponseData<any>, AxiosError, FinanceSendStarDtoProps>((body) =>
-            financeApi.sendStar(body)
+        return useMutation<ApiResponseData<any>, AxiosError, FinanceSendStarDtoProps>(
+            (body) => financeApi.sendStar(body),
+            {
+                onSuccess: (data) => {
+                    const status: any = data.status;
+
+                    if (status === "error") {
+                        toast.error("error");
+                        return;
+                    }
+                },
+            }
         );
     }
 

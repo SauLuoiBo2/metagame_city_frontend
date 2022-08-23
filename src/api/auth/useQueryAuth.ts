@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { LoginProps, RegisterProps, UserDtoProps } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
@@ -21,9 +22,12 @@ export function useQueryAuth() {
                 const status: any = data.status;
 
                 if (status === "error") {
+                    toast.error(data.message);
                     return;
                 }
                 navigate("/");
+                toast.success(data.message);
+
                 queryClient.refetchQueries();
             },
         });

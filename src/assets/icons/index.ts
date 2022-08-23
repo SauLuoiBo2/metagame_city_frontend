@@ -1,8 +1,10 @@
 // button
 import BACK_AUTH from "./button/back_auth.png";
 import GIVE from "./button/box.svg";
+import CLOSE from "./button/close_button.svg";
 import DOWNLOAD from "./button/download.svg";
 import NFT from "./button/nft.svg";
+import SETTING from "./button/setting_button.svg";
 import STAR from "./button/star.svg";
 // header
 import BOX from "./header/box.svg";
@@ -39,6 +41,8 @@ const BUTTON = {
     DOWNLOAD,
     GIVE,
     BACK_AUTH,
+    SETTING,
+    CLOSE,
 };
 
 export const ICONS_URL = { HEADER, SOCIAL, BUTTON };

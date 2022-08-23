@@ -1,5 +1,6 @@
 import React from "react";
 
+import { ToastProvider } from "@/config";
 import { ModalProvider } from "@/modules/comcom";
 import { SplashAppLayout } from "@/widgets";
 
@@ -10,6 +11,7 @@ const AppProvider: React.FC<AppProviderProps> = () => {
         <>
             <SplashAppLayout />
             <ModalProvider />
+            <ToastProvider />
         </>
     );
 };
