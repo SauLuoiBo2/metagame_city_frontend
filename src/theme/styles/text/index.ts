@@ -20,10 +20,10 @@ export const stylesText = {
             font-size: 2.7rem;
         }
         @media ${(props) => props.theme.breakpoint.md} {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
         }
         @media ${(props) => props.theme.breakpoint.sm} {
-            font-size: 2rem;
+            font-size: 1.6rem;
         }
         @media ${(props) => props.theme.breakpoint.xs} {
             font-size: 1.7rem;
