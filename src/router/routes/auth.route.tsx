@@ -17,7 +17,7 @@ const { AUTH_PATH } = PATH;
 export const authRoute = (isLoggedIn: boolean) => {
     return {
         path: "/",
-        element: !isLoggedIn ? <AuthLayout /> : <Navigate to={"/" + AUTH_PATH.INTRO} />,
+        element: !isLoggedIn ? <AuthLayout /> : <Navigate to={"/"} />,
         children: [
             { path: "", element: <Navigate to={"/" + AUTH_PATH.INTRO} /> },
             { path: AUTH_PATH.LOGIN, element: <LoginPage /> },
