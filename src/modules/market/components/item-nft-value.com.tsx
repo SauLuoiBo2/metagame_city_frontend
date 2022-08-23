@@ -23,22 +23,31 @@ const ItemNftValueCom: React.FC<ItemNftValueComProps> = ({ children, icon, value
             >
                 <Style.ImgLabel src={icon} />
                 <Style.Content>
-                    <Styles.Text.BodyBig>{value || 0}</Styles.Text.BodyBig>
-                    <Styles.ImgIcon.Star />
+                    <Styles.Text.BodyBig>
+                        {value || 0}
+                        <span>
+                            {" "}
+                            <Styles.ImgIcon.Star />
+                        </span>
+                    </Styles.Text.BodyBig>
+
                     {/* <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20%" }} /> */}
                 </Style.Content>
             </Stack>
         );
     }, []);
 
-    return (
-        <Style.Wrapper>
-            <img src={IMAGE_URL.FRAME.FRAME_ITEM_NFT} />
+    // ########################################
 
+    return (
+        <Styles.Container.BgFrameContainer
+            imgFrame={IMAGE_URL.FRAME.FRAME_ITEM_NFT}
+            style={{ overflow: "hidden", paddingRight: "0.2rem", paddingLeft: "0.2rem" }}
+        >
             <Style.Inner>
                 <Styles.Position.Center>{children ? children : renderBasic()}</Styles.Position.Center>
             </Style.Inner>
-        </Style.Wrapper>
+        </Styles.Container.BgFrameContainer>
     );
 };
 
@@ -50,7 +59,7 @@ const Style = {
     `,
 
     Inner: styled.div`
-        position: absolute;
+        /* position: absolute; */
         top: 0;
         width: 100%;
         height: 100%;

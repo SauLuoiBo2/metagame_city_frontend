@@ -16,20 +16,18 @@ export interface ListActionWidgetProps {}
 
 export const ListActionWidget: React.FC<ListActionWidgetProps> = () => {
     return (
-        <>
-            <Stack maxWidth={"800px"} justifyContent={"space-around"} direction={"row"} flexWrap={"wrap"}>
-                <Grid container>
-                    <BuyModalView />
-                    <GiveModalView />
-                    <NftModalView />
-                </Grid>
-            </Stack>
-        </>
+        <Grid container spacing={{ xs: 1, md: 2, lg: 4 }} maxWidth={"800px"} pt={6}>
+            <BuyModalView />
+            <GiveModalView />
+            <NftModalView />
+        </Grid>
     );
 };
 
 const styleStack = {
-    sx: { overflowY: "auto", maxHeight: "60%", width: "100%", padding: "0 20%" },
+    sx: { overflowY: "auto", maxHeight: "60%", width: "100%" },
+    mx: { xs: "10%", md: "20%" },
+    pt: "10%",
     alignItems: "center",
     spacing: 2,
 };
@@ -39,7 +37,7 @@ const BuyModalView = () => {
     return (
         <>
             <Grid item xs={4}>
-                <ButtonAction style={{ margin: "0 2rem" }} onClick={open.setTrue}>
+                <ButtonAction onClick={open.setTrue}>
                     <LabelButon label='BUY' preIcon={ICONS_URL.BUTTON.STAR} />
                 </ButtonAction>
             </Grid>
@@ -50,31 +48,31 @@ const BuyModalView = () => {
                         <ItemNftValueCom>
                             <Styles.Position.Center>
                                 <Stack direction={"row"} spacing={1}>
-                                    <h3 className='text_big'>
-                                        1
+                                    <Styles.Text.BodyBig>
+                                        1{" "}
                                         <span>
-                                            <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20px" }} />
+                                            <Styles.ImgIcon.Star />{" "}
                                         </span>
-                                        = 0.1USDT
-                                    </h3>
+                                        = 0.1 USDT
+                                    </Styles.Text.BodyBig>
                                 </Stack>
                             </Styles.Position.Center>
                         </ItemNftValueCom>
 
                         <div style={{ width: "100%" }}>
-                            <p style={{ textAlign: "end" }}> BNB Mainet</p>
+                            <Styles.Text.MainText style={{ textAlign: "end" }}> BNB Mainet</Styles.Text.MainText>
                         </div>
 
                         <CustomInput placeholder='Amount' />
                         <div style={{ width: "100%" }}>
-                            <p style={{ textAlign: "end" }}>
+                            <Styles.Text.MainText style={{ textAlign: "end" }}>
                                 {" "}
                                 Min 1000{" "}
                                 <span>
                                     {" "}
                                     <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20px" }} />
                                 </span>
-                            </p>
+                            </Styles.Text.MainText>
                         </div>
                         <Stack sx={{ borderTop: "gray 2px solid" }} width={"100%"}>
                             <Styles.Button.Basic style={{ marginTop: "2rem" }}>BUY</Styles.Button.Basic>
@@ -92,7 +90,7 @@ const GiveModalView = () => {
     return (
         <>
             <Grid item xs={4}>
-                <ButtonAction style={{ margin: "0 2rem" }} onClick={open.setTrue}>
+                <ButtonAction onClick={open.setTrue}>
                     <LabelButon label='GIVE' preIcon={ICONS_URL.BUTTON.STAR} />
                 </ButtonAction>
             </Grid>
@@ -120,7 +118,7 @@ const NftModalView = () => {
     return (
         <>
             <Grid item xs={4}>
-                <ButtonAction style={{ margin: "0 2rem" }} onClick={open.setTrue}>
+                <ButtonAction onClick={open.setTrue}>
                     <LabelButon label='NFT' preIcon={ICONS_URL.BUTTON.NFT} />
                 </ButtonAction>
             </Grid>

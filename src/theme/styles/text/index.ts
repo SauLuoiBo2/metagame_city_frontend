@@ -7,6 +7,10 @@ export const stylesText = {
         color: ${light_colors.warning.main};
         font-size: 1.3rem;
     `,
+
+    MainText: styled.p`
+        font-size: 1.6rem;
+    `,
     BodyBig: styled.h4`
         font-size: 3.5rem;
 
