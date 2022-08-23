@@ -12,6 +12,7 @@ import FRAME_ACCOUNT from "./frame/frame_account.png";
 import FRAME_AFFLIATE from "./frame/frame_affliate.png";
 // frame
 import FRAME_BUTTON from "./frame/frame_button.png";
+import FRAME_BUTTON_LOGIN from "./frame/frame_button_nft.png";
 import FRAME_BUY from "./frame/frame_buy.png";
 import FRAME_GAME_MOBILE from "./frame/frame_game_mobile.svg";
 import FRAME_GAME_NAME from "./frame/frame_game_name.svg";
@@ -59,6 +60,7 @@ export const IMAGE_URL = {
         FRAME_AFFLIATE,
         FRAME_VICTORY_VER,
         FRAME_ACCOUNT,
+        FRAME_BUTTON_LOGIN,
     },
     GAME: {
         GAME_CARO,

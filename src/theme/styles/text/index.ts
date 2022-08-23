@@ -11,6 +11,10 @@ export const stylesText = {
     MainText: styled.p`
         font-size: 1.6rem;
     `,
+    CapText: styled.h5`
+        font-size: 2rem;
+        font-weight: 700;
+    `,
     BodyBig: styled.h4`
         font-size: 3.5rem;
 

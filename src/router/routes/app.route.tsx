@@ -25,12 +25,12 @@ const AccountHomePage = React.lazy(() =>
     import("@/modules").then(({ AccountHomePage }) => ({ default: AccountHomePage }))
 );
 
-const { MAIN_PATH } = PATH;
+const { MAIN_PATH, AUTH_PATH } = PATH;
 
 export const appRoute = (isLoggedIn: boolean) => {
     return {
         path: "",
-        element: isLoggedIn ? <MainLayout /> : <Navigate to='/login' />,
+        element: isLoggedIn ? <MainLayout /> : <Navigate to={"/" + AUTH_PATH.INTRO} />,
         children: [
             { path: MAIN_PATH.HOME, element: <HomePage /> },
             { path: MAIN_PATH.CUP, element: <ArchievementHomePage /> },

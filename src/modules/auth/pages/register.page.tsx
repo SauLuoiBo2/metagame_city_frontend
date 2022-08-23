@@ -7,8 +7,8 @@ export interface RegisterPageProps {}
 
 export const RegisterPage: React.FC<RegisterPageProps> = () => {
     return (
-        <LogoLayoutAuthWidget>
+        <>
             <RegisterViewWidget />
-        </LogoLayoutAuthWidget>
+        </>
     );
 };

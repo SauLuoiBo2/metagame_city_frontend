@@ -10,7 +10,7 @@ export interface LogoLayoutAuthWidgetProps extends PropsWithChildren {}
 const LogoLayoutAuthWidget: React.FC<LogoLayoutAuthWidgetProps> = ({ children }) => {
     return (
         <>
-            <Grid container>
+            <Grid container rowSpacing={4}>
                 <Grid item xs={12} md={6} lg={7}>
                     <Styles.Position.Center>
                         <LogoRegister />

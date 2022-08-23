@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ICONS_URL } from "@/assets/icons";
 import { CustomIconButton, FrameTableCom } from "@/components";
+import { PATH } from "@/router/pathname";
 import { Styles } from "@/theme";
 
 export interface ViewAuthComProps extends PropsWithChildren {
@@ -19,7 +20,10 @@ const ViewAuthCom: React.FC<ViewAuthComProps> = ({ children, title }) => {
                     {/* title */}
                     <Grid container>
                         <Grid item xs={2}>
-                            <CustomIconButton icon={ICONS_URL.BUTTON.BACK_AUTH} onClick={() => navigate("/")} />
+                            <CustomIconButton
+                                icon={ICONS_URL.BUTTON.BACK_AUTH}
+                                onClick={() => navigate("/" + PATH.AUTH_PATH.INTRO)}
+                            />
                         </Grid>
                         <Grid item xs={8}>
                             <Styles.Position.Center>
