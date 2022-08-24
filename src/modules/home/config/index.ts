@@ -35,11 +35,13 @@ export const config = {
             name: "CARO",
             linkGame: "caro",
             icon: IMAGE_URL.GAME.GAME_CARO,
+            bg: IMAGE_URL.BG.BG_1,
         },
         {
             name: "PACMAN",
             linkGame: "pacman",
             icon: IMAGE_URL.GAME.GAME_PACMAN,
+            bg: IMAGE_URL.BG.BG_2,
         },
     ],
 };

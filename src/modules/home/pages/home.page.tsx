@@ -11,7 +11,15 @@ export const HomePage: React.FC<HomePageProps> = () => {
     return (
         <>
             {config.game.map((game, i) => {
-                return <GameBgWidget key={i} isLeft={i % 2 === 0} {...game} linkGame={getLinkGame(game.linkGame)} />;
+                return (
+                    <GameBgWidget
+                        key={i}
+                        bgImg={game.bg}
+                        isLeft={i % 2 === 0}
+                        {...game}
+                        linkGame={getLinkGame(game.linkGame)}
+                    />
+                );
             })}
 
             <FooterHomeWidget />
