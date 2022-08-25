@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import React from "react";
 import { useMediaQuery } from "usehooks-ts";
 
@@ -27,15 +27,16 @@ const columns: CustomColumnTableProps[] = [
     {
         id: "quantity",
         label: "Quantity",
-        width: "20%",
+        width: "25%",
         align: "left",
         format: (value: number) => (
-            <p>
-                {value}
+            <Stack direction={"row"} alignItems='center' spacing={1}>
+                <h3>{value}</h3>
+
                 <span>
                     <Styles.ImgIcon.Star />
                 </span>
-            </p>
+            </Stack>
         ),
     },
 ];
@@ -77,7 +78,7 @@ export const ListHistoryWidget: React.FC<ListHistoryWidgetProps> = () => {
                 imgTitle={IMAGE_URL.TITLE.TITLE_HISTORY}
             >
                 <Box width={"80%"}>
-                    <CustomTable columns={columns} rows={rows} />
+                    <CustomTable columns={columns} rows={rows} minWidth={400} />
                 </Box>
             </FrameTableCom>
         </>

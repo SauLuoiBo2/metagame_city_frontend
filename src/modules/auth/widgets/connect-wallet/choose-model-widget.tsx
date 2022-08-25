@@ -12,7 +12,7 @@ const options = [
 
 export const ChooseModelWidget: React.FC<ChooseModelWidgetProps> = () => {
     return (
-        <LayoutIntroSelectCom title='Select Network'>
+        <LayoutIntroSelectCom title='Select Network' isClose>
             <CustomSelectNftCom options={options} placeholder='chon nen tang' />
         </LayoutIntroSelectCom>
     );

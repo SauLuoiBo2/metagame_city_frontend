@@ -15,6 +15,8 @@ export const useQueryFinance = () => {
         return useQuery<ApiResponseData<any>, AxiosError>([QUERY_KEY.FINANCS.STAR], () => financeApi.getStar());
     }
 
+    const { data } = useGetStar();
+
     function useSendStar() {
         return useMutation<ApiResponseData<any>, AxiosError, FinanceSendStarDtoProps>(
             (body) => financeApi.sendStar(body),
@@ -31,5 +33,5 @@ export const useQueryFinance = () => {
         );
     }
 
-    return { useGetStar, useSendStar };
+    return { useGetStar, useSendStar, data };
 };

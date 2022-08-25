@@ -1,6 +1,7 @@
 // button
 import BACK_AUTH from "./button/back_auth.png";
 import GIVE from "./button/box.svg";
+import LOGOUT from "./button/button_logout.svg";
 import CLOSE from "./button/close_button.svg";
 import DOWNLOAD from "./button/download.svg";
 import EXIT from "./button/exit.svg";
@@ -12,6 +13,7 @@ import BOX from "./header/box.svg";
 import COMUNICATE from "./header/comunicate.png";
 import CUP from "./header/cup.svg";
 import HOME from "./header/home.png";
+import PROFILE from "./header/profile.svg";
 import COINBASE from "./social/coinbase.png";
 // social
 import FB from "./social/fb.png";
@@ -22,11 +24,14 @@ import TIKTOK from "./social/tiktok.png";
 import TW from "./social/tw.png";
 import WALLET_CONNECT from "./social/wallet_connect.png";
 import YT from "./social/yt.png";
+
+// ########################
 const HEADER = {
     HOME,
     CUP,
     BOX,
     COMUNICATE,
+    PROFILE,
 };
 
 const SOCIAL = {
@@ -50,6 +55,7 @@ const BUTTON = {
     SETTING,
     CLOSE,
     EXIT,
+    LOGOUT,
 };
 
 export const ICONS_URL = { HEADER, SOCIAL, BUTTON };

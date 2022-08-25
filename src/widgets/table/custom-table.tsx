@@ -13,23 +13,25 @@ export interface CustomColumnTableProps {
     label: string;
     width?: string;
     align?: "left" | "right" | "inherit" | "center" | "justify";
-    format?: (value: number) => any;
+    format?: (value: any) => any;
 }
 
 export interface CustomTableProps {
     columns: CustomColumnTableProps[];
     rows: any;
+    minWidth: any;
+    maxHeight?: any;
 }
 
-export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows }) => {
+export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidth, maxHeight }) => {
     return (
-        <Box width={"100%"} sx={{ overflowX: "auto" }}>
-            <Stack alignItems='center' width={"100%"} overflow={"auto"} minWidth={600 || "fit-content"}>
+        <Box width={"100%"} sx={{ overflowX: "auto" }} className='custom_scroll'>
+            <Stack alignItems='center' width={"100%"} overflow={"auto"} minWidth={minWidth || "fit-content"}>
                 {/* header */}
                 <Stack direction={"row"} width='100%'>
                     {columns.map((column) => {
                         return (
-                            <Stack key={column.id} width={column.width}>
+                            <Stack key={column.id} width={column.width} alignItems='center'>
                                 <Styles.Text.CapText>{column.label}</Styles.Text.CapText>
                             </Stack>
                         );
@@ -37,30 +39,48 @@ export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows }) => {
                 </Stack>
                 {/* body */}
 
-                <TableContainer sx={{ maxHeight: 200, width: "100%" }}>
-                    <Table stickyHeader aria-label='sticky table'>
-                        <TableBody>
-                            {rows.map((row: any) => {
+                <TableContainer sx={{ maxHeight: maxHeight || 300, width: "100%" }} className='custom_scroll'>
+                    <Table stickyHeader aria-label='sticky table' sx={{ overflow: "hidden" }}>
+                        <TableBody sx={{ maxWidth: "100%" }}>
+                            {rows.map((row: any, j: number) => {
                                 return (
-                                    <TableRow hover role='checkbox' tabIndex={-1} key={row.code}>
+                                    <TableRow
+                                        sx={{ verticalAlign: "top" }}
+                                        hover
+                                        role='checkbox'
+                                        tabIndex={-1}
+                                        key={row.code}
+                                    >
                                         {columns.map((column) => {
                                             const value = row[column.id];
+
                                             return (
                                                 <TableCell
                                                     key={column.id}
                                                     align={column.align}
-                                                    width={column.width}
                                                     sx={{
                                                         borderRight: "1px solid rgba(255, 255, 255, 0.21)",
                                                         borderBottom: "none",
                                                         padding: "0.7rem 0.5rem",
+                                                        maxWidth: column.width,
+                                                        width: column.width,
                                                     }}
                                                 >
-                                                    <h3>
-                                                        {column.format && typeof value === "number"
+                                                    <Styles.Text.MainText
+                                                        style={{
+                                                            fontSize: "1.3rem",
+                                                            overflow: "hidden",
+                                                            textOverflow: "ellipsis",
+                                                            maxWidth: "100%",
+                                                            wordBreak: "break-word",
+                                                        }}
+                                                    >
+                                                        {column.id === "no" ? j + 1 + "." : null}
+                                                        {column.format ? column.format(value) : value}
+                                                        {/* {column.format && typeof value === "number"
                                                             ? column.format(value)
-                                                            : value}
-                                                    </h3>
+                                                            : value} */}
+                                                    </Styles.Text.MainText>
                                                 </TableCell>
                                             );
                                         })}

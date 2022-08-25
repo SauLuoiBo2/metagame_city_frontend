@@ -1,25 +1,28 @@
-import React from "react";
+import { Box } from "@mui/material";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useBoolean, useOnClickOutside } from "usehooks-ts";
 
 import { ASSETS } from "@/assets";
-import { ModalAccount } from "@/modules/comcom";
+import { CustomIconButton } from "@/components";
 import { PATH } from "@/router/pathname";
-import { useBearStore } from "@/store/useBearStore";
 import { Styles } from "@/theme";
+
+import { ButtonHeaderProfile } from "./button-header-profile";
 
 export interface HeaderMainLayoutProps {}
 
 const { MAIN_PATH } = PATH;
 
-const { HEADER, BUTTON } = ASSETS.ICONS_URL;
+const { HEADER } = ASSETS.ICONS_URL;
 
 const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
-    const { modalOnOpen } = useBearStore();
+    const ref = useRef(null);
 
-    function handleOpenModal() {
-        modalOnOpen(ModalAccount);
-    }
+    const open = useBoolean();
+    useOnClickOutside(ref, open.setFalse);
+
     return (
         <Style.Header>
             <Style.Wrapper className='app_container'>
@@ -35,11 +38,18 @@ const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
                                 />
                             </Style.NavLink>
                             <NavLink icon={HEADER.COMUNICATE} to={"/" + MAIN_PATH.AFFILIATE} />
-                            <Styles.ImgIcon.Basic
-                                style={{ cursor: "pointer" }}
-                                src={BUTTON.SETTING}
-                                onClick={handleOpenModal}
-                            />
+                            <Box sx={{ position: "relative" }} ref={ref}>
+                                <CustomIconButton onClick={open.toggle}>
+                                    <Styles.ImgIcon.Basic src={HEADER.PROFILE} />
+                                </CustomIconButton>
+
+                                {/* modal */}
+                                {open.value && (
+                                    <Box sx={{ position: "absolute", right: "-2.5rem", top: "3.5rem" }}>
+                                        <ButtonHeaderProfile />
+                                    </Box>
+                                )}
+                            </Box>
                         </Style.IconWrapper>
                     </Style.Inner>
                 </Styles.Container.BgFrameContainer>
@@ -53,6 +63,7 @@ export default HeaderMainLayout;
 interface NavLinkProps {
     icon: any;
     to?: string;
+    isActive?: boolean;
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ icon, to }) => {

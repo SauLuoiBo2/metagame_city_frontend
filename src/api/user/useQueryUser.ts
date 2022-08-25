@@ -20,11 +20,15 @@ export function useQueryUser() {
         );
     }
 
+    const { data: user } = useGetUser();
+
     function useGetUserBalance() {
         return useQuery<ApiResponseData<BalanceDtoProps>, AxiosError>([QUERY_KEY.USER.PROFILE_BALANCE_KEY], () =>
             userApi.getBalance()
         );
     }
+
+    const { data: balance } = useGetUserBalance();
 
     function useGetUserReferral() {
         return useQuery<ApiResponseData<ReferralDtoProps>, AxiosError>([QUERY_KEY.USER.PROFILE_REFERRAL_KEY], () =>
@@ -32,5 +36,7 @@ export function useQueryUser() {
         );
     }
 
-    return { useMutationUserUpdate, useGetUserBalance, useGetUser, useGetUserReferral };
+    const { data: referral } = useGetUserReferral();
+
+    return { useMutationUserUpdate, useGetUserBalance, useGetUser, useGetUserReferral, balance, user, referral };
 }

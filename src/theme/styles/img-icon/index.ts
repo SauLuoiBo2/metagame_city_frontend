@@ -38,6 +38,19 @@ export const stylesImgIcon = {
         }
     `,
 
+    LikeStar: styled.img`
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        @media ${(props) => props.theme.breakpoint.lg} {
+            width: 1.8rem !important;
+            height: 1.8 !important;
+        }
+        @media ${(props) => props.theme.breakpoint.sm} {
+            width: 1.5rem !important;
+            height: 1.5rem !important;
+        }
+    `,
+
     Custom: styled.img<ImgIconStyle>`
         --size-xxl: ${({ sizeXXL }) => `${sizeXXL}px !important`};
         --size-xl: ${({ sizeXL }) => `${sizeXL}px !important`};

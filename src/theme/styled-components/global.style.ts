@@ -105,6 +105,24 @@ export const GlobalStyle = createGlobalStyle<Props>`
       }
     }
 
+    .custom_scroll {
+      ::-webkit-scrollbar {
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: rgba(255, 255, 255, 0.21);
+      overflow-y: auto;
+      padding: 0.2rem;
+      border-radius: 0.5rem;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 0.2rem;
+        width: 0.2rem;
+        transform: translateX(3px) scale(1.5);
+        cursor: pointer;
+      }
+    }
+
     /* container */
 
     .app_container{
