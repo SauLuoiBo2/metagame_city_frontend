@@ -9,16 +9,17 @@ import React from "react";
 import { Styles } from "@/theme";
 
 export interface CustomColumnTableProps {
-    id: any;
+    id: string;
     label: string;
     width?: string;
     align?: "left" | "right" | "inherit" | "center" | "justify";
-    format?: (value: any) => any;
+    format?: (value: any) => React.ReactNode;
 }
 
 export interface CustomTableProps {
     columns: CustomColumnTableProps[];
-    rows: any;
+    rows: Record<CustomColumnTableProps["id"], unknown>[];
+
     minWidth: any;
     maxHeight?: any;
 }
@@ -42,15 +43,9 @@ export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidt
                 <TableContainer sx={{ maxHeight: maxHeight || 300, width: "100%" }} className='custom_scroll'>
                     <Table stickyHeader aria-label='sticky table' sx={{ overflow: "hidden" }}>
                         <TableBody sx={{ maxWidth: "100%" }}>
-                            {rows.map((row: any, j: number) => {
+                            {rows.map((row, j: number) => {
                                 return (
-                                    <TableRow
-                                        sx={{ verticalAlign: "top" }}
-                                        hover
-                                        role='checkbox'
-                                        tabIndex={-1}
-                                        key={row.code}
-                                    >
+                                    <TableRow sx={{ verticalAlign: "top" }} hover role='checkbox' tabIndex={-1} key={j}>
                                         {columns.map((column) => {
                                             const value = row[column.id];
 
@@ -76,7 +71,7 @@ export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidt
                                                         }}
                                                     >
                                                         {column.id === "no" ? j + 1 + "." : null}
-                                                        {column.format ? column.format(value) : value}
+                                                        <>{column.format ? column.format(value) : value}</>
                                                         {/* {column.format && typeof value === "number"
                                                             ? column.format(value)
                                                             : value} */}

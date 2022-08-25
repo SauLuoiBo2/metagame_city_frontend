@@ -26,8 +26,6 @@ export function useQueryAuth() {
                     return;
                 }
                 navigate("/");
-                toast.success(data.message);
-
                 queryClient.refetchQueries();
             },
         });

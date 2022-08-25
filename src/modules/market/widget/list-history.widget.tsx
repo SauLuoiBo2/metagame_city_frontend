@@ -41,14 +41,7 @@ const columns: CustomColumnTableProps[] = [
     },
 ];
 
-interface Data {
-    age: string;
-    from: string;
-    to: string;
-    quantity: number;
-}
-
-function createData(age: string, from: string, to: string, quantity: number): Data {
+function createData(age: string, from: string, to: string, quantity: number) {
     return { age, from, to, quantity };
 }
 
