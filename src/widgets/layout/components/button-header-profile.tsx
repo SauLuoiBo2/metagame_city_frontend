@@ -48,8 +48,10 @@ export const ButtonHeaderProfile: React.FC<ButtonHeaderProfileProps> = () => {
                         sx={{ width: 70, height: 70, border: "2px solid #FFFFFF" }}
                     />
                     <Stack>
-                        <h3>{users?.username}</h3>
-                        <p style={{ fontSize: "1.3rem" }}>{users?.email}</p>
+                        <h3 style={{ textOverflow: "ellipsis", wordBreak: "break-word" }}>{users?.username}</h3>
+                        <p style={{ fontSize: "1.3rem", textOverflow: "ellipsis", wordBreak: "break-word" }}>
+                            {users?.email}
+                        </p>
                     </Stack>
                 </Stack>
                 <CustomIconButton icon={ICONS_URL.BUTTON.LOGOUT} onClick={onLogout} />

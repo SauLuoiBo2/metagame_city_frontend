@@ -2,6 +2,7 @@ import { Box, Stack } from "@mui/material";
 import React from "react";
 import { useMediaQuery } from "usehooks-ts";
 
+import { useQueryFinance } from "@/api/finance/useQueryFinance";
 import { IMAGE_URL } from "@/assets/images";
 import { FrameTableCom } from "@/components";
 import { Styles } from "@/theme";
@@ -9,8 +10,18 @@ import { CustomColumnTableProps, CustomTable } from "@/widgets/table/custom-tabl
 
 export interface ListHistoryWidgetProps {}
 
+// star history
+// [{
+//     from: stringl
+//     to: string;
+//     amount: number;
+//     type: 1, //1=> send,  2=> receive
+//   status:string; "Success" | "Pending" | "Cancel"
+//   time: Date | number
+// }]
+
 const columns: CustomColumnTableProps[] = [
-    { id: "age", label: "Age", width: "20%" },
+    { id: "time", label: "Age", width: "20%" },
 
     {
         id: "from",
@@ -25,7 +36,7 @@ const columns: CustomColumnTableProps[] = [
         align: "left",
     },
     {
-        id: "quantity",
+        id: "amount",
         label: "Quantity",
         width: "25%",
         align: "left",
@@ -63,6 +74,8 @@ const rows = [
 export const ListHistoryWidget: React.FC<ListHistoryWidgetProps> = () => {
     const isPC = useMediaQuery("(min-width: 768px)");
 
+    const { data: list } = useQueryFinance();
+
     return (
         <>
             <FrameTableCom
@@ -71,7 +84,7 @@ export const ListHistoryWidget: React.FC<ListHistoryWidgetProps> = () => {
                 imgTitle={IMAGE_URL.TITLE.TITLE_HISTORY}
             >
                 <Box width={"80%"}>
-                    <CustomTable columns={columns} rows={rows} minWidth={400} />
+                    <CustomTable columns={columns} rows={list?.data || []} minWidth={400} />
                 </Box>
             </FrameTableCom>
         </>

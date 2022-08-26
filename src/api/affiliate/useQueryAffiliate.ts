@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 import { QUERY_KEY } from "@/config";
+import { ReferralCommission } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
 import { ModalBuySuccess } from "@/modules/affiliate/widget/modal-buy-success";
 import { useBearStore } from "@/store/useBearStore";
@@ -15,7 +16,7 @@ export function useQueryAffiliate() {
     const { modalOnOpen } = useBearStore();
     //
     function useGetListCommission() {
-        return useQuery<ApiResponseData<any>, AxiosError>([QUERY_KEY.AFFILIATE.LIST_HISTOTRY], () =>
+        return useQuery<ApiResponseData<ReferralCommission[]>, AxiosError>([QUERY_KEY.AFFILIATE.LIST_HISTOTRY], () =>
             affiliateApi.getListHistories()
         );
     }

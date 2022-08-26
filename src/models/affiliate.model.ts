@@ -13,3 +13,10 @@ export interface ReferralDtoProps {
     created: Date;
     updated: Date;
 }
+
+export interface ReferralCommission {
+    from: string; //username, email
+    amount: number;
+    type: number;
+    time: number; //timestamp
+}

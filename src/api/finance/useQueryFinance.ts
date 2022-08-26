@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 import { QUERY_KEY } from "@/config";
 import { ApiResponseData } from "@/models/api.model";
-import { FinanceSendStarDtoProps } from "@/models/finance.model";
+import { FinanceSendStarDtoProps, HistoryMarketProps } from "@/models/finance.model";
 
 import { useFinanceApi } from "./useFinanceApi";
 
@@ -12,7 +12,9 @@ export const useQueryFinance = () => {
     const financeApi = useFinanceApi();
 
     function useGetStar() {
-        return useQuery<ApiResponseData<any>, AxiosError>([QUERY_KEY.FINANCS.STAR], () => financeApi.getStar());
+        return useQuery<ApiResponseData<HistoryMarketProps[]>, AxiosError>([QUERY_KEY.FINANCS.STAR], () =>
+            financeApi.getStar()
+        );
     }
 
     const { data } = useGetStar();

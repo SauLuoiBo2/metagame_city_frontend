@@ -18,7 +18,7 @@ export interface CustomColumnTableProps {
 
 export interface CustomTableProps {
     columns: CustomColumnTableProps[];
-    rows: Record<CustomColumnTableProps["id"], unknown>[];
+    rows: any;
 
     minWidth: any;
     maxHeight?: any;
@@ -43,7 +43,7 @@ export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidt
                 <TableContainer sx={{ maxHeight: maxHeight || 300, width: "100%" }} className='custom_scroll'>
                     <Table stickyHeader aria-label='sticky table' sx={{ overflow: "hidden" }}>
                         <TableBody sx={{ maxWidth: "100%" }}>
-                            {rows.map((row, j: number) => {
+                            {rows.map((row: any, j: number) => {
                                 return (
                                     <TableRow sx={{ verticalAlign: "top" }} hover role='checkbox' tabIndex={-1} key={j}>
                                         {columns.map((column) => {

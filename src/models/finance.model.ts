@@ -26,3 +26,12 @@ export interface BalanceDtoProps {
     created: Date;
     updated: Date;
 }
+
+export interface HistoryMarketProps {
+    from: string;
+    to: string;
+    amount: number;
+    type: number; //1=> send,  2=> receive
+    status: string;
+    time: any;
+}

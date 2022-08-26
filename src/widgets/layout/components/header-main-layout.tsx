@@ -34,14 +34,14 @@ const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
                             <Style.NavLink to='/'>
                                 <Styles.ImgIcon.Basic
                                     src={HEADER.HOME}
-                                    style={{ transform: "scale(1.5)", transformOrigin: "center" }}
+                                    style={{ transform: "scale(1.5)", transformOrigin: "left" }}
                                 />
                             </Style.NavLink>
                             <NavLink icon={HEADER.COMUNICATE} to={"/" + MAIN_PATH.AFFILIATE} />
                             <Box sx={{ position: "relative" }} ref={ref}>
-                                <CustomIconButton onClick={open.toggle}>
+                                <Box onClick={open.toggle}>
                                     <Styles.ImgIcon.Basic src={HEADER.PROFILE} />
-                                </CustomIconButton>
+                                </Box>
 
                                 {/* modal */}
                                 {open.value && (

@@ -197,5 +197,13 @@ export const GlobalStyle = createGlobalStyle<Props>`
     .text_align_center {
       text-align: center;
     }
+
+    .ellipsis {
+    text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+    white-space: nowrap;
+    overflow: hidden;
+}
 }
 `;
