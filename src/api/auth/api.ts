@@ -4,7 +4,7 @@ import { ActivationAccountProps, LoginProps, RegisterProps, ResendEmailProps, Re
 import { ApiUrl } from "../apiUrl";
 
 // auth
-const { login_url, register_url, resend_email_url } = ApiUrl.auth;
+const { login_url, register_url, resend_email_url, activation_url } = ApiUrl.auth;
 
 export function useAuthApi() {
     const { request } = useRequest();
@@ -17,7 +17,7 @@ export function useAuthApi() {
     }
 
     function activation(data: ActivationAccountProps) {
-        return request({ url: register_url, method: "POST", data });
+        return request({ url: activation_url, method: "POST", data });
     }
 
     function resendEmail(data: ResendEmailProps) {

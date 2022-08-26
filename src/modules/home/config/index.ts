@@ -43,5 +43,29 @@ export const config = {
             icon: IMAGE_URL.GAME.GAME_PACMAN,
             bg: IMAGE_URL.BG.BG_2,
         },
+        {
+            name: "COMMING SOON",
+            // linkGame: "pacman",
+            icon: IMAGE_URL.GAME.GAME_FISH,
+            bg: IMAGE_URL.BG.BG_3,
+        },
+        {
+            name: "COMMING SOON",
+            // linkGame: "COMMING SOON",
+            icon: IMAGE_URL.GAME.GAME_GOLD,
+            bg: IMAGE_URL.BG.BG_4,
+        },
+        {
+            name: "COMMING SOON",
+            // linkGame: "pacman",
+            icon: IMAGE_URL.GAME.GAME_CAR,
+            bg: IMAGE_URL.BG.BG_5,
+        },
+        {
+            name: "COMMING SOON",
+            // linkGame: "pacman",
+            icon: IMAGE_URL.GAME.GAME_SNAKE,
+            bg: IMAGE_URL.BG.BG_6,
+        },
     ],
 };

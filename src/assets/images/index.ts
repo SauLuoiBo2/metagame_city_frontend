@@ -25,8 +25,12 @@ import FRAME_USER from "./frame/frame_user.png";
 import FRAME_VICTORY from "./frame/frame_victorya.png";
 import FRAME_VICTORY_VER from "./frame/frame_victorya_ver.png";
 // game
+import GAME_CAR from "./game/car.png";
 import GAME_CARO from "./game/caro.png";
+import GAME_FISH from "./game/fish_hunter.png";
+import GAME_GOLD from "./game/gold_man.png";
 import GAME_PACMAN from "./game/pacman.png";
+import GAME_SNAKE from "./game/snake.png";
 // logo
 import LOGO_REGISTER from "./logo/logo_splash.png";
 // title
@@ -65,6 +69,10 @@ export const IMAGE_URL = {
     GAME: {
         GAME_CARO,
         GAME_PACMAN,
+        GAME_CAR,
+        GAME_FISH,
+        GAME_GOLD,
+        GAME_SNAKE,
     },
     TITLE: {
         TITLE_VICTORY,

@@ -20,7 +20,7 @@ export interface RegisterProps extends LoginProps {
 // activation
 
 export interface ActivationAccountProps {
-    email: string;
+    // email: string;
     code: string;
 }
 

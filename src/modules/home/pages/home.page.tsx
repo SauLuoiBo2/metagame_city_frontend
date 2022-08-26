@@ -17,7 +17,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
                         bgImg={game.bg}
                         isLeft={i % 2 === 0}
                         {...game}
-                        linkGame={getLinkGame(game.linkGame)}
+                        linkGame={getLinkGame(game.linkGame || "")}
                     />
                 );
             })}

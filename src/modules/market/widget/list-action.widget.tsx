@@ -4,7 +4,7 @@ import { useBoolean } from "usehooks-ts";
 
 import { ICONS_URL } from "@/assets/icons";
 import { IMAGE_URL } from "@/assets/images";
-import { CustomButton, CustomInput, FrameTableCom, GridItemHalfFull } from "@/components";
+import { CustomButton, CustomInput, FrameTableCom } from "@/components";
 import LabelButon from "@/components/label/label-buton";
 import MuiModal from "@/components/modal/mui-Modal";
 import { supportErrorFormik } from "@/libs";
@@ -150,7 +150,8 @@ const NftModalView = () => {
 
             <MuiModal open={open.value} onClose={open.setFalse} widthModal={800}>
                 <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_MODAL_NFT}>
-                    <Grid
+                    <h3>Coming soon</h3>
+                    {/* <Grid
                         container
                         columnSpacing={2}
                         rowSpacing={1}
@@ -188,7 +189,7 @@ const NftModalView = () => {
                                 <LabelButon title={"tai khoan thuong"} label='24' aftIcon={ICONS_URL.BUTTON.STAR} />
                             </ButtonAction>
                         </GridItemHalfFull>
-                    </Grid>
+                    </Grid> */}
                 </FrameTableCom>
             </MuiModal>
         </>

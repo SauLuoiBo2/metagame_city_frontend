@@ -1,3 +1,4 @@
+import { ACTIVE_PATH } from "./active-path";
 import { AUTH_PATH } from "./auth.path";
 import { BASE_PATH } from "./base.path";
 import { ERROR_PATH } from "./error.path";
@@ -8,4 +9,5 @@ export const PATH = {
     ERROR_PATH,
     BASE_PATH,
     MAIN_PATH,
+    ACTIVE_PATH,
 };

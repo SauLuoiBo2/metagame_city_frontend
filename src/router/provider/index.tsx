@@ -20,7 +20,7 @@ const Router = memo(() => {
         {
             path: MAIN_PATH.PUBLIC,
             element: <AppProvider />,
-            children: [appRoute(isLogin), authRoute(isLogin), errorRoute()],
+            children: [appRoute(true), authRoute(isLogin), errorRoute()],
         },
         {
             path: MAIN_PATH.ALL,

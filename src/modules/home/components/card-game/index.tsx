@@ -14,7 +14,7 @@ export interface CardGameProps {
 // href='http://google.vn' target={"_blank"}
 const CardGame: React.FC<CardGameProps> = ({ name, icon, linkGame, isLeft }) => {
     return (
-        <Style.Wrapper href={linkGame} target={"_blank"} isLeft={isLeft}>
+        <Style.Wrapper href={linkGame || "/"} target={linkGame ? "_blank" : "_top"} isLeft={isLeft}>
             <CardImageGame icon={icon} />
             <Style.ButtonWrapper isLeft={isLeft}>
                 <CardNameGame name={name} />

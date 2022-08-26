@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { LoginProps, RegisterProps, UserDtoProps } from "@/models";
+import { ActivationAccountProps, LoginProps, RegisterProps, UserDtoProps } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
 import { usePersistStore } from "@/store/useBearStore";
 
@@ -43,5 +43,17 @@ export function useQueryAuth() {
         });
     }
 
-    return { useMutationLogin, useMutationRegister };
+    function sendActivation() {
+        return useMutation<ApiResponseData, AxiosError, ActivationAccountProps>((body) => authApi.activation(body), {
+            onSuccess: (data) => {
+                navigate("/login");
+                toast.success(data.message);
+            },
+            onError: (data) => {
+                toast.error(data.message);
+            },
+        });
+    }
+
+    return { useMutationLogin, useMutationRegister, sendActivation };
 }
