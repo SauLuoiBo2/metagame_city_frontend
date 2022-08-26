@@ -52,25 +52,6 @@ const columns: CustomColumnTableProps[] = [
     },
 ];
 
-function createData(age: string, from: string, to: string, quantity: number) {
-    return { age, from, to, quantity };
-}
-
-const rows = [
-    createData("08/12/2022", "hi@gmail.com", "hi@gmail.com", 24),
-    createData("08/12/2022", "hi@gmail.com", "hi@gmail.com", 24),
-    createData("08/12/2022", "hi@gmail.com", "hi@gmail.com", 24),
-    createData("08/12/2022", "hi@gmail.com", "hi@gmail.com", 24),
-    createData("08/12/2022", "hi@gmail.com", "hi@gmail.com", 24),
-    createData("08/12/2022", "hi@gmail.com", "hi@gmail.com", 24),
-    createData("08/12/2022", "hi@gmail.com", "hi@gmail.com", 24),
-    createData("08/12/2022", "hi@gmail.com", "hi@gmail.com", 24),
-    createData("08/12/2022", "hi@gmail.com", "hi@gmail.com", 24),
-    createData("08/12/2022", "hi@gmail.com", "hi@gmail.com", 24),
-    createData("08/12/2022", "hi@gmail.com", "hi@gmail.com", 24),
-    createData("08/12/2022", "hi@gmail.com", "hi@gmail.com", 24),
-];
-
 export const ListHistoryWidget: React.FC<ListHistoryWidgetProps> = () => {
     const isPC = useMediaQuery("(min-width: 768px)");
 

@@ -15,7 +15,12 @@ export interface RegisterViewWidgetProps {}
 const RegisterViewWidget: React.FC<RegisterViewWidgetProps> = () => {
     const navigate = useNavigate();
 
-    const { formik } = useFormRegister();
+    const { formik, ref } = useFormRegister();
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // const [params, setParams] = useSearchParams();
+
+    // const ref = params.get("ref");
     return (
         <ViewAuthCom title={"REGISTER"}>
             <Stack
@@ -41,7 +46,6 @@ const RegisterViewWidget: React.FC<RegisterViewWidgetProps> = () => {
                     onChange={formik.handleChange}
                     error={supportErrorFormik(formik, "email")}
                 />
-                <CustomInput placeholder='Phone number' />
                 <CustomInput
                     type='password'
                     name='password'
@@ -57,6 +61,13 @@ const RegisterViewWidget: React.FC<RegisterViewWidgetProps> = () => {
                     value={formik.values.passwordConfirm}
                     onChange={formik.handleChange}
                     error={supportErrorFormik(formik, "passwordConfirm")}
+                />
+                <CustomInput
+                    disabled={ref ? true : false}
+                    placeholder='Ref code'
+                    name='referral'
+                    value={formik.values.referral}
+                    onChange={formik.handleChange}
                 />
                 <Styles.Button.Basic type='submit'>REGISTER</Styles.Button.Basic>
             </Stack>

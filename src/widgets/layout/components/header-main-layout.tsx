@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { useBoolean, useOnClickOutside } from "usehooks-ts";
 
 import { ASSETS } from "@/assets";
-import { CustomIconButton } from "@/components";
 import { PATH } from "@/router/pathname";
 import { Styles } from "@/theme";
 
