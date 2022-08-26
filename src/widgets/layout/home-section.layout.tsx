@@ -38,8 +38,8 @@ const Style = {
         flex-direction: column;
         align-items: center;
         /* height: 100vh; */
-        min-height: 50vh;
-
+        min-height: ${({ isAuth }) => (isAuth ? "100vh" : "50vh")};
+        justify-content: center;
         padding-top: ${({ isAuth }) => (isAuth ? "5rem" : "20rem")};
         padding-bottom: ${({ isAuth }) => (isAuth ? "5rem" : "20rem")};
         @media ${(props) => props.theme.breakpoint.md} {
