@@ -1,6 +1,7 @@
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { Box, Stack } from "@mui/material";
 import React from "react";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import { useQueryAffiliate, useQueryUser } from "@/api";
@@ -57,6 +58,11 @@ export const ListAffliateWidget: React.FC<ListAffliateWidgetProps> = () => {
     const { referral } = useQueryUser();
 
     const url = ENV.API.BASE_URL + "/" + PATH.AUTH_PATH.REGISTER + "?ref=" + referral?.data?.refCode;
+
+    function handleCoppy() {
+        navigator.clipboard.writeText(url);
+        toast.info("Copied link affiliate");
+    }
     return (
         <MaxWidthCenterView maxWidth='800px'>
             <Style.Title>
@@ -65,10 +71,7 @@ export const ListAffliateWidget: React.FC<ListAffliateWidgetProps> = () => {
                     <div className='inner'>
                         <Stack direction={"row"} justifyContent='center' width='100%'>
                             <p className='ellipsis'>{url}</p>
-                            <ContentCopyIcon
-                                sx={{ cursor: "pointer" }}
-                                onClick={() => navigator.clipboard.writeText(url)}
-                            />
+                            <ContentCopyIcon sx={{ cursor: "pointer" }} onClick={handleCoppy} />
                         </Stack>
                     </div>
                 </Style.InnerTitle>
