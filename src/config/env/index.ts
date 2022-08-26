@@ -5,7 +5,7 @@ import { convertMiliSeconds } from "@/utils";
 // api
 
 const API = {
-    BASE_URL: VITE_BASE_URL as string,
+    BASE_URL: (VITE_BASE_URL as string) || "https://metagamecity.net",
     API_ENDPOINT: (VITE_API_ENDPOINT as string) || " https://api.metagamecity.net/v1",
     API_TIMEOUT: convertMiliSeconds(VITE_API_TIMEOUT).getFromSeconds(),
 };
