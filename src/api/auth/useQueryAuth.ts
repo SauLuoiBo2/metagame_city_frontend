@@ -33,8 +33,12 @@ export function useQueryAuth() {
 
     function useMutationRegister() {
         return useMutation<ApiResponseData, AxiosError, RegisterProps>((body) => authApi.register(body), {
-            onSuccess: () => {
+            onSuccess: (data) => {
                 navigate("/login");
+                toast.success(data.message);
+            },
+            onError: (data) => {
+                toast.error(data.message);
             },
         });
     }

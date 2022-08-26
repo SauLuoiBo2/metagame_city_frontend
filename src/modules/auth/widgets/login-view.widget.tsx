@@ -22,8 +22,7 @@ const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
             <Stack spacing={3} width={"100%"} alignItems={"center"} component={"form"} onSubmit={formik.handleSubmit}>
                 <CustomInput
                     name='username'
-                    type={"email"}
-                    placeholder='Email'
+                    placeholder='Email/username/wallet'
                     value={formik.values.username}
                     onChange={formik.handleChange}
                     error={supportErrorFormik(formik, "username")}

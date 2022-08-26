@@ -10,7 +10,7 @@ export interface AuthLayoutProps {}
 
 export const AuthLayout: React.FC<AuthLayoutProps> = () => {
     return (
-        <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_1} isAlone>
+        <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_1} isAlone isAuth>
             <LogoLayoutAuthWidget>
                 <React.Suspense fallback={<SplashLottieLoading />}>
                     <Outlet />

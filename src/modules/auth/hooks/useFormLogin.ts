@@ -9,10 +9,10 @@ const initialValues = {
     password: "",
 };
 
-const { email, password } = yupChema;
+const { username, password } = yupChema;
 
 const validationSchema = Yup.object().shape({
-    username: email,
+    username,
     password,
 });
 
