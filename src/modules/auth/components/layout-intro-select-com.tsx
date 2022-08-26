@@ -3,7 +3,6 @@ import { Stack } from "@mui/material";
 import React, { PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { CustomIconButton } from "@/components";
 import { Styles } from "@/theme";
 
 export interface LayoutIntroSelectComProps extends PropsWithChildren {
@@ -18,9 +17,9 @@ export const LayoutIntroSelectCom: React.FC<LayoutIntroSelectComProps> = ({ titl
             <Stack width={"100%"} direction='row' justifyContent={"space-between"} alignItems='center'>
                 <Styles.Text.CapText>{title}</Styles.Text.CapText>
                 {isClose && (
-                    <CustomIconButton onClick={() => navigate("/")}>
-                        <HighlightOffIcon sx={{ fontSize: "25px" }} />
-                    </CustomIconButton>
+                    <>
+                        <HighlightOffIcon sx={{ fontSize: "25px", cursor: "pointer" }} onClick={() => navigate("/")} />
+                    </>
                 )}
             </Stack>
 

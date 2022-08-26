@@ -3,6 +3,7 @@ import React, { PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ICONS_URL } from "@/assets/icons";
+import { IMAGE_URL } from "@/assets/images";
 import { CustomIconButton, FrameTableCom } from "@/components";
 import { PATH } from "@/router/pathname";
 import { Styles } from "@/theme";
@@ -15,8 +16,8 @@ const ViewAuthCom: React.FC<ViewAuthComProps> = ({ children, title }) => {
     const navigate = useNavigate();
     return (
         <Box width='100%'>
-            <FrameTableCom>
-                <Stack pt={2} px={{ lg: 10, md: 8, xs: 5 }} spacing={3} width={"100%"} alignItems={"center"}>
+            <FrameTableCom isAuth imgFrame={IMAGE_URL.FRAME.FRAME_USER}>
+                <Stack px={{ lg: 10, md: 8, xs: 8 }} spacing={3} width={"100%"} alignItems={"center"}>
                     {/* title */}
                     <Grid container>
                         <Grid item xs={2}>

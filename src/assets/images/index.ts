@@ -10,6 +10,7 @@ import BG_MARKET from "./bg/bg_market.png";
 import HEADER from "./bg/header.png";
 import FRAME_ACCOUNT from "./frame/frame_account.png";
 import FRAME_AFFLIATE from "./frame/frame_affliate.png";
+import FRAME_USER from "./frame/frame_auth.png";
 // frame
 import FRAME_BUTTON from "./frame/frame_button.png";
 import FRAME_BUTTON_LOGIN from "./frame/frame_button_nft.png";
@@ -21,7 +22,6 @@ import FRAME_GIVE from "./frame/frame_give.png";
 import FRAME_ITEM_NFT from "./frame/frame_item_nft.png";
 import FRAME_MODAL_NFT from "./frame/frame_modal_nft.png";
 import FRAME_NFT from "./frame/frame_nft.png";
-import FRAME_USER from "./frame/frame_user.png";
 import FRAME_VICTORY from "./frame/frame_victorya.png";
 import FRAME_VICTORY_VER from "./frame/frame_victorya_ver.png";
 // game

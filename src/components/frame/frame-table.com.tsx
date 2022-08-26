@@ -8,11 +8,19 @@ export interface FrameTableComProps extends PropsWithChildren, React.HTMLAttribu
     imgTitle?: any;
     imgFrame?: any;
     maxWidth?: string;
+    isAuth?: boolean;
 }
 
-export const FrameTableCom: React.FC<FrameTableComProps> = ({ children, imgTitle, imgFrame, maxWidth, ...props }) => {
+export const FrameTableCom: React.FC<FrameTableComProps> = ({
+    children,
+    imgTitle,
+    imgFrame,
+    maxWidth,
+    isAuth,
+    ...props
+}) => {
     return (
-        <Style.Wrapper isImgTitle={imgTitle} imgBg={imgFrame} maxWidth={maxWidth} {...props}>
+        <Style.Wrapper isImgTitle={imgTitle} imgBg={imgFrame} maxWidth={maxWidth} isAuth={isAuth} {...props}>
             {/* content */}
             <Style.Inner className='hidden_scroll'>
                 <Styles.Position.Center>{children}</Styles.Position.Center>
@@ -27,6 +35,7 @@ interface StyleProps {
     isImgTitle?: boolean;
     imgBg?: any;
     maxWidth?: string;
+    isAuth?: boolean;
 }
 
 const Style = {
@@ -36,7 +45,7 @@ const Style = {
         background-repeat: no-repeat;
         background-size: 100% 100%, cover;
         background-position: center;
-        padding: 10rem 0;
+        padding: ${({ isAuth }) => (isAuth ? "7rem 0" : "10rem 0")};
         margin-top: ${({ isImgTitle }) => (isImgTitle ? "10%" : null)};
         display: flex;
         align-items: center;
