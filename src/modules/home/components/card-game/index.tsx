@@ -1,8 +1,13 @@
-import React, { useRef } from "react";
+import React from "react";
+import { toast } from "react-toastify";
 import styled from "styled-components";
+
+import { useQueryUser } from "@/api";
+import { useBearStore } from "@/store/useBearStore";
 
 import { CardImageGame } from "./CardImageGame";
 import CardNameGame from "./CardNameGame";
+import { PopupNoUsername } from "./popup-no-username";
 
 export interface CardGameProps {
     name?: string;
@@ -13,8 +18,17 @@ export interface CardGameProps {
 
 // href='http://google.vn' target={"_blank"}
 const CardGame: React.FC<CardGameProps> = ({ name, icon, linkGame, isLeft }) => {
+    const { modalOnOpen } = useBearStore();
+    const { user } = useQueryUser();
     function onGame() {
-        window.open(linkGame, "_blank", "noopener,noreferrer");
+        if (!linkGame) {
+            return toast.info("This game coming soon!!!");
+        }
+        if (user?.data?.username) {
+            window.open(linkGame, "_blank", "noopener,noreferrer");
+        } else {
+            modalOnOpen(PopupNoUsername);
+        }
     }
     return (
         <Style.Wrapper isLeft={isLeft} onClick={onGame}>
