@@ -38,13 +38,13 @@ const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
                             </Style.NavLink>
                             <NavLink icon={HEADER.COMUNICATE} to={"/" + MAIN_PATH.AFFILIATE} />
                             <Box sx={{ position: "relative" }} ref={ref}>
-                                <Box onClick={open.toggle}>
+                                <Box onClick={open.toggle} sx={{ cursor: "pointer" }}>
                                     <Styles.ImgIcon.Basic src={HEADER.PROFILE} />
                                 </Box>
 
                                 {/* modal */}
                                 {open.value && (
-                                    <Box sx={{ position: "absolute", right: "-2.5rem", top: "3.5rem" }}>
+                                    <Box sx={{ position: "absolute", right: "-2.5rem", top: "5.5rem" }}>
                                         <ButtonHeaderProfile />
                                     </Box>
                                 )}

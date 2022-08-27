@@ -1,4 +1,5 @@
 export * from "./activation-page";
+export * from "./confirm-register-page";
 export * from "./connect-wallet-page";
 export * from "./forgot-password.page";
 export * from "./intro-page";

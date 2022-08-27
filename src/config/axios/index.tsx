@@ -1,6 +1,8 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import querySting from "query-string";
+import { toast } from "react-toastify";
 
+import { useLogout } from "@/hooks/auth";
 import { usePersistStore } from "@/store/useBearStore";
 
 import { ENV } from "../env";
@@ -27,6 +29,8 @@ const axiosClient = axios.create({
 
 export const useRequest = () => {
     const { auth } = usePersistStore();
+    // const navigate = useNavigate();
+    const { onLogout } = useLogout();
     if (auth.access_token) {
         axiosClient.defaults.headers.common.Authorization = "Bearer " + auth.access_token;
     } else {
@@ -38,7 +42,11 @@ export const useRequest = () => {
             // logger.debug('Response API:', response?.data);
             return response?.data;
         };
-        const onError = async (error: AxiosError) => {
+        const onError = async (error: AxiosError<any, any>) => {
+            if (error.response?.status === 401) {
+                toast.error(error?.response?.data?.message.toString());
+                onLogout();
+            }
             // logger.debug('Axios Options:', options);
             // optionally catch errors and add additional logging here
             await Promise.reject({

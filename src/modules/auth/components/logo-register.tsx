@@ -1,14 +1,24 @@
 import { Stack } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { IMAGE_URL } from "@/assets/images";
+import { PATH } from "@/router/pathname";
 
 export interface LogoRegisterProps {}
 
 const LogoRegister: React.FC<LogoRegisterProps> = () => {
+    const navigate = useNavigate();
     return (
-        <Stack alignItems={"center"} width='100%'>
+        <Stack
+            alignItems={"center"}
+            width='100%'
+            sx={{ cursor: "pointer" }}
+            onClick={() => {
+                navigate(PATH.AUTH_PATH.INTRO);
+            }}
+        >
             <Style.Img src={IMAGE_URL.LOGO.LOGO_REGISTER} />
         </Stack>
     );

@@ -26,7 +26,9 @@ const columns: CustomColumnTableProps[] = [
         width: "25%",
         align: "center",
         format: (value: boolean) => (
-            <Stack>{value && <Styles.ImgIcon.LikeStar src={ICONS_URL.HEADER.CUP} style={{ height: "20px" }} />}</Stack>
+            <Stack alignItems={"center"}>
+                {value && <Styles.ImgIcon.LikeStar src={ICONS_URL.HEADER.CUP} style={{ height: "20px" }} />}
+            </Stack>
         ),
     },
     {

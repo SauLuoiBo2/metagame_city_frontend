@@ -4,7 +4,7 @@ import { ActivationAccountProps, LoginProps, RegisterProps, ResendEmailProps, Re
 import { ApiUrl } from "../apiUrl";
 
 // auth
-const { login_url, register_url, resend_email_url, activation_url } = ApiUrl.auth;
+const { login_url, register_url, forgot_password_url, activation_url, resend_email_url } = ApiUrl.auth;
 
 export function useAuthApi() {
     const { request } = useRequest();
@@ -20,13 +20,17 @@ export function useAuthApi() {
         return request({ url: activation_url, method: "POST", data });
     }
 
-    function resendEmail(data: ResendEmailProps) {
+    function sendEmailForgot(data: ResendEmailProps) {
+        return request({ url: forgot_password_url, method: "POST", data });
+    }
+
+    function resendEmailRegister(data: ResendEmailProps) {
         return request({ url: resend_email_url, method: "POST", data });
     }
 
     function resetPassword(data: ResetPasswordProps) {
-        return request({ url: resend_email_url, method: "POST", data });
+        return request({ url: forgot_password_url, method: "POST", data });
     }
 
-    return { signin, register, activation, resendEmail, resetPassword };
+    return { signin, register, activation, sendEmailForgot, resetPassword, resendEmailRegister };
 }

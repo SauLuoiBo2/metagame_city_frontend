@@ -4,4 +4,7 @@ export const AUTH_PATH = {
     REGISTER: "register",
     FORGOT_PASSWORD: "forgot-password",
     WALLET: "connect-wallet",
+
+    // regiter:
+    REGISTER_CONFIRM: "register/confirm",
 };

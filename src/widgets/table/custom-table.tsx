@@ -59,10 +59,12 @@ export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidt
                                                         padding: "0.7rem 0.5rem",
                                                         maxWidth: column.width,
                                                         width: column.width,
+                                                        alignItems: column.align,
                                                     }}
                                                 >
                                                     <Styles.Text.MainText
                                                         style={{
+                                                            textAlign: column.align,
                                                             fontSize: "1.3rem",
                                                             overflow: "hidden",
                                                             textOverflow: "ellipsis",

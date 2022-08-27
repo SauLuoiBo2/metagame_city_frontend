@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { ActivationAccountProps, LoginProps, RegisterProps, UserDtoProps } from "@/models";
+import { ActivationAccountProps, LoginProps, RegisterProps, ResendEmailProps, UserDtoProps } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
 import { usePersistStore } from "@/store/useBearStore";
 
@@ -34,7 +34,7 @@ export function useQueryAuth() {
     function useMutationRegister() {
         return useMutation<ApiResponseData, AxiosError, RegisterProps>((body) => authApi.register(body), {
             onSuccess: (data) => {
-                navigate("/login");
+                // navigate("/login");
                 toast.success(data.message);
             },
             onError: (data) => {
@@ -55,5 +55,35 @@ export function useQueryAuth() {
         });
     }
 
-    return { useMutationLogin, useMutationRegister, sendActivation };
+    function sendForgotPassword() {
+        return useMutation<ApiResponseData, AxiosError, ResendEmailProps>((body) => authApi.sendEmailForgot(body), {
+            onSuccess: (data) => {
+                if (data.status === "error") {
+                    toast.error(data.message);
+                } else {
+                    toast.success(data.message);
+                }
+            },
+            onError: (data) => {
+                toast.error(data.message);
+            },
+        });
+    }
+
+    function sendEmailRegister() {
+        return useMutation<ApiResponseData, AxiosError, ResendEmailProps>((body) => authApi.resendEmailRegister(body), {
+            onSuccess: (data) => {
+                if (data.status === "error") {
+                    toast.error(data.message);
+                } else {
+                    toast.success(data.message);
+                }
+            },
+            onError: (data) => {
+                toast.error(data.message);
+            },
+        });
+    }
+
+    return { useMutationLogin, useMutationRegister, sendActivation, sendForgotPassword, sendEmailRegister };
 }

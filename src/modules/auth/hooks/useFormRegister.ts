@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 
 import { useQueryAuth } from "@/api";
@@ -21,6 +21,8 @@ export function useFormRegister() {
 
     const refParams = params.get("ref");
 
+    const navigate = useNavigate();
+
     const ref = refParams || getLocalStored("ref");
 
     useEffect(() => {
@@ -37,7 +39,17 @@ export function useFormRegister() {
         referral: ref || "",
     };
     const { useMutationRegister } = useQueryAuth();
-    const { mutate } = useMutationRegister();
+    const { mutate, isSuccess, data } = useMutationRegister();
+
+    useEffect(() => {
+        if (isSuccess) {
+            if (data.status === "error") {
+                return;
+            } else {
+                navigate("confirm", { state: formik.values.email });
+            }
+        }
+    }, [isSuccess]);
     const formik = useFormik({
         initialValues,
         validationSchema,

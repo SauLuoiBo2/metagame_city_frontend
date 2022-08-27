@@ -12,6 +12,13 @@ const ConnectWalletPage = lazy(() =>
     import("@/modules").then(({ ConnectWalletPage }) => ({ default: ConnectWalletPage }))
 );
 const ActivationPage = lazy(() => import("@/modules").then(({ ActivationPage }) => ({ default: ActivationPage })));
+const ForgotPasswordPage = lazy(() =>
+    import("@/modules").then(({ ForgotPasswordPage }) => ({ default: ForgotPasswordPage }))
+);
+
+const ConfirmRegisterPage = lazy(() =>
+    import("@/modules").then(({ ConfirmRegisterPage }) => ({ default: ConfirmRegisterPage }))
+);
 
 const { AUTH_PATH, ACTIVE_PATH } = PATH;
 
@@ -25,7 +32,10 @@ export const authRoute = (isLoggedIn: boolean) => {
             { path: AUTH_PATH.REGISTER, element: <RegisterPage /> },
             { path: AUTH_PATH.INTRO, element: <IntroPage /> },
             { path: AUTH_PATH.WALLET, element: <ConnectWalletPage /> },
+            { path: AUTH_PATH.FORGOT_PASSWORD, element: <ForgotPasswordPage /> },
             { path: ACTIVE_PATH.ACTIVATION, element: <ActivationPage /> },
+
+            { path: AUTH_PATH.REGISTER_CONFIRM, element: <ConfirmRegisterPage /> },
         ],
     };
 };

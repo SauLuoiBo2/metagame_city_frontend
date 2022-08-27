@@ -15,7 +15,7 @@ export interface ViewAuthComProps extends PropsWithChildren {
 const ViewAuthCom: React.FC<ViewAuthComProps> = ({ children, title }) => {
     const navigate = useNavigate();
     return (
-        <Box width='100%'>
+        <Box width='100%' sx={{ maxWidth: 420 }}>
             <FrameTableCom isAuth imgFrame={IMAGE_URL.FRAME.FRAME_USER}>
                 <Stack px={{ lg: 10, md: 8, xs: 8 }} spacing={3} width={"100%"} alignItems={"center"}>
                     {/* title */}
@@ -28,7 +28,7 @@ const ViewAuthCom: React.FC<ViewAuthComProps> = ({ children, title }) => {
                         </Grid>
                         <Grid item xs={8}>
                             <Styles.Position.Center>
-                                <h3 className='body_big'>{title}</h3>
+                                <Styles.Text.CapText>{title}</Styles.Text.CapText>
                             </Styles.Position.Center>
                         </Grid>
                     </Grid>

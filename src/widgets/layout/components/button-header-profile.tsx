@@ -36,7 +36,9 @@ export const ButtonHeaderProfile: React.FC<ButtonHeaderProfileProps> = () => {
             }}
         >
             <Stack direction={"row"} justifyContent='space-between' alignItems={"center"} spacing={4}>
+                {/* avatar */}
                 <Stack
+                    sx={{ cursor: "pointer" }}
                     direction={"row"}
                     alignItems={"center"}
                     spacing={2}
@@ -54,6 +56,7 @@ export const ButtonHeaderProfile: React.FC<ButtonHeaderProfileProps> = () => {
                         </p>
                     </Stack>
                 </Stack>
+                {/* logout */}
                 <CustomIconButton icon={ICONS_URL.BUTTON.LOGOUT} onClick={onLogout} />
             </Stack>
             <Divider sx={{ borderBottomWidth: "2px", borderColor: "white" }} />

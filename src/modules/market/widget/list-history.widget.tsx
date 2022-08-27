@@ -21,7 +21,7 @@ export interface ListHistoryWidgetProps {}
 // }]
 
 const columns: CustomColumnTableProps[] = [
-    { id: "time", label: "Age", width: "20%" },
+    { id: "created", label: "Age", width: "20%" },
 
     {
         id: "from",
@@ -39,9 +39,9 @@ const columns: CustomColumnTableProps[] = [
         id: "amount",
         label: "Quantity",
         width: "25%",
-        align: "left",
+        align: "right",
         format: (value: number) => (
-            <Stack direction={"row"} alignItems='center' spacing={1}>
+            <Stack direction={"row"} alignItems='center' justifyContent={"flex-end"} spacing={1}>
                 <h3>{value}</h3>
 
                 <span>
