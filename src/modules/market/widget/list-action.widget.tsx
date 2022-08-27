@@ -8,11 +8,10 @@ import { CustomButton, CustomInput, FrameTableCom } from "@/components";
 import LabelButon from "@/components/label/label-buton";
 import MuiModal from "@/components/modal/mui-Modal";
 import { supportErrorFormik } from "@/libs";
-import { Styles } from "@/theme";
 import { ButtonAction } from "@/widgets";
 
-import ItemNftValueCom from "../components/item-nft-value.com";
 import { useFormGive } from "../hook";
+import { BuyStartWidget } from "./buy-start-widget";
 
 export interface ListActionWidgetProps {}
 
@@ -45,42 +44,7 @@ const BuyModalView = () => {
             </Grid>
 
             <MuiModal open={open.value} onClose={open.setFalse} widthModal={600}>
-                <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_BUY}>
-                    <Stack {...styleStack} spacing={1}>
-                        <ItemNftValueCom>
-                            <Styles.Position.Center>
-                                <Stack direction={"row"} spacing={1}>
-                                    <Styles.Text.BodyBig>
-                                        1{" "}
-                                        <span>
-                                            <Styles.ImgIcon.Star />{" "}
-                                        </span>
-                                        = 0.1 USDT
-                                    </Styles.Text.BodyBig>
-                                </Stack>
-                            </Styles.Position.Center>
-                        </ItemNftValueCom>
-
-                        <div style={{ width: "100%" }}>
-                            <Styles.Text.MainText style={{ textAlign: "end" }}> BNB Mainet</Styles.Text.MainText>
-                        </div>
-
-                        <CustomInput placeholder='Amount' />
-                        <div style={{ width: "100%" }}>
-                            <Styles.Text.MainText style={{ textAlign: "end" }}>
-                                {" "}
-                                Min 1000{" "}
-                                <span>
-                                    {" "}
-                                    <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20px" }} />
-                                </span>
-                            </Styles.Text.MainText>
-                        </div>
-                        <Stack sx={{ borderTop: "gray 2px solid" }} width={"100%"}>
-                            <Styles.Button.Basic style={{ marginTop: "2rem" }}>BUY</Styles.Button.Basic>
-                        </Stack>
-                    </Stack>
-                </FrameTableCom>
+                <BuyStartWidget />
             </MuiModal>
         </>
     );

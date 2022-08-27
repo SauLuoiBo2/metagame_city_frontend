@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { CardImageGame } from "./CardImageGame";
@@ -13,8 +13,11 @@ export interface CardGameProps {
 
 // href='http://google.vn' target={"_blank"}
 const CardGame: React.FC<CardGameProps> = ({ name, icon, linkGame, isLeft }) => {
+    function onGame() {
+        window.open(linkGame, "_blank", "noopener,noreferrer");
+    }
     return (
-        <Style.Wrapper href={linkGame || "/"} target={linkGame ? "_blank" : "_top"} isLeft={isLeft}>
+        <Style.Wrapper isLeft={isLeft} onClick={onGame}>
             <CardImageGame icon={icon} />
             <Style.ButtonWrapper isLeft={isLeft}>
                 <CardNameGame name={name} />
@@ -26,7 +29,7 @@ const CardGame: React.FC<CardGameProps> = ({ name, icon, linkGame, isLeft }) => 
 export default CardGame;
 
 const Style = {
-    Wrapper: styled.a<CardGameProps>`
+    Wrapper: styled.div<CardGameProps>`
         width: fit-content;
         display: flex;
         flex-direction: ${({ isLeft }) => (isLeft ? "row" : "row-reverse")};

@@ -15,6 +15,7 @@ export interface CustomSelectNftComProps {
     value?: number | string;
     defaultValue?: number | string;
     placeholder?: string;
+    title: string;
 }
 
 export const CustomSelectNftCom: React.FC<CustomSelectNftComProps> = ({
@@ -23,6 +24,7 @@ export const CustomSelectNftCom: React.FC<CustomSelectNftComProps> = ({
     handleChange,
     options,
     placeholder,
+    title,
 }) => {
     const [id, setId] = useState(defaultValue);
     const [label, setLabel] = useState<string | null>(null);
@@ -46,13 +48,14 @@ export const CustomSelectNftCom: React.FC<CustomSelectNftComProps> = ({
 
     return (
         <Style.Total ref={ref}>
+            <Styles.Text.MainText>{title}:</Styles.Text.MainText>
             <Style.Wrapper onClick={open.toggle}>
                 <Styles.Text.MainText style={{ opacity: label ? "1" : "0.5" }}>
                     {label || placeholder}
                 </Styles.Text.MainText>
             </Style.Wrapper>
 
-            <Style.Option isOpen={open.value}>
+            <Style.Option isOpen={open.value} isTitle={!!title}>
                 {options?.map((item, i) => {
                     return (
                         <Style.OptionItem key={i} onClick={() => onChange(item.id)}>
@@ -67,6 +70,7 @@ export const CustomSelectNftCom: React.FC<CustomSelectNftComProps> = ({
 
 interface StyleProps {
     isOpen: boolean;
+    isTitle: boolean;
 }
 
 const Style = {
@@ -93,7 +97,7 @@ const Style = {
         border-radius: 1rem;
         position: absolute;
         width: 100%;
-        top: 5rem;
+        top: ${({ isTitle }) => (isTitle ? "8rem" : "5rem")};
         height: ${({ isOpen }) => (isOpen ? null : 0)};
         max-height: 20rem;
         background: #080712;

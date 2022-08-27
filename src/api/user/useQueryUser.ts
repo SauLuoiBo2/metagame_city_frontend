@@ -40,8 +40,6 @@ export function useQueryUser() {
         );
     }
 
-    const { data: balance } = useGetUserBalance();
-
     function useGetUserReferral() {
         return useQuery<ApiResponseData<ReferralDtoProps>, AxiosError>(
             [QUERY_KEY.USER.PROFILE_REFERRAL_KEY],
@@ -52,7 +50,5 @@ export function useQueryUser() {
         );
     }
 
-    const { data: referral } = useGetUserReferral();
-
-    return { useMutationUserUpdate, useGetUserBalance, useGetUser, useGetUserReferral, balance, user, referral };
+    return { useMutationUserUpdate, useGetUserBalance, useGetUser, useGetUserReferral, user };
 }

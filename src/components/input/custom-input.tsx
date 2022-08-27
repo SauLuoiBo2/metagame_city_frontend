@@ -8,11 +8,13 @@ import { light_colors } from "@/theme/base/light-color";
 export interface CustomInputProps
     extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
     error?: string;
+    title?: string;
 }
 
-export const CustomInput: React.FC<CustomInputProps> = ({ error, ...props }) => {
+export const CustomInput: React.FC<CustomInputProps> = ({ error, title, ...props }) => {
     return (
         <Stack width='100%'>
+            {title && <Styles.Text.MainText>{title}:</Styles.Text.MainText>}
             <Style.Wrapper isError={error ? true : false}>
                 <input {...props} />
             </Style.Wrapper>
@@ -33,6 +35,11 @@ const Style = {
         border: 1px solid;
         border-radius: 3rem;
         width: 100%;
+
+        input:disabled {
+            opacity: 0.6;
+            color: red;
+        }
 
         /* @media ${(props) => props.theme.breakpoint.md} {
             padding: 0.5rem;
