@@ -33,7 +33,9 @@ export function useQueryAffiliate() {
             () => affiliateApi.buyVip(),
             {
                 onSuccess: () => {
-                    queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_REFERRAL_KEY, QUERY_KEY.FINANCS.STAR]);
+                    queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_REFERRAL_KEY]);
+                    queryClient.refetchQueries([QUERY_KEY.FINANCS.STAR]);
+                    queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_BALANCE_KEY]);
                     modalOnOpen(ModalBuySuccess);
                 },
             }

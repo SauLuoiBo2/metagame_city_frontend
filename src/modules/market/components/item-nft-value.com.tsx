@@ -35,7 +35,7 @@ const ItemNftValueCom: React.FC<ItemNftValueComProps> = ({ children, icon, value
                 </Style.Content>
             </Stack>
         );
-    }, []);
+    }, [value]);
 
     // ########################################
 

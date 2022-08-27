@@ -33,8 +33,6 @@ export const useQueryFinance = () => {
                         toast.success(data.message);
                         queryClient.refetchQueries([QUERY_KEY.FINANCS.STAR]);
                         queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_BALANCE_KEY]);
-
-                        // QUERY_KEY.USER.PROFILE_BALANCE_KEY
                     }
                 },
             }
