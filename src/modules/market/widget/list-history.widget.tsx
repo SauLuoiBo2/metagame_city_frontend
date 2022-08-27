@@ -43,7 +43,6 @@ const columns: CustomColumnTableProps[] = [
         format: (value: number) => (
             <Stack direction={"row"} alignItems='center' justifyContent={"flex-end"} spacing={1}>
                 <h3>{value}</h3>
-
                 <span>
                     <Styles.ImgIcon.Star />
                 </span>

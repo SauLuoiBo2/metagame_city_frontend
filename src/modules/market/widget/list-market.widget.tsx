@@ -44,7 +44,6 @@ export const ListMarketWidget: React.FC<ListMarketWidgetProps> = () => {
                         <ItemNftValueCom icon={ICONS_URL.HEADER.CUP} value={banance?.bonus} />
                     </GridItemHalf>
                     {/* bonus */}
-
                     <Grid item xs={12}>
                         <Stack sx={{ borderTop: "solid gray 2px" }} mx={"10%"} />
                     </Grid>

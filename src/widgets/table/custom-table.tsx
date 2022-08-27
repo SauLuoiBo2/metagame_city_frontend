@@ -19,7 +19,6 @@ export interface CustomColumnTableProps {
 export interface CustomTableProps {
     columns: CustomColumnTableProps[];
     rows: any;
-
     minWidth: any;
     maxHeight?: any;
 }
