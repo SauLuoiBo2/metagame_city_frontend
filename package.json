@@ -23,6 +23,7 @@
         "@tanstack/react-query-devtools": "^4.2.1",
         "add": "^2.0.6",
         "axios": "^0.27.2",
+        "ethers": "^5.7.0",
         "formik": "^2.2.9",
         "framer-motion": "^7.2.0",
         "i18next": "^21.9.1",

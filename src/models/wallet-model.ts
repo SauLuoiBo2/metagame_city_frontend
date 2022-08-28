@@ -4,6 +4,6 @@ export interface WalletLoginDto {
     signMessage: string;
 }
 
-export interface WalletLoginProps {
-    signMessage: string;
+export interface WalletSignProps {
+    address: string;
 }

@@ -1,28 +1,45 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { AxiosError } from "axios";
-
+/* eslint-disable simple-import-sort/imports */
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import { QUERY_KEY } from "@/config";
-import { WalletLoginDto, WalletLoginProps } from "@/models";
+import { WalletLoginDto } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
+import { usePersistStore } from "@/store/useBearStore";
+import { toast } from "react-toastify";
 
 import { useApiWallet } from "./useApiWallet";
 
 export function useQueryWallet() {
     const apiWallet = useApiWallet();
     const { getSignMessage, postWalletLogin } = apiWallet;
+    const { authSetAccessToken } = usePersistStore();
+    const navigate = useNavigate();
+    const queryClient = useQueryClient();
 
-    function useGetSignMessage() {
-        return useQuery<ApiResponseData<WalletLoginProps>, AxiosError>(
+    function useGetSignMessage(address: string) {
+        const params = { address };
+        return useQuery<ApiResponseData<WalletLoginDto>, ApiResponseData>(
             [QUERY_KEY.WALLET.WALLET_MESSAGE],
-            () => getSignMessage(),
+            () => getSignMessage(params),
             {}
         );
     }
 
     function usePostWalletLogin() {
-        return useMutation<ApiResponseData<WalletLoginProps>, AxiosError, WalletLoginDto>((body) =>
-            postWalletLogin(body)
-        );
+        return useMutation<ApiResponseData<any>, ApiResponseData, WalletLoginDto>((body) => postWalletLogin(body), {
+            onSuccess: async (data) => {
+                await authSetAccessToken(data.data?.token || "");
+
+                const status: any = data.status;
+
+                if (status === "error") {
+                    toast.error(data.message);
+                    return;
+                }
+                navigate("/");
+                queryClient.refetchQueries();
+            },
+        });
     }
 
     return { useGetSignMessage, usePostWalletLogin };

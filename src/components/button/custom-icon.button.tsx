@@ -33,12 +33,13 @@ const Style = {
         position: relative;
         align-items: center;
         width: fit-content;
+        color: #fff;
         img {
             width: 100%;
         }
     `,
 
-    Inner: styled.p`
+    Inner: styled.div`
         position: absolute;
         top: 0;
         width: 100%;
@@ -47,6 +48,6 @@ const Style = {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: -1px;
+        margin-top: -5px;
     `,
 };

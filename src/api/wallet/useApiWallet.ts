@@ -1,5 +1,5 @@
 import { useRequest } from "@/config";
-import { WalletLoginDto } from "@/models/wallet-model";
+import { WalletLoginDto, WalletSignProps } from "@/models/wallet-model";
 
 import { ApiUrl } from "../apiUrl";
 
@@ -8,12 +8,12 @@ const { sign_message, wallet_login } = ApiUrl.auth_wallet;
 
 export function useApiWallet() {
     const { request } = useRequest();
-    function getSignMessage() {
-        return request({ url: sign_message, method: "GET" });
+    function getSignMessage(params: WalletSignProps) {
+        return request({ url: sign_message, method: "GET", params });
     }
 
-    function postWalletLogin(params?: WalletLoginDto) {
-        return request({ url: wallet_login, method: "GET", params });
+    function postWalletLogin(data: WalletLoginDto) {
+        return request({ url: wallet_login, method: "POST", data });
     }
 
     return { getSignMessage, postWalletLogin };

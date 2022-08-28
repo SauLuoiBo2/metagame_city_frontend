@@ -1,9 +1,12 @@
 import { Stack } from "@mui/material";
-import React from "react";
+import { ethers } from "ethers";
+import React, { useState } from "react";
 
+import { useQueryUser } from "@/api";
 import { ICONS_URL } from "@/assets/icons";
 import { IMAGE_URL } from "@/assets/images";
 import { CustomInput, FrameTableCom } from "@/components";
+import { IAssetDetail } from "@/models/asset.model";
 import { CustomSelectNftCom } from "@/modules/auth/components/custom-select-nft-com";
 import { Styles } from "@/theme";
 
@@ -24,6 +27,77 @@ const options = [
 ];
 
 export const BuyStartWidget: React.FC<BuyStartWidgetProps> = () => {
+    // B.1 => get list asset (coin) tu serve
+    // => hien thi len cho user chon
+    const [assets, setAssets] = useState([]);
+    const [assetDetails, setAssetDetails] = useState([]);
+    const [assetSelected, setAssetSelected] = useState<IAssetDetail | null>(null);
+    const [amount, setAmount] = useState<number>(0);
+    // const { getProfile } = useQueryUser();
+    const { data } = getProfile();
+    const user = data?.data;
+
+    const handleBuyStar = async () => {
+        if (!window.ethereum || !user.wallet || !assetSelected) {
+            return;
+        }
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+
+        const chainId = window.ethereum.chainId;
+
+        if (chainId !== assetSelected.chainId) {
+            //lam thao tac chuyen mang
+            try {
+                await window.ethereum.request({
+                    method: "wallet_switchEthereumChain",
+                    params: [{ chainId: assetSelected.chainId }],
+                });
+            } catch (error) {
+                console.log(error);
+                return;
+            }
+        }
+
+        const payAmount = ethers.utils.parseEther(amount.toString());
+        let transactionData: any = {
+            from: user.wallet,
+            to: assetSelected.address,
+            value: payAmount, // neu la token base cua mang thi thay data = value: payAmount
+        };
+
+        if (!assetSelected.isBase) {
+            const contract = new ethers.Contract(assetSelected.contract, assetSelected.contractAbi, signer);
+            // goi ham tao ra giao dich (transaction) - transfer(dia chi vi nhan, so tien)
+            const transfer = await contract.approve(assetSelected.address, payAmount);
+            const data = transfer.encodeABI();
+            transactionData = {
+                from: user.wallet,
+                to: assetSelected.contract,
+                data, // neu la token base cua mang thi thay data = value: payAmount
+            };
+        }
+        //#region chi danh cho gui token khac coin nền tảng BNB - ETH ()
+        //create contract info
+
+        //#endregion
+
+        // thuc hien tao transaction
+
+        try {
+            const hash = await window.ethereum.request({
+                method: "eth_sendTransaction",
+                params: [transactionData],
+            });
+            if (hash) {
+                //gán link
+                const link = assetSelected.txUrl + hash;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
         <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_BUY}>
             <Stack {...styleStack} spacing={1}>
@@ -40,7 +114,7 @@ export const BuyStartWidget: React.FC<BuyStartWidgetProps> = () => {
                     </Styles.Position.Center>
                 </ItemNftValueCom>
 
-                <CustomSelectNftCom options={options} placeholder='chon nen tang' title='BNB Mainet' />
+                <CustomSelectNftCom options={assets} placeholder='Select Coin' title='BNB Mainet' />
                 <CustomSelectNftCom options={options} placeholder='network' title='Netword' />
 
                 <CustomInput placeholder='Receive address' title='Receive address' value={"vi"} disabled />

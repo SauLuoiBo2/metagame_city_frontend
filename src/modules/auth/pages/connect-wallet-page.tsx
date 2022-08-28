@@ -9,7 +9,7 @@ export interface ConnectWalletPageProps {}
 export const ConnectWalletPage: React.FC<ConnectWalletPageProps> = () => {
     return (
         <Stack spacing={5}>
-            <ChooseModelWidget />
+            {/* <ChooseModelWidget /> */}
             <ConnectWalletWidget />
         </Stack>
     );
