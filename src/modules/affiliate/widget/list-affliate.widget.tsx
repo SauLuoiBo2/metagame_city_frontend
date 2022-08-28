@@ -55,7 +55,8 @@ const columns: CustomColumnTableProps[] = [
 export const ListAffliateWidget: React.FC<ListAffliateWidgetProps> = () => {
     const { useGetListCommission } = useQueryAffiliate();
     const { data: list } = useGetListCommission();
-    const { referral } = useQueryUser();
+    const { useGetUserReferral } = useQueryUser();
+    const { data: referral } = useGetUserReferral();
 
     const url = ENV.API.BASE_URL + "/" + PATH.AUTH_PATH.REGISTER + "?ref=" + referral?.data?.refCode;
 
