@@ -11,12 +11,13 @@ import { PATH } from "@/router/pathname";
 export interface ButtonHeaderProfileProps {}
 
 export const ButtonHeaderProfile: React.FC<ButtonHeaderProfileProps> = () => {
-    const { user, balance } = useQueryUser();
+    const { user, useGetUserBalance } = useQueryUser();
 
     const navigate = useNavigate();
 
     const users = user?.data;
-    const balanceData = balance?.data;
+    const { data } = useGetUserBalance();
+    const balanceData = data?.data;
 
     const { onLogout } = useLogout();
 
@@ -42,7 +43,7 @@ export const ButtonHeaderProfile: React.FC<ButtonHeaderProfileProps> = () => {
                     direction={"row"}
                     alignItems={"center"}
                     spacing={2}
-                    onClick={() => navigate(PATH.MAIN_PATH.ACCOUNT)}
+                    onClick={() => navigate("/" + PATH.MAIN_PATH.ACCOUNT)}
                 >
                     <Avatar
                         alt={users?.username}

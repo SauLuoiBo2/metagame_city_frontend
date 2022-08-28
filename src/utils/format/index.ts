@@ -25,3 +25,15 @@ export function formatDetailLink(navigate: any, id: any, url: string) {
         navigate(`/${url}/${id}`);
     }
 }
+
+export const formatDifferenceBetweenTwoObj = (newObj: any, oldObj: any) => {
+    function changes(newObj: any, oldObj: any) {
+        return _.transform(newObj, (result: any, value, key) => {
+            if (!_.isEqual(value, oldObj[key])) {
+                // eslint-disable-next-line no-param-reassign
+                result[key] = _.isObject(value) && _.isObject(oldObj[key]) ? changes(value, oldObj[key]) : value;
+            }
+        });
+    }
+    return changes(newObj, oldObj);
+};

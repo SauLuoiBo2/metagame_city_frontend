@@ -58,6 +58,8 @@ export const GlobalStyle = createGlobalStyle<Props>`
     a ,p, input {
       color: white;
       font-family:${({ theme }) => theme.fonts.main} ;
+      font-weight: 400;
+      font-size: 1.6rem;
     }
 
     /* button */

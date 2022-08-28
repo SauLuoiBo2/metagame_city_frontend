@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 import { QUERY_KEY } from "@/config";
-import { BalanceDtoProps, ReferralDtoProps, UserProps } from "@/models";
+import { BalanceDtoProps, ReferralDtoProps, UserProps, UserUpdateProps } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
 import { usePersistStore } from "@/store/useBearStore";
 
@@ -15,7 +15,7 @@ export function useQueryUser() {
     const { access_token } = auth;
 
     function useMutationUserUpdate() {
-        return useMutation<ApiResponseData, AxiosError, any>((body) => userApi.updateProfile(body), {});
+        return useMutation<ApiResponseData, AxiosError, UserUpdateProps>((body) => userApi.updateProfile(body), {});
     }
 
     function useGetUser() {

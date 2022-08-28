@@ -37,8 +37,8 @@ const Style = {
         width: 100%;
 
         input:disabled {
-            opacity: 0.6;
-            color: red;
+            opacity: 0.8;
+            color: #c8d482;
         }
 
         /* @media ${(props) => props.theme.breakpoint.md} {

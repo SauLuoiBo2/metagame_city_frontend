@@ -3,36 +3,37 @@ import * as Yup from "yup";
 
 import { useQueryUser } from "@/api";
 import { yupChema } from "@/libs";
+import { formatDifferenceBetweenTwoObj } from "@/utils";
 
-const { password, username, passwordConfirm } = yupChema;
+const { username } = yupChema;
 
-const validationSchema = Yup.object().shape({
+const validationSchemaUsername = Yup.object().shape({
     username,
-    password,
-    passwordConfirm,
 });
 
 export function useFormUpdateAccount() {
-    const { useGetUser, useMutationUserUpdate } = useQueryUser();
+    const { useGetUser, useMutationUserUpdate, useGetUserBalance } = useQueryUser();
     const { data } = useGetUser();
 
+    const { data: balanceData } = useGetUserBalance();
+
     const user = data?.data;
+    const balance = balanceData?.data;
 
     const { mutate } = useMutationUserUpdate();
 
     const initialValues = {
-        username: user?.username,
-        password: "",
-        passwordConfirm: "",
+        ...user,
     };
     const formik = useFormik({
         initialValues,
-        validationSchema,
+        validationSchema: validationSchemaUsername,
         onSubmit: (values) => {
-            mutate(values);
+            const dataPost = formatDifferenceBetweenTwoObj(values, initialValues);
+            mutate(dataPost);
         },
         validateOnChange: false,
     });
 
-    return { formik, useMutationUserUpdate, user };
+    return { formik, useMutationUserUpdate, user, balance };
 }

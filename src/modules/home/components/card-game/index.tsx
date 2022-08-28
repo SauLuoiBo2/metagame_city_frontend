@@ -25,7 +25,7 @@ const CardGame: React.FC<CardGameProps> = ({ name, icon, linkGame, isLeft }) => 
             return toast.info("This game coming soon!!!");
         }
         if (user?.data?.username) {
-            window.open(linkGame, "_blank", "noopener,noreferrer");
+            window.open(linkGame, "_blank", "noopener, noreferrer");
         } else {
             modalOnOpen(PopupNoUsername);
         }

@@ -26,7 +26,7 @@ export const FrameTableCom: React.FC<FrameTableComProps> = ({
                 <Styles.Position.Center>{children}</Styles.Position.Center>
             </Style.Inner>
             {/* title */}
-            <Style.Title>{imgTitle && <img src={imgTitle} />}</Style.Title>
+            <Style.Title>{imgTitle && <img className='wrapper-img' src={imgTitle} />}</Style.Title>
         </Style.Wrapper>
     );
 };
@@ -58,7 +58,7 @@ const Style = {
             min-height: 30rem;
         }
 
-        img {
+        .wrapper-img {
             width: 100%;
         }
     `,
@@ -69,6 +69,7 @@ const Style = {
         width: 100%;
         height: 100%;
         min-height: 25rem;
+        overflow: hidden;
     `,
     Title: styled.div`
         position: absolute;

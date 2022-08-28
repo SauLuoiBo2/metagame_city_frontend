@@ -11,7 +11,7 @@ export interface AccountHomePageProps {}
 
 export const AccountHomePage: React.FC<AccountHomePageProps> = () => {
     return (
-        <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_MARKET}>
+        <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_MARKET} isAlone>
             <Styles.Position.Center>
                 <Box sx={{ maxWidth: "90%", width: "600px" }}>
                     <AccountInforWidget />

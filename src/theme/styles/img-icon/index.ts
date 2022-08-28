@@ -26,15 +26,15 @@ export const stylesImgIcon = {
     Star: styled.img.attrs({
         src: ICONS_URL.BUTTON.STAR,
     })`
-        width: 2.5rem !important;
-        height: 2.5rem !important;
+        width: 2.5rem;
+        height: 2.5rem;
         @media ${(props) => props.theme.breakpoint.lg} {
-            width: 1.8rem !important;
-            height: 1.8 !important;
+            width: 1.8rem;
+            height: 1.8rem;
         }
         @media ${(props) => props.theme.breakpoint.sm} {
-            width: 1.5rem !important;
-            height: 1.5rem !important;
+            width: 1.5rem;
+            height: 1.5rem;
         }
     `,
 

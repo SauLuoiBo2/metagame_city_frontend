@@ -49,18 +49,22 @@ export interface UserDtoProps {
 }
 
 export interface UserProps {
-    uid: string;
-    username: string;
-    email: string;
-    wallet: string;
-    avatar: string;
+    uid?: string;
+    username?: string;
+    email?: string;
+    wallet?: string;
+    avatar?: string;
     profile?: any;
-    refCode: string;
-    parentId: string;
-    tfa: string;
-    tfaImg: string;
-    status: string;
-    signMessage: string;
-    created: Date;
-    updated: Date;
+    refCode?: string;
+    parentId?: string;
+    tfa?: string;
+    tfaImg?: string;
+    status?: string;
+    signMessage?: string;
+    created?: Date;
+    updated?: Date;
+}
+
+export interface UserUpdateProps extends UserProps {
+    confirmPassword?: string;
 }
