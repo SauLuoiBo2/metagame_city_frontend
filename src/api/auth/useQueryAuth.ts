@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -15,14 +14,15 @@ export function useQueryAuth() {
     const queryClient = useQueryClient();
     function useMutationLogin() {
         const { authSetAccessToken } = usePersistStore();
-        return useMutation<ApiResponseData<UserDtoProps>, AxiosError, LoginProps>((body) => authApi.signin(body), {
+        return useMutation<ApiResponseData<UserDtoProps>, ApiResponseData, LoginProps>((body) => authApi.signin(body), {
             onSuccess: async (data) => {
                 await authSetAccessToken(data.data?.token || "");
 
                 const status: any = data.status;
 
                 if (status === "error") {
-                    toast.error(data.message);
+                    // toast.error(data.message);
+                    navigate("/");
                     return;
                 }
                 navigate("/");
@@ -32,57 +32,66 @@ export function useQueryAuth() {
     }
 
     function useMutationRegister() {
-        return useMutation<ApiResponseData, AxiosError, RegisterProps>((body) => authApi.register(body), {
+        return useMutation<ApiResponseData, ApiResponseData, RegisterProps>((body) => authApi.register(body), {
             onSuccess: (data) => {
                 // navigate("/login");
                 toast.success(data.message);
             },
             onError: (data) => {
-                toast.error(data.message);
+                toast.error(data?.data?.message);
             },
         });
     }
 
     function sendActivation() {
-        return useMutation<ApiResponseData, AxiosError, ActivationAccountProps>((body) => authApi.activation(body), {
-            onSuccess: (data) => {
-                navigate("/login");
-                toast.success(data.message);
-            },
-            onError: (data) => {
-                toast.error(data.message);
-            },
-        });
+        return useMutation<ApiResponseData, ApiResponseData, ActivationAccountProps>(
+            (body) => authApi.activation(body),
+            {
+                onSuccess: (data) => {
+                    navigate("/login");
+                    toast.success(data.message);
+                },
+                onError: (data) => {
+                    toast.error(data?.data?.message);
+                },
+            }
+        );
     }
 
     function sendForgotPassword() {
-        return useMutation<ApiResponseData, AxiosError, ResendEmailProps>((body) => authApi.sendEmailForgot(body), {
-            onSuccess: (data) => {
-                if (data.status === "error") {
-                    toast.error(data.message);
-                } else {
-                    toast.success(data.message);
-                }
-            },
-            onError: (data) => {
-                toast.error(data.message);
-            },
-        });
+        return useMutation<ApiResponseData, ApiResponseData, ResendEmailProps>(
+            (body) => authApi.sendEmailForgot(body),
+            {
+                onSuccess: (data) => {
+                    if (data.status === "error") {
+                        toast.error(data.message);
+                    } else {
+                        toast.success(data.message);
+                    }
+                },
+                onError: (data) => {
+                    toast.error(data?.data?.message);
+                },
+            }
+        );
     }
 
     function sendEmailRegister() {
-        return useMutation<ApiResponseData, AxiosError, ResendEmailProps>((body) => authApi.resendEmailRegister(body), {
-            onSuccess: (data) => {
-                if (data.status === "error") {
-                    toast.error(data.message);
-                } else {
-                    toast.success(data.message);
-                }
-            },
-            onError: (data) => {
-                toast.error(data.message);
-            },
-        });
+        return useMutation<ApiResponseData, ApiResponseData, ResendEmailProps>(
+            (body) => authApi.resendEmailRegister(body),
+            {
+                onSuccess: (data) => {
+                    if (data.status === "error") {
+                        toast.error(data.message);
+                    } else {
+                        toast.success(data.message);
+                    }
+                },
+                onError: (data) => {
+                    toast.error(data?.data?.message);
+                },
+            }
+        );
     }
 
     return { useMutationLogin, useMutationRegister, sendActivation, sendForgotPassword, sendEmailRegister };

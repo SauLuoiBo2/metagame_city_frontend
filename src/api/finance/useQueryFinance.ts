@@ -1,5 +1,4 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 
 import { QUERY_KEY } from "@/config";
@@ -13,7 +12,7 @@ export const useQueryFinance = () => {
     const queryClient = useQueryClient();
 
     function useGetStar() {
-        return useQuery<ApiResponseData<HistoryMarketProps[]>, AxiosError>([QUERY_KEY.FINANCS.STAR], () =>
+        return useQuery<ApiResponseData<HistoryMarketProps[]>, ApiResponseData>([QUERY_KEY.FINANCS.STAR], () =>
             financeApi.getStar()
         );
     }
@@ -21,7 +20,7 @@ export const useQueryFinance = () => {
     const { data } = useGetStar();
 
     function useSendStar() {
-        return useMutation<ApiResponseData<any>, AxiosError, FinanceSendStarDtoProps>(
+        return useMutation<ApiResponseData<any>, ApiResponseData, FinanceSendStarDtoProps>(
             (body) => financeApi.sendStar(body),
             {
                 onSuccess: (data) => {

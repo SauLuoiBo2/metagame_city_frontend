@@ -1,5 +1,4 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 
 import { QUERY_KEY } from "@/config";
@@ -17,16 +16,19 @@ export function useQueryUser() {
     const { access_token } = auth;
 
     function useMutationUserUpdate() {
-        return useMutation<ApiResponseData, AxiosError, UserUpdateProps>((body) => userApi.updateProfile(body), {
+        return useMutation<ApiResponseData, ApiResponseData, UserUpdateProps>((body) => userApi.updateProfile(body), {
             onSuccess: (data) => {
                 toast.success(data?.message);
                 modalOnClose();
+            },
+            onError: (data) => {
+                toast.error(data?.data?.message);
             },
         });
     }
 
     function useGetUser() {
-        return useQuery<ApiResponseData<UserProps>, AxiosError>(
+        return useQuery<ApiResponseData<UserProps>, ApiResponseData>(
             [QUERY_KEY.USER.PROFILE_KEY],
             () => userApi.getProfile(),
             {
@@ -41,7 +43,7 @@ export function useQueryUser() {
     const { data: user } = useGetUser();
 
     function useGetUserBalance() {
-        return useQuery<ApiResponseData<BalanceDtoProps>, AxiosError>(
+        return useQuery<ApiResponseData<BalanceDtoProps>, ApiResponseData>(
             [QUERY_KEY.USER.PROFILE_BALANCE_KEY],
             () => userApi.getBalance(),
             {
@@ -51,7 +53,7 @@ export function useQueryUser() {
     }
 
     function useGetUserReferral() {
-        return useQuery<ApiResponseData<ReferralDtoProps>, AxiosError>(
+        return useQuery<ApiResponseData<ReferralDtoProps>, ApiResponseData>(
             [QUERY_KEY.USER.PROFILE_REFERRAL_KEY],
             () => userApi.getReferral(),
             {

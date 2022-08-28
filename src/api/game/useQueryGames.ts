@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 
 import { QUERY_KEY } from "@/config";
 import { GameHistoryProps, UserProps } from "@/models";
@@ -11,13 +10,13 @@ export function useQueryGames() {
     const gamesApi = useGameApi();
 
     function useGetListGames() {
-        return useQuery<ApiResponseData<UserProps>, AxiosError>([QUERY_KEY.GAMES.LIST_GAME], () =>
+        return useQuery<ApiResponseData<UserProps>, ApiResponseData>([QUERY_KEY.GAMES.LIST_GAME], () =>
             gamesApi.getListGame()
         );
     }
 
     function useGetListVictory() {
-        return useQuery<ApiResponseData<GameHistoryProps[]>, AxiosError>([QUERY_KEY.GAMES.LIST_VICTORY], () =>
+        return useQuery<ApiResponseData<GameHistoryProps[]>, ApiResponseData>([QUERY_KEY.GAMES.LIST_VICTORY], () =>
             gamesApi.getListVitory()
         );
     }

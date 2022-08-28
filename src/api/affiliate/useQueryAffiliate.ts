@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
+import { toast } from "react-toastify";
 
 import { QUERY_KEY } from "@/config";
 import { ReferralCommission } from "@/models";
@@ -16,19 +16,20 @@ export function useQueryAffiliate() {
     const { modalOnOpen } = useBearStore();
     //
     function useGetListCommission() {
-        return useQuery<ApiResponseData<ReferralCommission[]>, AxiosError>([QUERY_KEY.AFFILIATE.LIST_HISTOTRY], () =>
-            affiliateApi.getListHistories()
+        return useQuery<ApiResponseData<ReferralCommission[]>, ApiResponseData>(
+            [QUERY_KEY.AFFILIATE.LIST_HISTOTRY],
+            () => affiliateApi.getListHistories()
         );
     }
 
     function useGetListMember() {
-        return useQuery<ApiResponseData<any>, AxiosError>([QUERY_KEY.AFFILIATE.LIST_MEMBERS], () =>
+        return useQuery<ApiResponseData<any>, ApiResponseData>([QUERY_KEY.AFFILIATE.LIST_MEMBERS], () =>
             affiliateApi.getListMembers()
         );
     }
 
     function useBuyVip() {
-        return useMutation<ApiResponseData, AxiosError, any>(
+        return useMutation<ApiResponseData, ApiResponseData, any>(
             [QUERY_KEY.AFFILIATE.LIST_MEMBERS],
             () => affiliateApi.buyVip(),
             {
@@ -37,6 +38,9 @@ export function useQueryAffiliate() {
                     queryClient.refetchQueries([QUERY_KEY.FINANCS.STAR]);
                     queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_BALANCE_KEY]);
                     modalOnOpen(ModalBuySuccess);
+                },
+                onError: (data) => {
+                    toast.error(data?.data?.message);
                 },
             }
         );
