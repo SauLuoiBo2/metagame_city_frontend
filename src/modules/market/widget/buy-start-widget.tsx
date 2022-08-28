@@ -33,12 +33,12 @@ export const BuyStartWidget: React.FC<BuyStartWidgetProps> = () => {
     const [assetDetails, setAssetDetails] = useState([]);
     const [assetSelected, setAssetSelected] = useState<IAssetDetail | null>(null);
     const [amount, setAmount] = useState<number>(0);
-    // const { getProfile } = useQueryUser();
-    const { data } = getProfile();
+    const { useGetUser } = useQueryUser();
+    const { data } = useGetUser();
     const user = data?.data;
 
     const handleBuyStar = async () => {
-        if (!window.ethereum || !user.wallet || !assetSelected) {
+        if (!window.ethereum || !user?.wallet || !assetSelected) {
             return;
         }
 
