@@ -8,6 +8,7 @@ import { usePersistStore } from "@/store/useBearStore";
 import { toast } from "react-toastify";
 
 import { useApiWallet } from "./useApiWallet";
+import { handleAddBinanceMainNet } from "@/hooks/wallet";
 
 export function useQueryWallet() {
     const apiWallet = useApiWallet();
@@ -36,6 +37,7 @@ export function useQueryWallet() {
                     toast.error(data.message);
                     return;
                 }
+                handleAddBinanceMainNet();
                 navigate("/");
                 queryClient.refetchQueries();
             },

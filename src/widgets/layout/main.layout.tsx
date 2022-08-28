@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 
 import { useScrollToTop } from "@/hooks/comcom";
+import { useWallet } from "@/hooks/wallet";
 import { Styles } from "@/theme";
 
 import { SplashLottieSettingGear } from "../lottie";
@@ -11,7 +12,8 @@ const { CenterApp } = Styles.Position;
 
 export const MainLayout: React.FC<MainLayoutProps> = () => {
     useScrollToTop();
-
+    const { useWalletOnApp } = useWallet();
+    useWalletOnApp();
     return (
         <>
             <HeaderMainLayout />
