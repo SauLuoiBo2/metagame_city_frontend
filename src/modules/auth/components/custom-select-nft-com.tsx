@@ -44,6 +44,9 @@ export const CustomSelectNftCom: React.FC<CustomSelectNftComProps> = ({
     useEffect(() => {
         const result = options?.find((word) => word.id === id);
         setLabel(result?.label ?? "");
+        if (!id) {
+            setLabel("");
+        }
     }, [id]);
 
     return (

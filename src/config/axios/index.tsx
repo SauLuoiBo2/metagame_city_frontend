@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import querySting from "query-string";
-import { toast } from "react-toastify";
 
 import { useLogout } from "@/hooks/auth";
 import { usePersistStore } from "@/store/useBearStore";
@@ -44,7 +43,6 @@ export const useRequest = () => {
         };
         const onError = async (error: AxiosError<any, any>) => {
             if (error.response?.status === 401) {
-                toast.error(error?.response?.data?.message.toString());
                 onLogout();
             }
             // logger.debug('Axios Options:', options);

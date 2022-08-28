@@ -12,6 +12,10 @@ export const stylesButtons = {
         font-weight: 600;
         font-size: 1.6rem;
 
+        &&:disabled {
+            background-color: gray;
+        }
+
         @media ${(props) => props.theme.breakpoint.md} {
             padding: 0.5rem 1.5rem;
         }

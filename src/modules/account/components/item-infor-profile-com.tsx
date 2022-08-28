@@ -35,7 +35,7 @@ export const ItemInforProfileCom: React.FC<ItemInforProfileComProps> = ({
                     <p>{title}:</p>
                 </Grid>
                 <Grid item xs={7}>
-                    <p>{props.defaultValue}</p>
+                    <p className='ellipsis'>{props.defaultValue}</p>
                 </Grid>
                 <Grid item xs={2}>
                     <p onClick={handleCall}>{call || "change"}</p>

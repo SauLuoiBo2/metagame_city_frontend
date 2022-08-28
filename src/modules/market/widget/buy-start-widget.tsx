@@ -1,16 +1,15 @@
-import { Stack } from "@mui/material";
-import { ethers } from "ethers";
+import { Grid, Stack } from "@mui/material";
 import React, { useState } from "react";
 
-import { useQueryUser } from "@/api";
 import { ICONS_URL } from "@/assets/icons";
 import { IMAGE_URL } from "@/assets/images";
 import { CustomInput, FrameTableCom } from "@/components";
-import { IAssetDetail } from "@/models/asset.model";
+// import { IAssetDetail } from "@/models/asset.model";
 import { CustomSelectNftCom } from "@/modules/auth/components/custom-select-nft-com";
 import { Styles } from "@/theme";
 
 import ItemNftValueCom from "../components/item-nft-value.com";
+import { useAssetBuy } from "../hook";
 export interface BuyStartWidgetProps {}
 
 const styleStack = {
@@ -21,83 +20,20 @@ const styleStack = {
     spacing: 2,
 };
 
-const options = [
-    { id: 1, label: "ETH Mainnet" },
-    { id: 2, label: "BNB Mainnet" },
-];
-
 export const BuyStartWidget: React.FC<BuyStartWidgetProps> = () => {
-    // B.1 => get list asset (coin) tu serve
-    // => hien thi len cho user chon
-    const [assets, setAssets] = useState([]);
-    const [assetDetails, setAssetDetails] = useState([]);
-    const [assetSelected, setAssetSelected] = useState<IAssetDetail | null>(null);
-    const [amount, setAmount] = useState<number>(0);
-    const { useGetUser } = useQueryUser();
-    const { data } = useGetUser();
-    const user = data?.data;
+    const { listTokenOptions, listDetailTokenOptions, setQuery, handleSelectToken, addressId, token, handleBuyStar } =
+        useAssetBuy();
+    const [amount, setAmount] = useState(1000);
 
-    const handleBuyStar = async () => {
-        if (!window.ethereum || !user?.wallet || !assetSelected) {
-            return;
+    function handleSetAmount(e: React.ChangeEvent<HTMLInputElement>) {
+        const value = Number(e.target.value);
+        if (value < 1000) {
+            setAmount(1000);
+        } else {
+            setAmount(value);
         }
+    }
 
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-
-        const chainId = window.ethereum.chainId;
-
-        if (chainId !== assetSelected.chainId) {
-            //lam thao tac chuyen mang
-            try {
-                await window.ethereum.request({
-                    method: "wallet_switchEthereumChain",
-                    params: [{ chainId: assetSelected.chainId }],
-                });
-            } catch (error) {
-                console.log(error);
-                return;
-            }
-        }
-
-        const payAmount = ethers.utils.parseEther(amount.toString());
-        let transactionData: any = {
-            from: user.wallet,
-            to: assetSelected.address,
-            value: payAmount, // neu la token base cua mang thi thay data = value: payAmount
-        };
-
-        if (!assetSelected.isBase) {
-            const contract = new ethers.Contract(assetSelected.contract, assetSelected.contractAbi, signer);
-            // goi ham tao ra giao dich (transaction) - transfer(dia chi vi nhan, so tien)
-            const transfer = await contract.approve(assetSelected.address, payAmount);
-            const data = transfer.encodeABI();
-            transactionData = {
-                from: user.wallet,
-                to: assetSelected.contract,
-                data, // neu la token base cua mang thi thay data = value: payAmount
-            };
-        }
-        //#region chi danh cho gui token khac coin nền tảng BNB - ETH ()
-        //create contract info
-
-        //#endregion
-
-        // thuc hien tao transaction
-
-        try {
-            const hash = await window.ethereum.request({
-                method: "eth_sendTransaction",
-                params: [transactionData],
-            });
-            if (hash) {
-                //gán link
-                const link = assetSelected.txUrl + hash;
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
     return (
         <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_BUY}>
             <Stack {...styleStack} spacing={1}>
@@ -114,24 +50,59 @@ export const BuyStartWidget: React.FC<BuyStartWidgetProps> = () => {
                     </Styles.Position.Center>
                 </ItemNftValueCom>
 
-                <CustomSelectNftCom options={assets} placeholder='Select Coin' title='BNB Mainet' />
-                <CustomSelectNftCom options={options} placeholder='network' title='Netword' />
+                <CustomSelectNftCom
+                    handleChange={(name: any, id: any) => setQuery(id)}
+                    options={listTokenOptions}
+                    placeholder='Select Coin'
+                    title='BNB Mainet'
+                />
+                <CustomSelectNftCom
+                    value={addressId || undefined}
+                    handleChange={handleSelectToken}
+                    options={listDetailTokenOptions}
+                    placeholder='network'
+                    title='Netword'
+                />
 
-                <CustomInput placeholder='Receive address' title='Receive address' value={"vi"} disabled />
-                <CustomInput placeholder='Star amount' title='Star amount' />
+                <CustomInput placeholder='Receive address' title='Receive address' value={addressId || ""} disabled />
+                <CustomInput
+                    placeholder='Star amount'
+                    title='Star amount'
+                    type={"number"}
+                    value={amount}
+                    min={1000}
+                    onChange={handleSetAmount}
+                />
 
                 <div style={{ width: "100%" }}>
-                    <Styles.Text.MainText style={{ textAlign: "end" }}>
-                        {" "}
-                        Min 1000{" "}
-                        <span>
-                            {" "}
-                            <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20px" }} />
-                        </span>
-                    </Styles.Text.MainText>
+                    <Grid container>
+                        <Grid item xs={12} md={8}>
+                            {token && (
+                                <Styles.Text.MainText style={{ textAlign: "start" }}>
+                                    You need {token?.price * 0.1 * amount} {token?.name}
+                                </Styles.Text.MainText>
+                            )}
+                        </Grid>
+                        <Grid item xs={12} md={4}>
+                            <Styles.Text.MainText style={{ textAlign: "end" }}>
+                                {" "}
+                                Min 1000{" "}
+                                <span>
+                                    {" "}
+                                    <img src={ICONS_URL.BUTTON.STAR} style={{ width: "20px" }} />
+                                </span>
+                            </Styles.Text.MainText>
+                        </Grid>
+                    </Grid>
                 </div>
                 <Stack sx={{ borderTop: "gray 2px solid" }} width={"100%"}>
-                    <Styles.Button.Basic style={{ marginTop: "2rem" }}>BUY</Styles.Button.Basic>
+                    <Styles.Button.Basic
+                        disabled={amount < 1000}
+                        onClick={() => handleBuyStar(amount)}
+                        style={{ marginTop: "2rem" }}
+                    >
+                        BUY
+                    </Styles.Button.Basic>
                 </Stack>
             </Stack>
         </FrameTableCom>

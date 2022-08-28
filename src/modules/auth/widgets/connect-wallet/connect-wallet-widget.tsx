@@ -20,16 +20,19 @@ const buttons = [
         name: "METAMASK",
         icon: METAMASK,
         isInstall: false,
+        isEthereum: "INSTALL",
     },
     {
-        name: "Coinbase Connect",
+        name: "COMING SOON",
         icon: COINBASE,
         isInstall: false,
+        isEthereum: "",
     },
     {
-        name: "WalletConnect",
+        name: "COMING SOON",
         icon: WALLET_CONNECT,
         isInstall: false,
+        isEthereum: "",
     },
 ];
 declare global {
@@ -50,7 +53,7 @@ export const ConnectWalletWidget: React.FC<ConnectWalletWidgetProps> = () => {
                             <Stack direction={"row"} spacing={2} alignItems='center' onClick={handleConnectWallet}>
                                 <img src={item.icon} style={{ width: "50px" }} />
                                 <Styles.Text.BodyBig>
-                                    {!isEthereum ? item.name : "INSTALL " + item.name}
+                                    {!isEthereum ? item.name : item.isEthereum + " " + item.name}
                                 </Styles.Text.BodyBig>
                             </Stack>
                         </CustomIconButton>

@@ -36,10 +36,9 @@ export const useWallet = () => {
 
     // login
     const { usePostWalletLogin } = useQueryWallet();
-    const { mutate, isSuccess } = usePostWalletLogin();
+    const { mutate } = usePostWalletLogin();
 
     const isEthereum = !ethereum;
-    logger.info("isSuccess", isSuccess);
 
     // onApp
     function useWalletOnApp() {

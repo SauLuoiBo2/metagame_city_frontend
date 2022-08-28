@@ -35,4 +35,7 @@ export const ApiUrl = {
         affiliate_members_url: "affiliate/members",
         affiliate_buyVip_url: "affiliate/buyVip",
     },
+    assets: {
+        assets_list_url: "asset",
+    },
 };

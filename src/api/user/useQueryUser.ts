@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 import { QUERY_KEY } from "@/config";
@@ -12,6 +12,7 @@ export function useQueryUser() {
     const userApi = useUserApi();
     const { auth } = usePersistStore();
     const { modalOnClose } = useBearStore();
+    const queryClient = useQueryClient();
 
     const { access_token } = auth;
 
@@ -19,6 +20,7 @@ export function useQueryUser() {
         return useMutation<ApiResponseData, ApiResponseData, UserUpdateProps>((body) => userApi.updateProfile(body), {
             onSuccess: (data) => {
                 toast.success(data?.message);
+                queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_KEY]);
                 modalOnClose();
             },
             onError: (data) => {
@@ -33,9 +35,6 @@ export function useQueryUser() {
             () => userApi.getProfile(),
             {
                 enabled: !!access_token,
-                onSuccess: (data) => {
-                    toast.success(data?.message);
-                },
             }
         );
     }

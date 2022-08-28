@@ -140,7 +140,7 @@ export const GlobalStyle = createGlobalStyle<Props>`
         width: 80rem;
     }
       @media ${(props) => props.theme.breakpoint.md} {
-        width: 50rem;
+        width: 80%;
     }
       @media ${(props) => props.theme.breakpoint.sm} {
         width: 95%;
