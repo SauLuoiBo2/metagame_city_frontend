@@ -1,21 +1,28 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { toast } from "react-toastify";
 
 import { QUERY_KEY } from "@/config";
 import { BalanceDtoProps, ReferralDtoProps, UserProps, UserUpdateProps } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
-import { usePersistStore } from "@/store/useBearStore";
+import { useBearStore, usePersistStore } from "@/store/useBearStore";
 
 import { useUserApi } from "./useUserApi";
 
 export function useQueryUser() {
     const userApi = useUserApi();
     const { auth } = usePersistStore();
+    const { modalOnClose } = useBearStore();
 
     const { access_token } = auth;
 
     function useMutationUserUpdate() {
-        return useMutation<ApiResponseData, AxiosError, UserUpdateProps>((body) => userApi.updateProfile(body), {});
+        return useMutation<ApiResponseData, AxiosError, UserUpdateProps>((body) => userApi.updateProfile(body), {
+            onSuccess: (data) => {
+                toast.success(data?.message);
+                modalOnClose();
+            },
+        });
     }
 
     function useGetUser() {
@@ -24,6 +31,9 @@ export function useQueryUser() {
             () => userApi.getProfile(),
             {
                 enabled: !!access_token,
+                onSuccess: (data) => {
+                    toast.success(data?.message);
+                },
             }
         );
     }

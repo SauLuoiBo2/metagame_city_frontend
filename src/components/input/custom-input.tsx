@@ -29,12 +29,16 @@ interface StyleProps {
 
 const Style = {
     Wrapper: styled.div<StyleProps>`
+        position: relative;
         padding: 0.5rem 1.5rem;
         background: rgba(255, 255, 255, 0.3);
         border-color: ${({ isError }) => (isError ? light_colors.warning.main : "#ffffff")} !important;
         border: 1px solid;
         border-radius: 3rem;
         width: 100%;
+        input: {
+            width: 80%;
+        }
 
         input:disabled {
             opacity: 0.8;

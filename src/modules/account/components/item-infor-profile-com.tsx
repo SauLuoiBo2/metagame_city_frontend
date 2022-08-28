@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useCallback } from "react";
 import { useBoolean } from "usehooks-ts";
 
 import { CustomButton, CustomInput, CustomInputProps } from "@/components";
@@ -9,6 +9,7 @@ export interface ItemInforProfileComProps extends CustomInputProps {
     call?: string;
     onSave?: any;
     isLoading?: boolean;
+    onCall?: any;
 }
 
 export const ItemInforProfileCom: React.FC<ItemInforProfileComProps> = ({
@@ -16,9 +17,17 @@ export const ItemInforProfileCom: React.FC<ItemInforProfileComProps> = ({
     call,
     onSave,
     isLoading,
+    onCall,
     ...props
 }) => {
     const open = useBoolean();
+    const handleCall = useCallback(() => {
+        if (onCall) {
+            onCall();
+        } else {
+            open.toggle();
+        }
+    }, [onCall]);
     return (
         <Grid xs={12} width='100%'>
             <Grid container width='100%' minWidth={400} rowGap={2} columnSpacing={1}>
@@ -29,9 +38,9 @@ export const ItemInforProfileCom: React.FC<ItemInforProfileComProps> = ({
                     <p>{props.defaultValue}</p>
                 </Grid>
                 <Grid item xs={2}>
-                    <p onClick={open.toggle}>{call || "change"}</p>
+                    <p onClick={handleCall}>{call || "change"}</p>
                 </Grid>
-                {open.value && !call && (
+                {open.value && !onCall && (
                     <>
                         <Grid item xs={3}></Grid>
                         <Grid item xs={7}>

@@ -5,11 +5,23 @@ import { useQueryUser } from "@/api";
 import { yupChema } from "@/libs";
 import { formatDifferenceBetweenTwoObj } from "@/utils";
 
-const { username } = yupChema;
+const { username, password, passwordConfirm, passwordCurrent } = yupChema;
 
 const validationSchemaUsername = Yup.object().shape({
     username,
 });
+
+const validationSchemaPassword = Yup.object().shape({
+    passwordCurrent,
+    password,
+    passwordConfirm,
+});
+
+const initialValuesPassword = {
+    passwordCurrent: "",
+    password: "",
+    passwordConfirm: "",
+};
 
 export function useFormUpdateAccount() {
     const { useGetUser, useMutationUserUpdate, useGetUserBalance } = useQueryUser();
@@ -20,7 +32,7 @@ export function useFormUpdateAccount() {
     const user = data?.data;
     const balance = balanceData?.data;
 
-    const { mutate } = useMutationUserUpdate();
+    const mutationUserUpdate = useMutationUserUpdate();
 
     const initialValues = {
         ...user,
@@ -30,10 +42,21 @@ export function useFormUpdateAccount() {
         validationSchema: validationSchemaUsername,
         onSubmit: (values) => {
             const dataPost = formatDifferenceBetweenTwoObj(values, initialValues);
-            mutate(dataPost);
+            mutationUserUpdate.mutate(dataPost);
         },
         validateOnChange: false,
     });
 
-    return { formik, useMutationUserUpdate, user, balance };
+    const formikPassword = useFormik({
+        initialValues: initialValuesPassword,
+        validationSchema: validationSchemaPassword,
+        onSubmit: (values) => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const { passwordConfirm, ...dataSent } = values;
+            mutationUserUpdate.mutate(dataSent);
+        },
+        validateOnChange: false,
+    });
+
+    return { formik, formikPassword, mutationUserUpdate, user, balance };
 }

@@ -66,5 +66,7 @@ export interface UserProps {
 }
 
 export interface UserUpdateProps extends UserProps {
-    confirmPassword?: string;
+    passwordConfirm?: string;
+    password?: string;
+    passwordCurrent?: string;
 }
