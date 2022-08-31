@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import React, { useCallback } from "react";
 import { useBoolean } from "usehooks-ts";
 
@@ -10,6 +10,7 @@ export interface ItemInforProfileComProps extends CustomInputProps {
     onSave?: any;
     isLoading?: boolean;
     onCall?: any;
+    isNoButton?: boolean;
 }
 
 export const ItemInforProfileCom: React.FC<ItemInforProfileComProps> = ({
@@ -18,6 +19,7 @@ export const ItemInforProfileCom: React.FC<ItemInforProfileComProps> = ({
     onSave,
     isLoading,
     onCall,
+    isNoButton,
     ...props
 }) => {
     const open = useBoolean();
@@ -38,7 +40,13 @@ export const ItemInforProfileCom: React.FC<ItemInforProfileComProps> = ({
                     <p className='ellipsis'>{props.defaultValue}</p>
                 </Grid>
                 <Grid item xs={2}>
-                    <p onClick={handleCall}>{call || "change"}</p>
+                    {!isNoButton && (
+                        <Button onClick={handleCall} variant='contained' sx={{ px: 0 }}>
+                            {call || "change"}
+                        </Button>
+                    )}
+
+                    {/* <p onClick={handleCall}>{call || "change"}</p> */}
                 </Grid>
                 {open.value && !onCall && (
                     <>

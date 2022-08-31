@@ -18,6 +18,7 @@ export const ApiUrl = {
     },
     user: {
         user_url: "user",
+        user_update_photo_url: "user/avatar",
         user_balance_url: "user/balance",
         user_update_url: "user/profile",
         user_referral_url: "user/referral",

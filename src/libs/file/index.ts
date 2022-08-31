@@ -6,7 +6,7 @@ export enum FILE_TYPE {
     HEIC = "image/heic",
 }
 export const IMAGE_TYPES = [FILE_TYPE.PNG, FILE_TYPE.GIF, FILE_TYPE.JPEG, FILE_TYPE.JPG, FILE_TYPE.HEIC];
-export const MAX_SIZE_IMAGE = 10_000_000;
+export const MAX_SIZE_IMAGE = 5_000_000;
 
 export function convertBlocToBase64(bloc: File, callback: (a: string | ArrayBuffer | null) => void) {
     const reader = new FileReader();
@@ -38,6 +38,10 @@ export function convertBase64ToBlobPng(base64: any, callback: (a: File) => void,
 
 function checkTypeFile(type: string, types: string[]) {
     return types.includes(type);
+}
+
+export function checkTypeImage(type: any) {
+    return IMAGE_TYPES.includes(type);
 }
 
 export function checkFileUpload(

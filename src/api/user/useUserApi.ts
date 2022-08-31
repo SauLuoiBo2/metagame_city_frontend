@@ -4,7 +4,7 @@ import { ApiResponseData } from "@/models/api.model";
 
 import { ApiUrl } from "../apiUrl";
 
-const { user_url, user_balance_url, user_update_url, user_referral_url } = ApiUrl.user;
+const { user_url, user_balance_url, user_update_url, user_referral_url, user_update_photo_url } = ApiUrl.user;
 
 export function useUserApi() {
     const { request } = useRequest();
@@ -21,5 +21,11 @@ export function useUserApi() {
         return request({ url: user_update_url, method: "POST", data });
     }
 
-    return { getProfile, getBalance, updateProfile, getReferral };
+    function updateProfilePhoto(photo: any) {
+        const data = new FormData();
+        data.append("avatar", photo);
+        return request({ url: user_update_photo_url, method: "POST", data });
+    }
+
+    return { getProfile, getBalance, updateProfile, getReferral, updateProfilePhoto };
 }

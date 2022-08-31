@@ -29,6 +29,18 @@ export function useQueryUser() {
         });
     }
 
+    function useUpPhotoUser() {
+        return useMutation<ApiResponseData, ApiResponseData, any>((body) => userApi.updateProfilePhoto(body), {
+            onSuccess: (data) => {
+                toast.success(data?.message);
+                queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_KEY]);
+            },
+            onError: (data) => {
+                toast.error(data?.data?.message);
+            },
+        });
+    }
+
     function useGetUser() {
         return useQuery<ApiResponseData<UserProps>, ApiResponseData>(
             [QUERY_KEY.USER.PROFILE_KEY],
@@ -61,5 +73,5 @@ export function useQueryUser() {
         );
     }
 
-    return { useMutationUserUpdate, useGetUserBalance, useGetUser, useGetUserReferral, user };
+    return { useMutationUserUpdate, useGetUserBalance, useGetUser, useGetUserReferral, user, useUpPhotoUser };
 }
