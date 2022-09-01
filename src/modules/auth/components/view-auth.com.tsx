@@ -26,9 +26,9 @@ const ViewAuthCom: React.FC<ViewAuthComProps> = ({ children, title }) => {
                                 onClick={() => navigate("/" + PATH.AUTH_PATH.INTRO)}
                             />
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={10}>
                             <Styles.Position.Center>
-                                <Styles.Text.CapText>{title}</Styles.Text.CapText>
+                                <Styles.Text.CapText style={{ textAlign: "center" }}>{title}</Styles.Text.CapText>
                             </Styles.Position.Center>
                         </Grid>
                     </Grid>

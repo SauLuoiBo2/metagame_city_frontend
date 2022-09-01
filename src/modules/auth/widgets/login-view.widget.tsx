@@ -1,6 +1,7 @@
 import { Button, Stack } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useBoolean } from "usehooks-ts";
 
 import { CustomButton, CustomInput } from "@/components";
 import { supportErrorFormik } from "@/libs";
@@ -15,27 +16,47 @@ export interface LoginViewWidgetProps {}
 const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
     const navigate = useNavigate();
     const { formik, mutationLogin } = useFormLogin();
-    const { isLoading } = mutationLogin;
+    const { isLoading, data, isSuccess } = mutationLogin;
+    const codeModal = useBoolean();
+    useEffect(() => {
+        if (data?.status === "gg") {
+            codeModal.setTrue();
+        }
+    }, [isSuccess]);
 
     return (
-        <ViewAuthCom title={"LOGIN"}>
+        <ViewAuthCom title={codeModal.value ? "Google Authentication" : "LOGIN"}>
             <Stack spacing={3} width={"100%"} alignItems={"center"} component={"form"} onSubmit={formik.handleSubmit}>
-                <CustomInput
-                    name='username'
-                    placeholder='Email/username/wallet'
-                    value={formik.values.username}
-                    onChange={formik.handleChange}
-                    error={supportErrorFormik(formik, "username")}
-                />
+                {!codeModal.value && (
+                    <CustomInput
+                        name='username'
+                        placeholder='Email/username/wallet'
+                        value={formik.values.username}
+                        onChange={formik.handleChange}
+                        error={supportErrorFormik(formik, "username")}
+                    />
+                )}
 
-                <CustomInput
-                    type='password'
-                    name='password'
-                    placeholder='Password'
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
-                    error={supportErrorFormik(formik, "password")}
-                />
+                {!codeModal.value && (
+                    <CustomInput
+                        type='password'
+                        name='password'
+                        placeholder='Password'
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        error={supportErrorFormik(formik, "password")}
+                    />
+                )}
+
+                {codeModal.value && (
+                    <CustomInput
+                        name='code'
+                        placeholder='Code'
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        error={supportErrorFormik(formik, "password")}
+                    />
+                )}
                 <CustomButton type='submit' isLoading={isLoading}>
                     LOGIN
                 </CustomButton>

@@ -21,8 +21,12 @@ export function useQueryAuth() {
                 const status: any = data.status;
 
                 if (status === "error") {
-                    // toast.error(data.message);
-                    navigate("/");
+                    toast.error(data.message);
+                    return;
+                }
+
+                if (status === "gg") {
+                    toast.info("Google Authentication");
                     return;
                 }
                 navigate("/");

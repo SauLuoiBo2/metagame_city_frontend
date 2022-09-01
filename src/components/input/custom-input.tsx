@@ -1,6 +1,9 @@
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { IconButton, Stack } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
+import { useBoolean } from "usehooks-ts";
 
 import { Styles } from "@/theme";
 import { light_colors } from "@/theme/base/light-color";
@@ -14,18 +17,37 @@ export interface CustomInputProps
 }
 
 export const CustomInput: React.FC<CustomInputProps> = ({ iconOnclick, error, title, icon, ...props }) => {
+    const eye = useBoolean();
+
+    const type = eye.value ? "text" : props.type;
     return (
         <Stack width='100%'>
             {title && <Styles.Text.MainText>{title}:</Styles.Text.MainText>}
             <Style.Wrapper isError={error ? true : false}>
-                <input {...props} style={{ width: icon ? "90%" : "100%" }} />
+                <input {...props} type={type} style={{ width: !!icon || props.type === "password" ? "90%" : "100%" }} />
                 {icon && (
                     <Style.Icon onClick={iconOnclick}>
                         <IconButton sx={{ p: 0 }}>{icon}</IconButton>
                     </Style.Icon>
                 )}
+
+                {props.type === "password" && (
+                    <Style.Icon>
+                        <IconButton sx={{ p: 0 }} onClick={eye.toggle}>
+                            {eye.value ? (
+                                <VisibilityOffIcon sx={{ color: "white" }} />
+                            ) : (
+                                <RemoveRedEyeIcon sx={{ color: "white" }} />
+                            )}
+                        </IconButton>
+                    </Style.Icon>
+                )}
             </Style.Wrapper>
-            {error && <Styles.Text.Error>{error}</Styles.Text.Error>}
+            {error && (
+                <Styles.Text.Error style={{ textOverflow: "ellipsis", maxWidth: "100%", wordBreak: "break-word" }}>
+                    {error}
+                </Styles.Text.Error>
+            )}
         </Stack>
     );
 };
