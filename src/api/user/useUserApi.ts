@@ -1,10 +1,11 @@
 import { useRequest } from "@/config";
-import { UserProps } from "@/models";
+import { EmailProps, ProfileProps, UsernameProps, UserProps } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
 
 import { ApiUrl } from "../apiUrl";
 
-const { user_url, user_balance_url, user_update_url, user_referral_url, user_update_photo_url, gg_setup } = ApiUrl.user;
+const { user_url, user_balance_url, user_update_url, user_referral_url, user_update_photo_url, gg_setup_url } =
+    ApiUrl.user;
 
 export function useUserApi() {
     const { request } = useRequest();
@@ -17,7 +18,15 @@ export function useUserApi() {
     function getReferral() {
         return request({ url: user_referral_url, method: "GET" });
     }
-    function updateProfile(data: any) {
+    function updateProfile(data: ProfileProps) {
+        return request({ url: user_update_url, method: "POST", data });
+    }
+
+    function updateUsername(data: UsernameProps) {
+        return request({ url: user_update_url, method: "POST", data });
+    }
+
+    function updateEmail(data: EmailProps) {
         return request({ url: user_update_url, method: "POST", data });
     }
 
@@ -28,8 +37,17 @@ export function useUserApi() {
     }
 
     function getGoogle() {
-        return request({ url: gg_setup, method: "GET" });
+        return request({ url: gg_setup_url, method: "GET" });
     }
 
-    return { getGoogle, getProfile, getBalance, updateProfile, getReferral, updateProfilePhoto };
+    return {
+        updateUsername,
+        updateEmail,
+        getGoogle,
+        getProfile,
+        getBalance,
+        updateProfile,
+        getReferral,
+        updateProfilePhoto,
+    };
 }

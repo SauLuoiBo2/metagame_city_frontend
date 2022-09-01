@@ -5,10 +5,14 @@ import { useQueryUser } from "@/api";
 import { yupChema } from "@/libs";
 import { formatDifferenceBetweenTwoObj } from "@/utils";
 
-const { username, password, passwordConfirm, passwordCurrent } = yupChema;
+const { username, password, passwordConfirm, passwordCurrent, email } = yupChema;
 
 const validationSchemaUsername = Yup.object().shape({
     username,
+});
+
+const validationSchemaEmail = Yup.object().shape({
+    email,
 });
 
 const validationSchemaPassword = Yup.object().shape({
@@ -24,7 +28,7 @@ const initialValuesPassword = {
 };
 
 export function useFormUpdateAccount() {
-    const { useGetUser, useMutationUserUpdate, useGetUserBalance } = useQueryUser();
+    const { useGetUser, useMutationUserUpdate, useGetUserBalance, useUpdateEmail, useUpdateUsername } = useQueryUser();
     const { data } = useGetUser();
 
     const { data: balanceData } = useGetUserBalance();
@@ -34,29 +38,34 @@ export function useFormUpdateAccount() {
 
     const mutationUserUpdate = useMutationUserUpdate();
 
-    const initialValues = {
-        ...user,
-    };
-    const formik = useFormik({
-        initialValues,
+    const formikUsername = useFormik({
+        initialValues: { username: "" },
         validationSchema: validationSchemaUsername,
         onSubmit: (values) => {
-            const dataPost = formatDifferenceBetweenTwoObj(values, initialValues);
-            mutationUserUpdate.mutate(dataPost);
+            useUpdateUsername().mutate(values);
         },
         validateOnChange: false,
     });
 
-    const formikPassword = useFormik({
-        initialValues: initialValuesPassword,
-        validationSchema: validationSchemaPassword,
+    const formikEmail = useFormik({
+        initialValues: { email: "" },
+        validationSchema: validationSchemaEmail,
         onSubmit: (values) => {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const { passwordConfirm, ...dataSent } = values;
-            mutationUserUpdate.mutate(dataSent);
+            useUpdateEmail().mutate(values);
         },
         validateOnChange: false,
     });
 
-    return { formik, formikPassword, mutationUserUpdate, user, balance };
+    // const formikPassword = useFormik({
+    //     initialValues: initialValuesPassword,
+    //     validationSchema: validationSchemaPassword,
+    //     onSubmit: (values) => {
+    //         // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    //         const { passwordConfirm, ...dataSent } = values;
+    //         mutationUserUpdate.mutate(dataSent);
+    //     },
+    //     validateOnChange: false,
+    // });
+
+    return { formikUsername, formikEmail, mutationUserUpdate, user, balance };
 }

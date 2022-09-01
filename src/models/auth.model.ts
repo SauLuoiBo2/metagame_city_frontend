@@ -1,3 +1,5 @@
+import { ProfileProps } from "./user-model";
+
 export enum RoleUserEnum {
     ADMIN = "ADMIN",
     USER = "USER",
@@ -54,7 +56,7 @@ export interface UserProps {
     email?: string;
     wallet?: string;
     avatar?: string;
-    profile?: any;
+    profile?: ProfileProps;
     refCode?: string;
     parentId?: string;
     tfa?: string;
@@ -63,10 +65,4 @@ export interface UserProps {
     signMessage?: string;
     created?: Date;
     updated?: Date;
-}
-
-export interface UserUpdateProps extends UserProps {
-    passwordConfirm?: string;
-    password?: string;
-    passwordCurrent?: string;
 }

@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 import { QUERY_KEY } from "@/config";
-import { BalanceDtoProps, ReferralDtoProps, UserProps, UserUpdateProps } from "@/models";
+import { BalanceDtoProps, EmailProps, ProfileProps, ReferralDtoProps, UsernameProps, UserProps } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
 import { useBearStore, usePersistStore } from "@/store/useBearStore";
 
@@ -17,11 +17,35 @@ export function useQueryUser() {
     const { access_token } = auth;
 
     function useMutationUserUpdate() {
-        return useMutation<ApiResponseData, ApiResponseData, UserUpdateProps>((body) => userApi.updateProfile(body), {
+        return useMutation<ApiResponseData, ApiResponseData, ProfileProps>((body) => userApi.updateProfile(body), {
             onSuccess: (data) => {
                 toast.success(data?.message);
                 queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_KEY]);
                 modalOnClose();
+            },
+            onError: (data) => {
+                toast.error(data?.data?.message);
+            },
+        });
+    }
+
+    function useUpdateUsername() {
+        return useMutation<ApiResponseData, ApiResponseData, UsernameProps>((body) => userApi.updateUsername(body), {
+            onSuccess: (data) => {
+                toast.success(data?.message);
+                queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_KEY]);
+            },
+            onError: (data) => {
+                toast.error(data?.data?.message);
+            },
+        });
+    }
+
+    function useUpdateEmail() {
+        return useMutation<ApiResponseData, ApiResponseData, EmailProps>((body) => userApi.updateEmail(body), {
+            onSuccess: (data) => {
+                toast.success(data?.message);
+                queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_KEY]);
             },
             onError: (data) => {
                 toast.error(data?.data?.message);
@@ -91,5 +115,7 @@ export function useQueryUser() {
         useGetUserReferral,
         user,
         useUpPhotoUser,
+        useUpdateEmail,
+        useUpdateUsername,
     };
 }

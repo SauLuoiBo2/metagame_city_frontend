@@ -22,7 +22,9 @@ export const ApiUrl = {
         user_balance_url: "user/balance",
         user_update_url: "user/profile",
         user_referral_url: "user/referral",
-        gg_setup: "user/gg-setup",
+        gg_setup_url: "user/gg-setup",
+        user_update_username_url: "user/updateName",
+        user_update_email_url: "user/updateEmail",
     },
     game: {
         games_url: "games",

@@ -13,8 +13,10 @@ import { useBearStore, usePersistStore } from "@/store/useBearStore";
 import { Styles } from "@/theme";
 
 import { ItemInforProfileCom, PopupChangePassword } from "../components";
+import { ItemGgCodeCom } from "../components/item-gg-code-com";
 import { UpdateAvatar } from "../components/UpdateAvatar";
 import { useFormUpdateAccount } from "../hook/useFormUpdateAccount";
+import { useFormUsername } from "../hook/userFormUsername";
 
 export interface AccountInforWidgetProps {}
 export const uploadImgConfig = "image/png, image/gif, image/jpeg, image/jpg, image/heic";
@@ -24,7 +26,7 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
     const queryClient = useQueryClient();
     const { modalOnOpen } = useBearStore();
 
-    const { user, balance, formik, mutationUserUpdate } = useFormUpdateAccount();
+    const { user, balance, formikEmail } = useFormUpdateAccount();
 
     const { authClear } = usePersistStore();
 
@@ -35,6 +37,8 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
     }
 
     const open = useBoolean();
+
+    const { formik: formikUsername } = useFormUsername();
     return (
         <>
             <MuiModal open={open.value} onClose={open.setFalse}>
@@ -97,16 +101,20 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                                 title={"Username"}
                                 placeholder='Username'
                                 defaultValue={user?.username}
-                                onChange={formik.handleChange}
-                                value={formik.values.username}
-                                error={supportErrorFormik(formik, "username")}
-                                isLoading={mutationUserUpdate.isLoading}
-                                onSave={formik.handleSubmit}
+                                onChange={formikUsername.handleChange}
+                                value={formikUsername.values.username}
+                                error={supportErrorFormik(formikUsername, "username")}
+                                // isLoading={mutationUserUpdate.isLoading}
+                                onSave={formikUsername.handleSubmit}
                             />
                             <ItemInforProfileCom
                                 isNoButton={!!user?.email}
                                 title={"Email"}
                                 defaultValue={user?.email}
+                                onChange={formikEmail.handleChange}
+                                value={formikEmail.values.email}
+                                error={supportErrorFormik(formikEmail, "email")}
+                                onSave={formikEmail.handleSubmit}
                             />
                             <ItemInforProfileCom
                                 title={"Wallet"}
@@ -119,6 +127,7 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                                 defaultValue={"**********"}
                                 call='Change'
                             />
+                            <ItemGgCodeCom />
                         </Stack>
                     </Stack>
                 </Stack>
