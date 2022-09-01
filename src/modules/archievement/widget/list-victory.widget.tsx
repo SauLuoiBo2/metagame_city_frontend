@@ -40,7 +40,7 @@ const columns: CustomColumnTableProps[] = [
         align: "left",
         format: (value: number) => (
             <Stack direction={"row"} alignItems='center' spacing={1}>
-                <h3>{value}</h3>
+                <h3>{value || "-"}</h3>
                 <span>
                     <Styles.ImgIcon.Star />
                 </span>

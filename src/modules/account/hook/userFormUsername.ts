@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { useQueryUser } from "@/api";
 import { yupChema } from "@/libs";
 
-const { username } = yupChema;
+const { username, email } = yupChema;
 
 const validationSchema = Yup.object().shape({
     username,
@@ -20,23 +20,32 @@ export function useFormUsername() {
 
     const formik = useFormik({
         initialValues: { username: user?.username || "" },
-        validationSchema: validationSchema,
+        validationSchema,
         onSubmit: (values) => {
             updateUsername.mutate(values);
         },
         validateOnChange: false,
     });
 
-    // const formikPassword = useFormik({
-    //     initialValues: initialValuesPassword,
-    //     validationSchema: validationSchemaPassword,
-    //     onSubmit: (values) => {
-    //         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    //         const { passwordConfirm, ...dataSent } = values;
-    //         mutationUserUpdate.mutate(dataSent);
-    //     },
-    //     validateOnChange: false,
-    // });
-
     return { formik, user };
+}
+const validationSchemaEmail = Yup.object().shape({
+    email,
+});
+
+export function useFormEmail() {
+    const { useUpdateEmail } = useQueryUser();
+
+    const updateEmail = useUpdateEmail();
+
+    const formik = useFormik({
+        initialValues: { email: "" },
+        validationSchema: validationSchemaEmail,
+        onSubmit: (values) => {
+            updateEmail.mutate(values);
+        },
+        validateOnChange: false,
+    });
+
+    return { formik };
 }

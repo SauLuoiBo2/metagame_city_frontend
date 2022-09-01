@@ -5,6 +5,8 @@ export function supportErrorFormik(formik: any, name: any): string | undefined {
     return text;
 }
 
+const regCode = /[0-9]{6}$/;
+
 export const yupChema = {
     username: Yup.string().required("username is required").max(50, "username is max 100 word").nullable(),
     email: Yup.string()
@@ -20,4 +22,7 @@ export const yupChema = {
     passwordConfirm: Yup.string()
         .required("confirm password is required")
         .oneOf([Yup.ref("password"), null], "confirm password not match password"),
+    codeVerifyGoogle: Yup.string()
+        .required("code is required")
+        .matches(regCode, "a verify google code is only number character anh exactly 6 character"),
 };

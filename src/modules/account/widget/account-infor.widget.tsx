@@ -16,7 +16,7 @@ import { ItemInforProfileCom, PopupChangePassword } from "../components";
 import { ItemGgCodeCom } from "../components/item-gg-code-com";
 import { UpdateAvatar } from "../components/UpdateAvatar";
 import { useFormUpdateAccount } from "../hook/useFormUpdateAccount";
-import { useFormUsername } from "../hook/userFormUsername";
+import { useFormEmail, useFormUsername } from "../hook/userFormUsername";
 
 export interface AccountInforWidgetProps {}
 export const uploadImgConfig = "image/png, image/gif, image/jpeg, image/jpg, image/heic";
@@ -26,7 +26,7 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
     const queryClient = useQueryClient();
     const { modalOnOpen } = useBearStore();
 
-    const { user, balance, formikEmail } = useFormUpdateAccount();
+    const { user, balance } = useFormUpdateAccount();
 
     const { authClear } = usePersistStore();
 
@@ -39,6 +39,8 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
     const open = useBoolean();
 
     const { formik: formikUsername } = useFormUsername();
+    const { formik: formikEmail } = useFormEmail();
+
     return (
         <>
             <MuiModal open={open.value} onClose={open.setFalse}>
@@ -58,7 +60,7 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                         {/* avatar */}
                         <Stack direction={"row"} alignItems={"center"} spacing={2}>
                             <Avatar
-                                alt={user?.username}
+                                alt={user?.username || user?.profile?.username}
                                 src={user?.avatar}
                                 sx={{
                                     width: { xs: 65, sm: 70, md: 90 },
@@ -67,7 +69,12 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                                 }}
                             />
                             <Stack alignItems={"flex-start"}>
-                                <h3 style={{ textOverflow: "ellipsis", wordBreak: "break-word" }}>{user?.username}</h3>
+                                <h3 style={{ textOverflow: "ellipsis", wordBreak: "break-word" }}>
+                                    {user?.username || user?.profile?.username}
+                                </h3>
+                                <p style={{ textOverflow: "ellipsis", wordBreak: "break-word" }}>
+                                    {user?.email || user?.profile?.email}
+                                </p>
                                 <Button sx={{ px: 0 }} onClick={open.setTrue}>
                                     Change Avatar
                                 </Button>
@@ -95,27 +102,34 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                             mt={2}
                             sx={{ overflowX: "auto" }}
                         >
-                            <ItemInforProfileCom
-                                isNoButton={!!user?.username}
-                                name='username'
-                                title={"Username"}
-                                placeholder='Username'
-                                defaultValue={user?.username}
-                                onChange={formikUsername.handleChange}
-                                value={formikUsername.values.username}
-                                error={supportErrorFormik(formikUsername, "username")}
-                                // isLoading={mutationUserUpdate.isLoading}
-                                onSave={formikUsername.handleSubmit}
-                            />
-                            <ItemInforProfileCom
-                                isNoButton={!!user?.email}
-                                title={"Email"}
-                                defaultValue={user?.email}
-                                onChange={formikEmail.handleChange}
-                                value={formikEmail.values.email}
-                                error={supportErrorFormik(formikEmail, "email")}
-                                onSave={formikEmail.handleSubmit}
-                            />
+                            {!user?.profile?.username && (
+                                <ItemInforProfileCom
+                                    isNoButton={!!user?.username}
+                                    name='username'
+                                    title={"Username"}
+                                    placeholder='Username'
+                                    defaultValue={user?.username}
+                                    onChange={formikUsername.handleChange}
+                                    value={formikUsername.values.username}
+                                    error={supportErrorFormik(formikUsername, "username")}
+                                    // isLoading={mutationUserUpdate.isLoading}
+                                    onSave={formikUsername.handleSubmit}
+                                />
+                            )}
+
+                            {!user?.profile?.email && (
+                                <ItemInforProfileCom
+                                    name='email'
+                                    isNoButton={!!user?.email}
+                                    title={"Email"}
+                                    defaultValue={user?.email}
+                                    onChange={formikEmail.handleChange}
+                                    value={formikEmail.values.email}
+                                    error={supportErrorFormik(formikEmail, "email")}
+                                    onSave={formikEmail.handleSubmit}
+                                />
+                            )}
+
                             <ItemInforProfileCom
                                 title={"Wallet"}
                                 defaultValue={user?.wallet || "Not connected to wallet"}

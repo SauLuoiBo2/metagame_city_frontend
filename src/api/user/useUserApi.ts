@@ -4,8 +4,16 @@ import { ApiResponseData } from "@/models/api.model";
 
 import { ApiUrl } from "../apiUrl";
 
-const { user_url, user_balance_url, user_update_url, user_referral_url, user_update_photo_url, gg_setup_url } =
-    ApiUrl.user;
+const {
+    gg_change_url,
+    gg_verify_url,
+    user_url,
+    user_balance_url,
+    user_update_url,
+    user_referral_url,
+    user_update_photo_url,
+    gg_setup_url,
+} = ApiUrl.user;
 
 export function useUserApi() {
     const { request } = useRequest();
@@ -39,8 +47,17 @@ export function useUserApi() {
     function getGoogle() {
         return request({ url: gg_setup_url, method: "GET" });
     }
+    function sendVerifyGoogle(data: any) {
+        return request({ url: gg_verify_url, method: "POST", data });
+    }
+
+    function sendChangeGoogle() {
+        return request({ url: gg_change_url, method: "POST" });
+    }
 
     return {
+        sendChangeGoogle,
+        sendVerifyGoogle,
         updateUsername,
         updateEmail,
         getGoogle,

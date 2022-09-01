@@ -23,6 +23,8 @@ export const ApiUrl = {
         user_update_url: "user/profile",
         user_referral_url: "user/referral",
         gg_setup_url: "user/gg-setup",
+        gg_verify_url: "user/gg-verify",
+        gg_change_url: "user/gg-change",
         user_update_username_url: "user/updateName",
         user_update_email_url: "user/updateEmail",
     },

@@ -2,7 +2,15 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 import { QUERY_KEY } from "@/config";
-import { BalanceDtoProps, EmailProps, ProfileProps, ReferralDtoProps, UsernameProps, UserProps } from "@/models";
+import {
+    BalanceDtoProps,
+    EmailProps,
+    GoogleGetProps,
+    ProfileProps,
+    ReferralDtoProps,
+    UsernameProps,
+    UserProps,
+} from "@/models";
 import { ApiResponseData } from "@/models/api.model";
 import { useBearStore, usePersistStore } from "@/store/useBearStore";
 
@@ -98,7 +106,7 @@ export function useQueryUser() {
     }
 
     function useGetGoogle() {
-        return useQuery<ApiResponseData<any>, ApiResponseData>(
+        return useQuery<ApiResponseData<GoogleGetProps>, ApiResponseData>(
             [QUERY_KEY.USER.PROFILE_GOOGLE],
             () => userApi.getGoogle(),
             {
@@ -107,7 +115,43 @@ export function useQueryUser() {
         );
     }
 
+    function useSendVerifyGoogle() {
+        return useMutation<ApiResponseData, ApiResponseData, any>(
+            [QUERY_KEY.USER.PROFILE_GOOGLE],
+            (boby) => userApi.sendVerifyGoogle(boby),
+            {
+                onSuccess: (data) => {
+                    toast.success(data?.message);
+                    if (data.status === "success") {
+                        modalOnClose();
+                        queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_GOOGLE]);
+                    }
+                },
+                onError: (data) => {
+                    toast.error(data?.data?.message);
+                },
+            }
+        );
+    }
+
+    function useSendChangeGoogle() {
+        return useMutation<ApiResponseData, ApiResponseData, unknown>(
+            [QUERY_KEY.USER.PROFILE_GOOGLE],
+            () => userApi.sendChangeGoogle(),
+            {
+                onSuccess: (data) => {
+                    toast.success(data?.message);
+                },
+                onError: (data) => {
+                    toast.error(data?.data?.message);
+                },
+            }
+        );
+    }
+
     return {
+        useSendChangeGoogle,
+        useSendVerifyGoogle,
         useGetGoogle,
         useMutationUserUpdate,
         useGetUserBalance,

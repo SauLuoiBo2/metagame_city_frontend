@@ -3,9 +3,8 @@ import * as Yup from "yup";
 
 import { useQueryUser } from "@/api";
 import { yupChema } from "@/libs";
-import { formatDifferenceBetweenTwoObj } from "@/utils";
 
-const { username, password, passwordConfirm, passwordCurrent, email } = yupChema;
+const { username, email } = yupChema;
 
 const validationSchemaUsername = Yup.object().shape({
     username,
@@ -14,18 +13,6 @@ const validationSchemaUsername = Yup.object().shape({
 const validationSchemaEmail = Yup.object().shape({
     email,
 });
-
-const validationSchemaPassword = Yup.object().shape({
-    passwordCurrent,
-    password,
-    passwordConfirm,
-});
-
-const initialValuesPassword = {
-    passwordCurrent: "",
-    password: "",
-    passwordConfirm: "",
-};
 
 export function useFormUpdateAccount() {
     const { useGetUser, useMutationUserUpdate, useGetUserBalance, useUpdateEmail, useUpdateUsername } = useQueryUser();
