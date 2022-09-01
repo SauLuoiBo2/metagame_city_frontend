@@ -4,7 +4,7 @@ import { ApiResponseData } from "@/models/api.model";
 
 import { ApiUrl } from "../apiUrl";
 
-const { user_url, user_balance_url, user_update_url, user_referral_url, user_update_photo_url } = ApiUrl.user;
+const { user_url, user_balance_url, user_update_url, user_referral_url, user_update_photo_url, gg_setup } = ApiUrl.user;
 
 export function useUserApi() {
     const { request } = useRequest();
@@ -27,5 +27,9 @@ export function useUserApi() {
         return request({ url: user_update_photo_url, method: "POST", data });
     }
 
-    return { getProfile, getBalance, updateProfile, getReferral, updateProfilePhoto };
+    function getGoogle() {
+        return request({ url: gg_setup, method: "GET" });
+    }
+
+    return { getGoogle, getProfile, getBalance, updateProfile, getReferral, updateProfilePhoto };
 }

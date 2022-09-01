@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useBoolean, useOnClickOutside } from "usehooks-ts";
 
@@ -18,6 +18,7 @@ const { HEADER } = ASSETS.ICONS_URL;
 
 const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
     const ref = useRef(null);
+    const { pathname } = useLocation();
 
     const open = useBoolean();
     useOnClickOutside(ref, open.setFalse);
@@ -28,20 +29,36 @@ const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
                 <Styles.Container.BgFrameContainer imgFrame={ASSETS.IMAGE_URL.BG.HEADER}>
                     <Style.Inner>
                         <Style.IconWrapper>
-                            <NavLink icon={HEADER.CUP} to={"/" + MAIN_PATH.CUP} />
-                            <NavLink icon={HEADER.BOX} to={"/" + MAIN_PATH.MARKET} />
+                            <NavLinkS icon={HEADER.CUP} icon_2={HEADER.ACTIVE_CUP} to={"/" + MAIN_PATH.CUP} />
+                            <NavLinkS icon={HEADER.BOX} icon_2={HEADER.ACTIVE_BOX} to={"/" + MAIN_PATH.MARKET} />
                             <Style.NavLink to='/'>
-                                <Styles.ImgIcon.Basic
-                                    src={HEADER.HOME}
-                                    style={{ transform: "scale(1.5)", transformOrigin: "left" }}
-                                />
+                                {({ isActive }) =>
+                                    isActive ? (
+                                        <Styles.ImgIcon.Basic
+                                            src={HEADER.HOME}
+                                            style={{ transform: "scale(1.5)", transformOrigin: "left" }}
+                                        />
+                                    ) : (
+                                        <Styles.ImgIcon.Basic
+                                            src={HEADER.HOME}
+                                            style={{ transform: "scale(1.4)", transformOrigin: "left" }}
+                                        />
+                                    )
+                                }
                             </Style.NavLink>
-                            <NavLink icon={HEADER.COMUNICATE} to={"/" + MAIN_PATH.AFFILIATE} />
+                            <NavLinkS
+                                icon={HEADER.COMUNICATE}
+                                icon_2={HEADER.ACTIVE_COMUNICATE}
+                                to={"/" + MAIN_PATH.AFFILIATE}
+                            />
                             <Box sx={{ position: "relative" }} ref={ref}>
-                                <Box onClick={open.toggle} sx={{ cursor: "pointer" }}>
-                                    <Styles.ImgIcon.Basic src={HEADER.PROFILE} />
-                                </Box>
-
+                                <Stack onClick={open.toggle} sx={{ cursor: "pointer" }} justifyContent={"flex-end"}>
+                                    {pathname === "/account" ? (
+                                        <Styles.ImgIcon.Basic src={HEADER.ACTIVE_PROFILE} />
+                                    ) : (
+                                        <Styles.ImgIcon.Basic src={HEADER.PROFILE} />
+                                    )}
+                                </Stack>
                                 {/* modal */}
                                 {open.value && (
                                     <Box sx={{ position: "absolute", right: "-2.5rem", top: "5.5rem" }}>
@@ -61,14 +78,15 @@ export default HeaderMainLayout;
 
 interface NavLinkProps {
     icon: any;
+    icon_2: any;
     to?: string;
     isActive?: boolean;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ icon, to }) => {
+const NavLinkS: React.FC<NavLinkProps> = ({ icon, icon_2, to }) => {
     return (
         <Style.NavLink to={to || "/"}>
-            <Styles.ImgIcon.Basic src={icon} />
+            {({ isActive }) => (isActive ? <Styles.ImgIcon.Basic src={icon_2} /> : <Styles.ImgIcon.Basic src={icon} />)}
         </Style.NavLink>
     );
 };
@@ -114,11 +132,12 @@ const Style = {
         padding-right: 3%;
     `,
 
-    NavLink: styled(Link)`
+    NavLink: styled(NavLink)`
         height: 100%;
         display: flex;
         align-items: center;
         position: relative;
+
         :hover {
             transform: translateY(-3px) scale(1.05);
         }

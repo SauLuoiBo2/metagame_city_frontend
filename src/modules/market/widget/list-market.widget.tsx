@@ -5,6 +5,8 @@ import { useQueryUser } from "@/api";
 import { ICONS_URL } from "@/assets/icons";
 import { IMAGE_URL } from "@/assets/images";
 import { FrameTableCom, GridItemHalf } from "@/components";
+import { QUERY_KEY } from "@/config";
+import { useQueryInvalidate } from "@/hooks/query";
 import { Styles } from "@/theme";
 
 import ItemNftValueCom from "../components/item-nft-value.com";
@@ -16,6 +18,7 @@ export const ListMarketWidget: React.FC<ListMarketWidgetProps> = () => {
     const { data } = useGetUserBalance();
 
     const banance = data?.data;
+    useQueryInvalidate(QUERY_KEY.USER.PROFILE_BALANCE_KEY);
 
     return (
         <>

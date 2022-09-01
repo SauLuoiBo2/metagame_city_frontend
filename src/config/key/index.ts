@@ -7,6 +7,7 @@ export const QUERY_KEY = {
         PROFILE_KEY: "profile",
         PROFILE_BALANCE_KEY: "profile_balance",
         PROFILE_REFERRAL_KEY: "profile_referral",
+        PROFILE_GOOGLE: "profile_google",
     },
     GAMES: {
         LIST_GAME: "games",

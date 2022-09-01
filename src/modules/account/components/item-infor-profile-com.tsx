@@ -34,10 +34,12 @@ export const ItemInforProfileCom: React.FC<ItemInforProfileComProps> = ({
         <Grid xs={12} width='100%'>
             <Grid container width='100%' minWidth={400} rowGap={2} columnSpacing={1}>
                 <Grid item xs={3}>
-                    <p>{title}:</p>
+                    <h5>{title}:</h5>
                 </Grid>
                 <Grid item xs={7}>
-                    <p className='ellipsis'>{props.defaultValue}</p>
+                    <p className='ellipsis' style={{ color: "gray" }}>
+                        {props.defaultValue}
+                    </p>
                 </Grid>
                 <Grid item xs={2}>
                     {!isNoButton && (

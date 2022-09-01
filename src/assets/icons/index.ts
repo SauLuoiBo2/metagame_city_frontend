@@ -1,3 +1,4 @@
+/* eslint-disable simple-import-sort/imports */
 // button
 import BACK_AUTH from "./button/back_auth.png";
 import GIVE from "./button/box.svg";
@@ -8,13 +9,18 @@ import EXIT from "./button/exit.svg";
 import NFT from "./button/nft.svg";
 import SETTING from "./button/setting_button.svg";
 import STAR from "./button/star.svg";
+
 // header
 import BOX from "./header/box.svg";
+import ACTIVE_PROFILE from "./header/activeProfile.svg";
 import COMUNICATE from "./header/comunicate.png";
 import CUP from "./header/cup.svg";
 import HOME from "./header/home.png";
 import PROFILE from "./header/profile.svg";
 import COINBASE from "./social/coinbase.png";
+import ACTIVE_BOX from "./header/activeBox.svg";
+import ACTIVE_COMUNICATE from "./header/activeComuniacte.svg";
+import ACTIVE_CUP from "./header/activeCup.svg";
 // social
 import FB from "./social/fb.png";
 import INTA from "./social/inta.png";
@@ -32,6 +38,10 @@ const HEADER = {
     BOX,
     COMUNICATE,
     PROFILE,
+    ACTIVE_CUP,
+    ACTIVE_COMUNICATE,
+    ACTIVE_BOX,
+    ACTIVE_PROFILE,
 };
 
 const SOCIAL = {

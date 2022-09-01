@@ -6,6 +6,8 @@ import { useQueryGames } from "@/api";
 import { ICONS_URL } from "@/assets/icons";
 import { IMAGE_URL } from "@/assets/images";
 import { FrameTableCom } from "@/components";
+import { QUERY_KEY } from "@/config";
+import { useQueryInvalidate } from "@/hooks/query";
 import { Styles } from "@/theme";
 import { CustomColumnTableProps, CustomTable } from "@/widgets/table/custom-table";
 
@@ -58,6 +60,8 @@ const ListVictoryWidget: React.FC<ListVictoryWidgetProps> = () => {
     const { useGetListVictory } = useQueryGames();
 
     const { data } = useGetListVictory();
+
+    useQueryInvalidate(QUERY_KEY.GAMES.LIST_VICTORY);
     const list = data?.data || [];
     return (
         <>

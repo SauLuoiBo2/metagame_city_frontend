@@ -8,7 +8,8 @@ import { useQueryAffiliate, useQueryUser } from "@/api";
 import { IMAGE_URL } from "@/assets/images";
 // import { FrameTableCom } from "@/components";
 import MaxWidthCenterView from "@/components/views/position/max-width-center";
-import { ENV } from "@/config";
+import { ENV, QUERY_KEY } from "@/config";
+import { useQueryInvalidate } from "@/hooks/query";
 import { PATH } from "@/router/pathname";
 import { Styles } from "@/theme";
 import { CustomColumnTableProps, CustomTable } from "@/widgets/table/custom-table";
@@ -64,6 +65,8 @@ export const ListAffliateWidget: React.FC<ListAffliateWidgetProps> = () => {
         navigator.clipboard.writeText(url);
         toast.info("Copied link affiliate");
     }
+    useQueryInvalidate(QUERY_KEY.USER.PROFILE_REFERRAL_KEY);
+
     return (
         <MaxWidthCenterView maxWidth='800px'>
             <Style.Title>

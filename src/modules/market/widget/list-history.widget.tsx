@@ -5,6 +5,8 @@ import { useMediaQuery } from "usehooks-ts";
 import { useQueryFinance } from "@/api/finance/useQueryFinance";
 import { IMAGE_URL } from "@/assets/images";
 import { FrameTableCom } from "@/components";
+import { QUERY_KEY } from "@/config";
+import { useQueryInvalidate } from "@/hooks/query";
 import { Styles } from "@/theme";
 import { CustomColumnTableProps, CustomTable } from "@/widgets/table/custom-table";
 
@@ -55,7 +57,7 @@ export const ListHistoryWidget: React.FC<ListHistoryWidgetProps> = () => {
     const isPC = useMediaQuery("(min-width: 768px)");
 
     const { data: list } = useQueryFinance();
-
+    useQueryInvalidate(QUERY_KEY.FINANCS.STAR);
     return (
         <>
             <FrameTableCom

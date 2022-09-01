@@ -73,5 +73,23 @@ export function useQueryUser() {
         );
     }
 
-    return { useMutationUserUpdate, useGetUserBalance, useGetUser, useGetUserReferral, user, useUpPhotoUser };
+    function useGetGoogle() {
+        return useQuery<ApiResponseData<any>, ApiResponseData>(
+            [QUERY_KEY.USER.PROFILE_GOOGLE],
+            () => userApi.getGoogle(),
+            {
+                enabled: !!access_token,
+            }
+        );
+    }
+
+    return {
+        useGetGoogle,
+        useMutationUserUpdate,
+        useGetUserBalance,
+        useGetUser,
+        useGetUserReferral,
+        user,
+        useUpPhotoUser,
+    };
 }
