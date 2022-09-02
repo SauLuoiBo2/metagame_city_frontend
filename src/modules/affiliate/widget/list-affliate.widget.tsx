@@ -55,7 +55,7 @@ const columns: CustomColumnTableProps[] = [
 
 export const ListAffliateWidget: React.FC<ListAffliateWidgetProps> = () => {
     const { useGetListCommission } = useQueryAffiliate();
-    const { data: list } = useGetListCommission();
+    const { data: list, isLoading } = useGetListCommission();
     const { useGetUserReferral } = useQueryUser();
     const { data: referral } = useGetUserReferral();
 
@@ -86,7 +86,12 @@ export const ListAffliateWidget: React.FC<ListAffliateWidgetProps> = () => {
                     <Stack width='100%' height={"100%"} alignItems='center' justifyContent={"flex-start"}>
                         {" "}
                         <Box width={"80%"}>
-                            <CustomTable columns={columns} rows={list?.data || []} minWidth={400} />
+                            <CustomTable
+                                columns={columns}
+                                rows={list?.data || []}
+                                minWidth={400}
+                                isLoading={isLoading}
+                            />
                         </Box>
                     </Stack>
                 </Style.Inner>

@@ -57,7 +57,7 @@ const columns: CustomColumnTableProps[] = [
 const ListVictoryWidget: React.FC<ListVictoryWidgetProps> = () => {
     const { useGetListVictory } = useQueryGames();
 
-    const { data } = useGetListVictory();
+    const { data, isLoading } = useGetListVictory();
 
     useQueryInvalidate(QUERY_KEY.GAMES.LIST_VICTORY);
     const list = data?.data || [];
@@ -65,7 +65,7 @@ const ListVictoryWidget: React.FC<ListVictoryWidgetProps> = () => {
         <>
             <FrameTableCom imgTitle={IMAGE_URL.TITLE.TITLE_VICTORY} maxWidth={"80rem"}>
                 <Box width={"80%"}>
-                    <CustomTable columns={columns} rows={list} minWidth={600} maxHeight={400} />
+                    <CustomTable columns={columns} rows={list} minWidth={600} maxHeight={400} isLoading={isLoading} />
                 </Box>
             </FrameTableCom>
         </>

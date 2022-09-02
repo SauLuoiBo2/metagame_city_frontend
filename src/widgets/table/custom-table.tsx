@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box, CircularProgress, Stack } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -21,9 +21,10 @@ export interface CustomTableProps {
     rows: any;
     minWidth: any;
     maxHeight?: any;
+    isLoading?: boolean;
 }
 
-export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidth, maxHeight }) => {
+export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidth, maxHeight, isLoading }) => {
     const isNoData = rows.length === 0 ? true : false;
     return (
         <Box width={"100%"} sx={{ overflowX: "auto" }} className='custom_scroll'>
@@ -44,7 +45,11 @@ export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidt
                     <Table stickyHeader aria-label='sticky table' sx={{ overflow: "hidden" }}>
                         {isNoData && (
                             <Stack width='100%' alignItems={"center"} pt={10}>
-                                <Styles.Text.CapText>No Data</Styles.Text.CapText>
+                                {isLoading ? (
+                                    <CircularProgress color='secondary' />
+                                ) : (
+                                    <Styles.Text.CapText>No Data</Styles.Text.CapText>
+                                )}
                             </Stack>
                         )}
 
