@@ -1,4 +1,5 @@
 import { Box, Stack } from "@mui/material";
+import moment from "moment";
 import React from "react";
 import { useMediaQuery } from "usehooks-ts";
 
@@ -23,7 +24,12 @@ export interface ListHistoryWidgetProps {}
 // }]
 
 const columns: CustomColumnTableProps[] = [
-    { id: "created", label: "Age", width: "20%" },
+    {
+        id: "created",
+        label: "Time",
+        width: "20%",
+        format: (value: any) => <>{moment(value).format("YYYY-MM-DD HH:mm:ss")}</>,
+    },
 
     {
         id: "from",
@@ -66,7 +72,7 @@ export const ListHistoryWidget: React.FC<ListHistoryWidgetProps> = () => {
                 imgTitle={IMAGE_URL.TITLE.TITLE_HISTORY}
             >
                 <Box width={"80%"}>
-                    <CustomTable columns={columns} rows={list?.data || []} minWidth={400} />
+                    <CustomTable columns={columns} rows={list?.data || []} minWidth={600} maxHeight={400} />
                 </Box>
             </FrameTableCom>
         </>

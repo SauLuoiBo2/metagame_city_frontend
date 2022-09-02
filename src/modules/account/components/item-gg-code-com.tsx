@@ -33,7 +33,7 @@ export const ItemGgCodeCom: React.FC<ItemGgCodeComProps> = () => {
         <Grid xs={12} width='100%'>
             <Grid container width='100%' minWidth={400} rowGap={2} columnSpacing={1}>
                 <Grid item xs={3}>
-                    <h5>2KA:</h5>
+                    <h5>2FA:</h5>
                 </Grid>
                 <Grid item xs={7}>
                     <StatusGgCode

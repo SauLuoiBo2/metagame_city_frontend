@@ -125,7 +125,7 @@ export function useQueryUser() {
                     toast.success(data?.message);
                     if (data.status === "success") {
                         modalOnClose();
-                        queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_GOOGLE]);
+                        queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_KEY]);
                     }
                 },
                 onError: (data) => {

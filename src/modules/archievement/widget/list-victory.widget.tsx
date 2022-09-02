@@ -37,22 +37,20 @@ const columns: CustomColumnTableProps[] = [
         id: "amount",
         label: "Quantity",
         width: "20%",
-        align: "left",
+        align: "right",
         format: (value: number) => (
-            <Stack direction={"row"} alignItems='center' spacing={1}>
+            <Stack width='100%' direction={"row"} alignItems='center' justifyContent={"flex-end"} spacing={1}>
                 <h3>{value || "-"}</h3>
-                <span>
-                    <Styles.ImgIcon.Star />
-                </span>
+                <span>{value ? <Styles.ImgIcon.Star /> : null}</span>
             </Stack>
         ),
     },
     {
         id: "time",
-        label: "time",
+        label: "Time",
         width: "20%",
         align: "left",
-        format: (value: any) => <>{moment(value).format("HH:mm-DD/MM/YYYY")}</>,
+        format: (value: any) => <>{moment(value).format("YYYY-MM-DD HH:mm:ss")}</>,
     },
 ];
 
@@ -67,7 +65,7 @@ const ListVictoryWidget: React.FC<ListVictoryWidgetProps> = () => {
         <>
             <FrameTableCom imgTitle={IMAGE_URL.TITLE.TITLE_VICTORY} maxWidth={"80rem"}>
                 <Box width={"80%"}>
-                    <CustomTable columns={columns} rows={list} minWidth={400} maxHeight={400} />
+                    <CustomTable columns={columns} rows={list} minWidth={600} maxHeight={400} />
                 </Box>
             </FrameTableCom>
         </>

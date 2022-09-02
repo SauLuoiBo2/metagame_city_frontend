@@ -64,7 +64,7 @@ export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidt
                                                     <Styles.Text.MainText
                                                         style={{
                                                             textAlign: column.align,
-                                                            fontSize: "1.3rem",
+                                                            // fontSize: "1.3rem",
                                                             overflow: "hidden",
                                                             textOverflow: "ellipsis",
                                                             maxWidth: "100%",
