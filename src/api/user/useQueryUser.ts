@@ -5,6 +5,7 @@ import { QUERY_KEY } from "@/config";
 import {
     BalanceDtoProps,
     EmailProps,
+    GoogleChangeProps,
     GoogleGetProps,
     ProfileProps,
     ReferralDtoProps,
@@ -135,12 +136,24 @@ export function useQueryUser() {
     }
 
     function useSendChangeGoogle() {
-        return useMutation<ApiResponseData, ApiResponseData, unknown>(
+        const { data: user } = useGetUser();
+
+        return useMutation<ApiResponseData, ApiResponseData, GoogleChangeProps>(
             [QUERY_KEY.USER.PROFILE_GOOGLE],
-            () => userApi.sendChangeGoogle(),
+            (payload) => userApi.sendChangeGoogle(payload),
             {
+                onMutate() {
+                    if (user) {
+                        const data = user.data;
+                        const tfa = user.data?.tfa;
+                        const newTfa = tfa === "ON" ? "OFF" : "OFF";
+                        const newData: ApiResponseData<UserProps> = { ...user, data: { ...data, tfa: newTfa } };
+                        queryClient.setQueryData([QUERY_KEY.USER.PROFILE_KEY], newData);
+                    }
+                },
                 onSuccess: (data) => {
                     toast.success(data?.message);
+                    queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_KEY]);
                 },
                 onError: (data) => {
                     toast.error(data?.data?.message);

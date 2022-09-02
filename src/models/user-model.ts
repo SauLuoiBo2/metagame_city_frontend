@@ -24,8 +24,19 @@ export interface GoogleGetProps {
     tfaSecret: string;
 }
 
+export interface GoogleChangeProps {
+    code: string;
+}
+
 export interface GoogleVerifyProps {
     otpUrl: string;
     code: string;
     tfaSecret: string;
+}
+
+export interface GoogleInstalledProps {
+    message: string;
+    name: string;
+    response: string;
+    status: number;
 }

@@ -1,21 +1,34 @@
 import CopyAllIcon from "@mui/icons-material/CopyAll";
 import { Box, Button, Grid, Stack } from "@mui/material";
+import Switch from "@mui/material/Switch";
 import React from "react";
 import { toast } from "react-toastify";
 
 import { useQueryUser } from "@/api";
 import { IMAGE_URL } from "@/assets/images";
-import { CustomInput, FrameTableCom } from "@/components";
+import { CustomInput, CustomInputProps, FrameTableCom } from "@/components";
 import { supportErrorFormik } from "@/libs";
 import { useBearStore } from "@/store/useBearStore";
 import { Styles } from "@/theme";
 import { light_colors } from "@/theme/base/light-color";
 
-import { useFormVerifyGoogle } from "../hook/useFormVerifyGg";
+import { useFormChangeGoogle, useFormVerifyGoogle } from "../hook/useFormVerifyGg";
 
 export interface ItemGgCodeComProps {}
 
 export const ItemGgCodeCom: React.FC<ItemGgCodeComProps> = () => {
+    const { useGetUser } = useQueryUser();
+
+    const { data: user } = useGetUser();
+    const isInstalled = user?.data?.tfa === "" ? true : false;
+
+    const propsData = {
+        isInstalled,
+    };
+
+    const { formik } = useFormChangeGoogle();
+    const { handleChange, handleSubmit } = formik;
+
     return (
         <Grid xs={12} width='100%'>
             <Grid container width='100%' minWidth={400} rowGap={2} columnSpacing={1}>
@@ -23,10 +36,15 @@ export const ItemGgCodeCom: React.FC<ItemGgCodeComProps> = () => {
                     <h5>2KA:</h5>
                 </Grid>
                 <Grid item xs={7}>
-                    <StatusGgCode />
+                    <StatusGgCode
+                        {...propsData}
+                        onChange={handleChange}
+                        error={supportErrorFormik(formik, "code")}
+                        value={formik.values.code}
+                    />
                 </Grid>
                 <Grid item xs={2}>
-                    <ButtonGgCode />
+                    <ButtonGgCode {...propsData} onSubmit={handleSubmit} />
                     {/* <p onClick={handleCall}>{call || "change"}</p> */}
                 </Grid>
             </Grid>
@@ -34,16 +52,42 @@ export const ItemGgCodeCom: React.FC<ItemGgCodeComProps> = () => {
     );
 };
 
-const StatusGgCode = () => {
-    return <div>dsad</div>;
+interface ItemProps extends CustomInputProps {
+    isInstalled: boolean;
+
+    onSubmit?: any;
+}
+
+const StatusGgCode: React.FC<ItemProps> = ({ isInstalled, ...props }) => {
+    return <>{isInstalled ? <p>Chua set up</p> : <CustomInput name='code' placeholder='Google Code' {...props} />}</>;
 };
 
-const ButtonGgCode = () => {
+const ButtonGgCode: React.FC<ItemProps> = ({ isInstalled, onSubmit }) => {
     const { modalOnOpen } = useBearStore();
+
     function handleOpen() {
         modalOnOpen(ModalView);
     }
-    return <Button onClick={handleOpen}>dsadas</Button>;
+    const { useGetUser } = useQueryUser();
+
+    const { data: user } = useGetUser();
+
+    const isTfa = user?.data?.tfa === "ON" ? true : false;
+    function handleChange() {
+        onSubmit();
+    }
+
+    return (
+        <>
+            {isInstalled ? (
+                <Button onClick={handleOpen} variant='contained' sx={{ px: 0 }}>
+                    SetUp
+                </Button>
+            ) : (
+                <Switch checked={isTfa} onChange={handleChange} />
+            )}
+        </>
+    );
 };
 
 const ModalView = () => {

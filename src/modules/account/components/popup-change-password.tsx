@@ -3,7 +3,6 @@ import React from "react";
 
 import { IMAGE_URL } from "@/assets/images";
 import { CustomButton, CustomInput, FrameTableCom } from "@/components";
-import { supportErrorFormik } from "@/libs";
 import { Styles } from "@/theme";
 
 import { useFormUpdateAccount } from "../hook/useFormUpdateAccount";
@@ -11,7 +10,7 @@ import { useFormUpdateAccount } from "../hook/useFormUpdateAccount";
 export interface PopupChangePasswordProps {}
 
 export const PopupChangePassword: React.FC<PopupChangePasswordProps> = () => {
-    const { formikPassword, mutationUserUpdate } = useFormUpdateAccount();
+    const { mutationUserUpdate } = useFormUpdateAccount();
 
     // useEffect(() => {
     //     if (isSuccess) {
@@ -28,30 +27,30 @@ export const PopupChangePassword: React.FC<PopupChangePasswordProps> = () => {
                             name='passwordCurrent'
                             title='Current password'
                             type={"password"}
-                            value={formikPassword.values.passwordCurrent}
-                            onChange={formikPassword.handleChange}
-                            error={supportErrorFormik(formikPassword, "passwordCurrent")}
+                            // value={formikUsername.values.passwordCurrent}
+                            // onChange={formikPassword.handleChange}
+                            // error={supportErrorFormik(formikPassword, "passwordCurrent")}
                         />
                         <CustomInput
                             name='password'
                             title='New password'
                             type={"password"}
-                            value={formikPassword.values.password}
-                            onChange={formikPassword.handleChange}
-                            error={supportErrorFormik(formikPassword, "password")}
+                            // value={formikPassword.values.password}
+                            // onChange={formikPassword.handleChange}
+                            // error={supportErrorFormik(formikPassword, "password")}
                         />
                         <CustomInput
                             name='passwordConfirm'
                             title='Confirm password'
                             type={"password"}
-                            value={formikPassword.values.passwordConfirm}
-                            onChange={formikPassword.handleChange}
-                            error={supportErrorFormik(formikPassword, "passwordConfirm")}
+                            // value={formikPassword.values.passwordConfirm}
+                            // onChange={formikPassword.handleChange}
+                            // error={supportErrorFormik(formikPassword, "passwordConfirm")}
                         />
                         <CustomButton
                             type='button'
                             isLoading={mutationUserUpdate?.isLoading}
-                            onClick={() => formikPassword.handleSubmit()}
+                            // onClick={() => formikPassword.handleSubmit()}
                         >
                             SAVE
                         </CustomButton>

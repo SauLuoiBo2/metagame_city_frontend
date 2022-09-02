@@ -9,11 +9,19 @@ const initialValues = {
     password: "",
 };
 
-const { username, password } = yupChema;
+const initialCode = {
+    code: "",
+};
+
+const { username, password, codeVerifyGoogle } = yupChema;
 
 const validationSchema = Yup.object().shape({
     username,
     password,
+});
+
+const validationSchemaGoogle = Yup.object().shape({
+    code: codeVerifyGoogle,
 });
 
 export function useFormLogin() {
@@ -29,5 +37,15 @@ export function useFormLogin() {
         validateOnChange: false,
     });
 
-    return { formik, mutationLogin };
+    const formikGoogle = useFormik({
+        initialValues: initialCode,
+        validationSchema: validationSchemaGoogle,
+        onSubmit: (values) => {
+            const data = { ...formik.values, code: values.code };
+            mutationLogin.mutate(data);
+        },
+        validateOnChange: false,
+    });
+
+    return { formik, mutationLogin, formikGoogle };
 }

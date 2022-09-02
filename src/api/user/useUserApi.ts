@@ -1,5 +1,5 @@
 import { useRequest } from "@/config";
-import { EmailProps, ProfileProps, UsernameProps, UserProps } from "@/models";
+import { EmailProps, GoogleChangeProps, ProfileProps, UsernameProps, UserProps } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
 
 import { ApiUrl } from "../apiUrl";
@@ -51,8 +51,8 @@ export function useUserApi() {
         return request({ url: gg_verify_url, method: "POST", data });
     }
 
-    function sendChangeGoogle() {
-        return request({ url: gg_change_url, method: "POST" });
+    function sendChangeGoogle(data: GoogleChangeProps) {
+        return request({ url: gg_change_url, method: "POST", data });
     }
 
     return {

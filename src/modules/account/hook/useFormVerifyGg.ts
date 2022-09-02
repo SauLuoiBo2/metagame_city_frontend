@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { useQueryUser } from "@/api";
 import { yupChema } from "@/libs";
 
-import { GoogleVerifyProps } from "./../../../models/user-model";
+import { GoogleChangeProps, GoogleVerifyProps } from "./../../../models/user-model";
 
 const { codeVerifyGoogle } = yupChema;
 
@@ -34,4 +34,20 @@ export function useFormVerifyGoogle() {
     });
 
     return { formik, sendVerifyGoogle };
+}
+
+export function useFormChangeGoogle() {
+    const { useSendChangeGoogle } = useQueryUser();
+    const sendChangeGoogle = useSendChangeGoogle();
+
+    const formik = useFormik<GoogleChangeProps>({
+        initialValues: { code: "" },
+        validationSchema,
+        onSubmit: (values) => {
+            sendChangeGoogle.mutate(values);
+        },
+        validateOnChange: false,
+    });
+
+    return { formik, sendChangeGoogle };
 }

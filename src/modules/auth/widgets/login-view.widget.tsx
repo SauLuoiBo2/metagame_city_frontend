@@ -15,7 +15,7 @@ export interface LoginViewWidgetProps {}
 
 const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
     const navigate = useNavigate();
-    const { formik, mutationLogin } = useFormLogin();
+    const { formik, mutationLogin, formikGoogle } = useFormLogin();
     const { isLoading, data, isSuccess } = mutationLogin;
     const codeModal = useBoolean();
     useEffect(() => {
@@ -48,18 +48,28 @@ const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
                     />
                 )}
 
-                {codeModal.value && (
-                    <CustomInput
-                        name='code'
-                        placeholder='Code'
-                        value={formik.values.password}
-                        onChange={formik.handleChange}
-                        error={supportErrorFormik(formik, "password")}
-                    />
+                {!codeModal.value && (
+                    <CustomButton type='submit' isLoading={isLoading}>
+                        LOGIN
+                    </CustomButton>
                 )}
-                <CustomButton type='submit' isLoading={isLoading}>
-                    LOGIN
-                </CustomButton>
+
+                {codeModal.value && (
+                    <>
+                        <CustomInput
+                            name='code'
+                            placeholder='Code'
+                            value={formikGoogle.values.code}
+                            onChange={formikGoogle.handleChange}
+                            error={supportErrorFormik(formikGoogle, "code")}
+                        />
+
+                        <CustomButton type='button' isLoading={isLoading} onClick={() => formikGoogle.handleSubmit()}>
+                            AUTHENCATION
+                        </CustomButton>
+                    </>
+                )}
+
                 <Stack>
                     <Button onClick={() => navigate("/" + PATH.AUTH_PATH.FORGOT_PASSWORD)}>Forgot Password</Button>
                 </Stack>
