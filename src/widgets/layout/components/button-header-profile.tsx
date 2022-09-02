@@ -47,7 +47,7 @@ export const ButtonHeaderProfile: React.FC<ButtonHeaderProfileProps> = () => {
                 >
                     <Avatar
                         alt={users?.username}
-                        src='/static/images/avatar/1.jpg'
+                        src={users?.avatar}
                         sx={{ width: 70, height: 70, border: "2px solid #FFFFFF" }}
                     />
                     <Stack>

@@ -24,6 +24,7 @@ export interface CustomTableProps {
 }
 
 export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidth, maxHeight }) => {
+    const isNoData = rows.length === 0 ? true : false;
     return (
         <Box width={"100%"} sx={{ overflowX: "auto" }} className='custom_scroll'>
             <Stack alignItems='center' width={"100%"} overflow={"auto"} minWidth={minWidth || "fit-content"}>
@@ -41,6 +42,12 @@ export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidt
 
                 <TableContainer sx={{ maxHeight: maxHeight || 300, width: "100%" }} className='custom_scroll'>
                     <Table stickyHeader aria-label='sticky table' sx={{ overflow: "hidden" }}>
+                        {isNoData && (
+                            <Stack width='100%' alignItems={"center"} pt={10}>
+                                <Styles.Text.CapText>No Data</Styles.Text.CapText>
+                            </Stack>
+                        )}
+
                         <TableBody sx={{ maxWidth: "100%" }}>
                             {rows.map((row: any, j: number) => {
                                 return (

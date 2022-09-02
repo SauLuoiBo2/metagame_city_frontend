@@ -43,7 +43,7 @@ export const ItemInforProfileCom: React.FC<ItemInforProfileComProps> = ({
                 </Grid>
                 <Grid item xs={2}>
                     {!isNoButton && (
-                        <Button onClick={handleCall} variant='contained' sx={{ px: 0 }}>
+                        <Button onClick={handleCall} variant='text' sx={{ px: 0 }}>
                             {call || "change"}
                         </Button>
                     )}

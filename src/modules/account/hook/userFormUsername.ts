@@ -27,7 +27,7 @@ export function useFormUsername() {
         validateOnChange: false,
     });
 
-    return { formik, user };
+    return { formik, user, updateUsername };
 }
 const validationSchemaEmail = Yup.object().shape({
     email,
@@ -47,5 +47,5 @@ export function useFormEmail() {
         validateOnChange: false,
     });
 
-    return { formik };
+    return { formik, updateEmail };
 }

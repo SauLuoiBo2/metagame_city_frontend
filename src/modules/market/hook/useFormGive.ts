@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+import { useQueryUser } from "@/api";
 import { useQueryFinance } from "@/api/finance/useQueryFinance";
 import { yupChema } from "@/libs";
 
@@ -24,6 +25,12 @@ export function useFormGive() {
     const { useSendStar } = useQueryFinance();
     const sendStar = useSendStar();
 
+    const { useGetUser } = useQueryUser();
+
+    const { data: user } = useGetUser();
+    const isInstalled = user?.data?.tfa === "" ? true : false;
+    const isOnTfa = user?.data?.tfa === "ON" ? true : false;
+
     const formik = useFormik({
         initialValues,
         validationSchema,
@@ -33,5 +40,5 @@ export function useFormGive() {
         validateOnChange: false,
     });
 
-    return { formik, sendStar };
+    return { formik, sendStar, isInstalled, isOnTfa };
 }

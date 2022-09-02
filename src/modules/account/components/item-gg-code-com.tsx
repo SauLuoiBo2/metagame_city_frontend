@@ -59,7 +59,15 @@ interface ItemProps extends CustomInputProps {
 }
 
 const StatusGgCode: React.FC<ItemProps> = ({ isInstalled, ...props }) => {
-    return <>{isInstalled ? <p>Chua set up</p> : <CustomInput name='code' placeholder='Google Code' {...props} />}</>;
+    return (
+        <>
+            {isInstalled ? (
+                <p style={{ color: "gray" }}>Haven`&apos;`t setup 2FA code</p>
+            ) : (
+                <CustomInput name='code' placeholder='Google Code' {...props} />
+            )}
+        </>
+    );
 };
 
 const ButtonGgCode: React.FC<ItemProps> = ({ isInstalled, onSubmit }) => {

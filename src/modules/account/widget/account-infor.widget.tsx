@@ -1,4 +1,4 @@
-import { Avatar, Button, Divider, Stack } from "@mui/material";
+import { Avatar, Divider, Stack } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -38,8 +38,8 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
 
     const open = useBoolean();
 
-    const { formik: formikUsername } = useFormUsername();
-    const { formik: formikEmail } = useFormEmail();
+    const { formik: formikUsername, updateUsername } = useFormUsername();
+    const { formik: formikEmail, updateEmail } = useFormEmail();
 
     return (
         <>
@@ -51,37 +51,50 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                 <Stack mx={1} width={"80%"} alignItems={"center"} spacing={2}>
                     <h1 style={{ fontSize: "3rem" }}>ACCOUNT</h1>
                     <Stack
-                        direction={"row"}
                         justifyContent='space-between'
-                        alignItems={"center"}
+                        alignItems={"flex-start"}
                         spacing={{ xs: 2, sm: 4 }}
                         width='100%'
                     >
                         {/* avatar */}
-                        <Stack direction={"row"} alignItems={"center"} spacing={2}>
-                            <Avatar
-                                alt={user?.username || user?.profile?.username}
-                                src={user?.avatar}
-                                sx={{
-                                    width: { xs: 65, sm: 70, md: 90 },
-                                    height: { xs: 65, sm: 70, md: 90 },
-                                    border: "2px solid #FFFFFF",
-                                }}
-                            />
-                            <Stack alignItems={"flex-start"}>
-                                <h3 style={{ textOverflow: "ellipsis", wordBreak: "break-word" }}>
-                                    {user?.username || user?.profile?.username}
-                                </h3>
-                                <p style={{ textOverflow: "ellipsis", wordBreak: "break-word" }}>
-                                    {user?.email || user?.profile?.email}
-                                </p>
-                                <Button sx={{ px: 0 }} onClick={open.setTrue}>
-                                    Change Avatar
-                                </Button>
+                        <Stack
+                            width='100%'
+                            direction={{ xs: "column", sm: "row" }}
+                            alignItems={"flex-start"}
+                            spacing={2}
+                        >
+                            <Stack>
+                                <Avatar
+                                    alt={user?.username || user?.profile?.username}
+                                    src={user?.avatar}
+                                    sx={{
+                                        width: { xs: 65, sm: 70, md: 90 },
+                                        height: { xs: 65, sm: 70, md: 90 },
+                                        border: "2px solid #FFFFFF",
+                                        cursor: "pointer",
+                                    }}
+                                    onClick={open.setTrue}
+                                />
+                            </Stack>
+
+                            <Stack
+                                direction={"row"}
+                                width='100%'
+                                justifyContent='space-between'
+                                alignItems={"flex-start"}
+                            >
+                                <Stack alignItems={"flex-start"}>
+                                    <h3 style={{ textOverflow: "ellipsis", wordBreak: "break-word" }}>
+                                        {user?.username || user?.profile?.username}
+                                    </h3>
+                                    <p style={{ textOverflow: "ellipsis", wordBreak: "break-word" }}>
+                                        {user?.email || user?.profile?.email}
+                                    </p>
+                                </Stack>
+                                <CustomIconButton icon={ICONS_URL.BUTTON.LOGOUT} onClick={onLogout} />
                             </Stack>
                         </Stack>
                         {/* logout */}
-                        <CustomIconButton icon={ICONS_URL.BUTTON.LOGOUT} onClick={onLogout} />
                     </Stack>
                     <Divider sx={{ borderBottomWidth: "2px", borderColor: "gray", width: "100%" }} />
                     <Stack alignItems={"flex-start"} width='100%'>
@@ -102,7 +115,7 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                             mt={2}
                             sx={{ overflowX: "auto" }}
                         >
-                            {!user?.profile?.username && (
+                            {!user?.username && (
                                 <ItemInforProfileCom
                                     isNoButton={!!user?.username}
                                     name='username'
@@ -112,12 +125,12 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                                     onChange={formikUsername.handleChange}
                                     value={formikUsername.values.username}
                                     error={supportErrorFormik(formikUsername, "username")}
-                                    // isLoading={mutationUserUpdate.isLoading}
+                                    isLoading={updateUsername.isLoading}
                                     onSave={formikUsername.handleSubmit}
                                 />
                             )}
 
-                            {!user?.profile?.email && (
+                            {!user?.email && (
                                 <ItemInforProfileCom
                                     name='email'
                                     isNoButton={!!user?.email}
@@ -125,12 +138,14 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                                     defaultValue={user?.email}
                                     onChange={formikEmail.handleChange}
                                     value={formikEmail.values.email}
+                                    isLoading={updateEmail.isLoading}
                                     error={supportErrorFormik(formikEmail, "email")}
                                     onSave={formikEmail.handleSubmit}
                                 />
                             )}
 
                             <ItemInforProfileCom
+                                isNoButton
                                 title={"Wallet"}
                                 defaultValue={user?.wallet || "Not connected to wallet"}
                                 call='connect'

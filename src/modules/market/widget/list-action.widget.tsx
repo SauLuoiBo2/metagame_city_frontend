@@ -1,5 +1,6 @@
 import { Grid, Stack } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useBoolean } from "usehooks-ts";
 
 import { ICONS_URL } from "@/assets/icons";
@@ -52,8 +53,14 @@ const BuyModalView = () => {
 
 const GiveModalView = () => {
     const open = useBoolean();
-    const { formik, sendStar } = useFormGive();
+    const { formik, sendStar, isInstalled } = useFormGive();
     const { isLoading } = sendStar;
+
+    const navigate = useNavigate();
+
+    function handleGotoSet() {
+        navigate("/" + "account");
+    }
     return (
         <>
             <Grid item xs={4}>
@@ -64,7 +71,7 @@ const GiveModalView = () => {
 
             <MuiModal open={open.value} onClose={open.setFalse} widthModal={600}>
                 <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_GIVE}>
-                    <Stack {...styleStack} component={"form"} onSubmit={formik.handleSubmit}>
+                    <Stack {...styleStack} component={isInstalled ? "div" : "form"} onSubmit={formik.handleSubmit}>
                         <CustomInput
                             name='receiver'
                             value={formik.values.receiver}
@@ -97,9 +104,15 @@ const GiveModalView = () => {
                         />
 
                         <Stack sx={{ borderTop: "gray 2px solid" }} width={"100%"}>
-                            <CustomButton type='submit' isLoading={isLoading} style={{ marginTop: "2rem" }}>
-                                GIVE
-                            </CustomButton>
+                            {!isInstalled ? (
+                                <CustomButton type='submit' isLoading={isLoading} style={{ marginTop: "2rem" }}>
+                                    GIVE
+                                </CustomButton>
+                            ) : (
+                                <CustomButton type='button' style={{ marginTop: "2rem" }} onClick={handleGotoSet}>
+                                    SET 2FA
+                                </CustomButton>
+                            )}
                         </Stack>
                     </Stack>
                 </FrameTableCom>

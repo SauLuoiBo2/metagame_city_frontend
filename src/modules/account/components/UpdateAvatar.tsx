@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { LegacyRef, useEffect, useRef } from "react";
 import AvatarEditor from "react-avatar-editor";
 import ReactAvatarEditor from "react-avatar-editor";
@@ -84,11 +85,13 @@ export const UpdateAvatar: React.FC<UploadAvatarProps> = (props) => {
                 className='editor-canvas'
                 color={[1, 1, 1, 0.5]}
                 border={0}
-                style={{ borderBottom: "1px solid black" }}
+                style={{ border: "3px solid black", borderRadius: "2rem" }}
             />
             <input type='file' onChange={upload.handleChange} />
             <input type={"range"} min='1' defaultValue='1' max='2' step='0.01' onChange={handleZoom} />
-            <button onClick={handleSave}>save</button>
+            <Button onClick={handleSave} variant='contained'>
+                save
+            </Button>
             {/* <div onClick={props.onCancel}>
           <CustomIconButton icon={IMG_CONFIG.BUTTON.OK} onClick={handleSave} />
         </div> */}
@@ -104,7 +107,7 @@ const Style = {
         justify-content: center;
         width: 100%;
 
-        background-color: #fadeb1;
+        background: linear-gradient(90deg, #20b8f1 0%, #297aff 100%);
         border-radius: 10px;
         overflow: hidden;
         height: 350px;
