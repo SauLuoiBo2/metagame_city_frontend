@@ -2,6 +2,7 @@ export interface FinanceSendStarDtoProps {
     receiver: string;
     amount: number | string;
     password: string;
+    code?: string;
 }
 
 export interface BalanceDtoProps {

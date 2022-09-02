@@ -137,7 +137,6 @@ export function useQueryUser() {
 
     function useSendChangeGoogle() {
         const { data: user } = useGetUser();
-
         return useMutation<ApiResponseData, ApiResponseData, GoogleChangeProps>(
             [QUERY_KEY.USER.PROFILE_GOOGLE],
             (payload) => userApi.sendChangeGoogle(payload),

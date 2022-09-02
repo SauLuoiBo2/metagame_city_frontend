@@ -81,6 +81,13 @@ const GiveModalView = () => {
                             placeholder='Amount'
                         />
                         <CustomInput
+                            name='code'
+                            value={formik.values.code}
+                            onChange={formik.handleChange}
+                            error={supportErrorFormik(formik, "code")}
+                            placeholder='Google code'
+                        />
+                        <CustomInput
                             type={"password"}
                             name='password'
                             value={formik.values.password}

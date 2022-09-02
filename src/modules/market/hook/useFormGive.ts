@@ -8,14 +8,16 @@ const initialValues = {
     receiver: "",
     amount: "",
     password: "",
+    code: "",
 };
 
-const { username, password } = yupChema;
+const { username, password, codeVerifyGoogle } = yupChema;
 
 const validationSchema = Yup.object().shape({
     receiver: username,
     amount: username,
     password,
+    code: codeVerifyGoogle,
 });
 
 export function useFormGive() {
