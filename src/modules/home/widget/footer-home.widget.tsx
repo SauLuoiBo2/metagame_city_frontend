@@ -1,13 +1,21 @@
+import { Avatar, IconButton } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 
 import { ASSETS } from "@/assets";
-import { CustomIconButton } from "@/components";
 import { HomeSectionLayout } from "@/widgets";
 
 import { config } from "../config";
 
 export interface FooterHomeWidgetProps {}
+
+const size = {
+    xs: 50,
+    sm: 60,
+    md: 70,
+    lg: 80,
+    xl: 90,
+};
 
 const FooterHomeWidget: React.FC<FooterHomeWidgetProps> = () => {
     return (
@@ -19,7 +27,12 @@ const FooterHomeWidget: React.FC<FooterHomeWidgetProps> = () => {
 
                 <Style.IconsWrapper>
                     {config.footer.map((item, i) => {
-                        return <CustomIconButton icon={item.icon} key={i} styleImg={{ height: "90px" }} />;
+                        // return <CustomIconButton icon={item.icon} key={i} styleImg={{ height: "90px" }} />;
+                        return (
+                            <IconButton key={i}>
+                                <Avatar src={item.icon} sx={{ width: size, height: size }} />
+                            </IconButton>
+                        );
                     })}
                 </Style.IconsWrapper>
             </Style.Wrapper>

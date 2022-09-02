@@ -53,7 +53,7 @@ export const config = {
             name: "COMMING SOON",
             // linkGame: "COMMING SOON",
             icon: IMAGE_URL.GAME.GAME_GOLD,
-            bg: IMAGE_URL.BG.BG_4,
+            bg: IMAGE_URL.BG.BG_6,
         },
         {
             name: "COMMING SOON",

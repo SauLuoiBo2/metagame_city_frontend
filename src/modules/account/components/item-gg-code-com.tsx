@@ -1,12 +1,11 @@
 import CopyAllIcon from "@mui/icons-material/CopyAll";
-import { Box, Button, Grid, Stack } from "@mui/material";
-import Switch from "@mui/material/Switch";
+import { Box, Button, CircularProgress, Grid, Stack } from "@mui/material";
 import React from "react";
 import { toast } from "react-toastify";
 
 import { useQueryUser } from "@/api";
 import { IMAGE_URL } from "@/assets/images";
-import { CustomInput, CustomInputProps, FrameTableCom } from "@/components";
+import { CustomInput, FrameTableCom } from "@/components";
 import { supportErrorFormik } from "@/libs";
 import { useBearStore } from "@/store/useBearStore";
 import { Styles } from "@/theme";
@@ -26,9 +25,6 @@ export const ItemGgCodeCom: React.FC<ItemGgCodeComProps> = () => {
         isInstalled,
     };
 
-    const { formik } = useFormChangeGoogle();
-    const { handleChange, handleSubmit } = formik;
-
     return (
         <Grid xs={12} width='100%'>
             <Grid container width='100%' minWidth={400} rowGap={2} columnSpacing={1}>
@@ -36,15 +32,10 @@ export const ItemGgCodeCom: React.FC<ItemGgCodeComProps> = () => {
                     <h5>2FA:</h5>
                 </Grid>
                 <Grid item xs={7}>
-                    <StatusGgCode
-                        {...propsData}
-                        onChange={handleChange}
-                        error={supportErrorFormik(formik, "code")}
-                        value={formik.values.code}
-                    />
+                    <StatusGgCode {...propsData} />
                 </Grid>
                 <Grid item xs={2}>
-                    <ButtonGgCode {...propsData} onSubmit={handleSubmit} />
+                    <ButtonGgCode {...propsData} />
                     {/* <p onClick={handleCall}>{call || "change"}</p> */}
                 </Grid>
             </Grid>
@@ -52,47 +43,50 @@ export const ItemGgCodeCom: React.FC<ItemGgCodeComProps> = () => {
     );
 };
 
-interface ItemProps extends CustomInputProps {
+interface ItemProps {
     isInstalled: boolean;
 
     onSubmit?: any;
 }
 
-const StatusGgCode: React.FC<ItemProps> = ({ isInstalled, ...props }) => {
+const StatusGgCode: React.FC<ItemProps> = ({ isInstalled }) => {
+    const { useGetUser } = useQueryUser();
+
+    const { data: user } = useGetUser();
+    const status = user?.data?.tfa === "ON" ? "Active" : "No Active";
     return (
         <>
             {isInstalled ? (
-                <p style={{ color: "gray" }}>Haven`&apos;`t setup 2FA code</p>
+                <p style={{ color: "gray" }}>Haven&apos;t setup 2FA code</p>
             ) : (
-                <CustomInput name='code' placeholder='Google Code' {...props} />
+                <p style={{ color: user?.data?.tfa === "ON" ? "green" : "red" }}> {status}</p>
             )}
         </>
     );
 };
 
-const ButtonGgCode: React.FC<ItemProps> = ({ isInstalled, onSubmit }) => {
+const ButtonGgCode: React.FC<ItemProps> = ({ isInstalled }) => {
     const { modalOnOpen } = useBearStore();
 
     function handleOpen() {
         modalOnOpen(ModalView);
     }
-    const { useGetUser } = useQueryUser();
 
-    const { data: user } = useGetUser();
-
-    const isTfa = user?.data?.tfa === "ON" ? true : false;
-    function handleChange() {
-        onSubmit();
+    function handleChangeGoogle() {
+        modalOnOpen(ModalChangeGoogle);
     }
 
     return (
         <>
             {isInstalled ? (
-                <Button onClick={handleOpen} variant='contained' sx={{ px: 0 }}>
+                <Button onClick={handleOpen} variant='text' sx={{ px: 0 }}>
                     SetUp
                 </Button>
             ) : (
-                <Switch checked={isTfa} onChange={handleChange} />
+                <Button onClick={handleChangeGoogle} variant='text' sx={{ px: 0 }}>
+                    Change
+                </Button>
+                // <Switch checked={isTfa} onChange={handleChange} />
             )}
         </>
     );
@@ -106,7 +100,7 @@ const ModalView = () => {
 
         toast.info("Copied 2FA code");
     }
-    const { formik } = useFormVerifyGoogle();
+    const { formik, sendVerifyGoogle } = useFormVerifyGoogle();
     return (
         <Box>
             <FrameTableCom isAuth imgFrame={IMAGE_URL.FRAME.FRAME_USER}>
@@ -132,8 +126,43 @@ const ModalView = () => {
                     />
 
                     <Button type='submit' variant='contained'>
-                        Submit
+                        {sendVerifyGoogle.isLoading ? <CircularProgress /> : "Submit"}
                     </Button>
+                </Stack>
+            </FrameTableCom>
+        </Box>
+    );
+};
+
+const ModalChangeGoogle = () => {
+    const { formik, sendChangeGoogle } = useFormChangeGoogle();
+    const { handleChange, values, handleSubmit } = formik;
+
+    const { user } = useQueryUser();
+
+    const isActive = user?.data?.tfa === "ON" ? true : false;
+
+    return (
+        <Box>
+            <FrameTableCom isAuth imgFrame={IMAGE_URL.FRAME.FRAME_USER}>
+                <Stack spacing={4} alignItems='center' component={"form"} onSubmit={handleSubmit} width='70%'>
+                    <Styles.Text.CapText style={{ color: isActive ? "green" : light_colors.primary.main }}>
+                        Google active 2FA
+                    </Styles.Text.CapText>
+                    <CustomInput
+                        name='code'
+                        placeholder='2FA Code'
+                        onChange={handleChange}
+                        error={supportErrorFormik(formik, "code")}
+                        value={values.code}
+                    />
+                    {sendChangeGoogle.isLoading ? (
+                        <CircularProgress sx={{ color: "blue", fontSize: "2rem" }} />
+                    ) : (
+                        <Button type='submit' variant='contained'>
+                            CHANGE
+                        </Button>
+                    )}
                 </Stack>
             </FrameTableCom>
         </Box>

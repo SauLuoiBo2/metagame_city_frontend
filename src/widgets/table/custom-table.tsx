@@ -44,7 +44,7 @@ export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidt
                 <TableContainer sx={{ maxHeight: maxHeight || 300, width: "100%" }} className='custom_scroll'>
                     <Table stickyHeader aria-label='sticky table' sx={{ overflow: "hidden" }}>
                         {isNoData && (
-                            <Stack width='100%' alignItems={"center"} pt={10}>
+                            <Stack width='100%' alignItems={"center"} py={10}>
                                 {isLoading ? (
                                     <CircularProgress color='secondary' />
                                 ) : (

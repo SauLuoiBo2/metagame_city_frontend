@@ -152,6 +152,7 @@ export function useQueryUser() {
                 },
                 onSuccess: (data) => {
                     toast.success(data?.message);
+
                     queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_KEY]);
                 },
                 onError: (data) => {

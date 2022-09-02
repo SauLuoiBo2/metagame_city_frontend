@@ -18,7 +18,7 @@ export interface ListActionWidgetProps {}
 
 export const ListActionWidget: React.FC<ListActionWidgetProps> = () => {
     return (
-        <Grid container spacing={{ xs: 1, md: 2, lg: 4 }} maxWidth={"800px"} pt={6}>
+        <Grid container spacing={{ xs: 1, md: 2, lg: 4 }} maxWidth={"800px"} py={6}>
             <BuyModalView />
             <GiveModalView />
             <NftModalView />

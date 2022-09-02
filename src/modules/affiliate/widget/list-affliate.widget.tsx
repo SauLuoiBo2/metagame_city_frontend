@@ -74,27 +74,27 @@ export const ListAffliateWidget: React.FC<ListAffliateWidgetProps> = () => {
                 <Style.InnerTitle>
                     <div className='inner'>
                         <Stack direction={"row"} justifyContent='center' width='100%'>
-                            <p className='ellipsis'>{url}</p>
-                            <ContentCopyIcon sx={{ cursor: "pointer" }} onClick={handleCoppy} />
+                            <p className='ellipsis'>List member</p>
+                            {/* <ContentCopyIcon sx={{ cursor: "pointer" }} onClick={handleCoppy} /> */}
                         </Stack>
                     </div>
                 </Style.InnerTitle>
             </Style.Title>
             <Style.Wrapper>
                 {/* content */}
-                <Style.Inner className='hidden_scroll'>
-                    <Stack width='100%' height={"100%"} alignItems='center' justifyContent={"flex-start"}>
-                        {" "}
-                        <Box width={"80%"}>
-                            <CustomTable
-                                columns={columns}
-                                rows={list?.data || []}
-                                minWidth={400}
-                                isLoading={isLoading}
-                            />
-                        </Box>
+
+                <Stack width='100%' height={"100%"} alignItems='center' justifyContent={"space-between"}>
+                    <Box width={"80%"}>
+                        <CustomTable columns={columns} rows={list?.data || []} minWidth={400} isLoading={isLoading} />
+                    </Box>
+                    <Stack width={"80%"} direction='row' alignItems={"center"} spacing={2} pt={5}>
+                        <p className='ellipsis'>
+                            Share: <span style={{ opacity: 0.8 }}>{url}</span>{" "}
+                        </p>
+                        <ContentCopyIcon sx={{ cursor: "pointer" }} onClick={handleCoppy} />
                     </Stack>
-                </Style.Inner>
+                </Stack>
+
                 {/* title */}
             </Style.Wrapper>
             {/* <FrameTableCom imgTitle={IMAGE_URL.TITLE.TITLE_AFILIATE}>
@@ -116,18 +116,20 @@ const Style = {
         background-repeat: no-repeat;
         background-size: 100% 100%, cover;
         background-position: center;
-        padding: 10rem 0;
+        /* padding: 10rem 0; */
         margin-top: ${({ isImgTitle }) => (isImgTitle ? "10%" : null)};
         display: flex;
-        align-items: center;
+        padding-top: 4rem;
+        align-items: flex-start;
         min-height: 40rem;
+        height: fit-content;
         width: 100%;
         max-width: ${({ maxWidth }) => maxWidth || null};
 
-        @media ${(props) => props.theme.breakpoint.md} {
+        /* @media ${(props) => props.theme.breakpoint.md} {
             padding: 5rem 0;
             min-height: 30rem;
-        }
+        } */
 
         img {
             width: 100%;
@@ -139,11 +141,11 @@ const Style = {
         top: 0; */
         width: 100%;
         height: 100%;
-        min-height: 25rem;
+        min-height: 100%;
     `,
     Title: styled.div`
         position: relative;
-
+        z-index: 20;
         display: flex;
         justify-content: center;
         width: 100%;
