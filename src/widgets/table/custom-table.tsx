@@ -41,7 +41,10 @@ export const CustomTable: React.FC<CustomTableProps> = ({ columns, rows, minWidt
                 </Stack>
                 {/* body */}
 
-                <TableContainer sx={{ maxHeight: maxHeight || 300, width: "100%" }} className='custom_scroll'>
+                <TableContainer
+                    sx={{ maxHeight: maxHeight || 300, minHeight: 200, width: "100%" }}
+                    className='custom_scroll'
+                >
                     <Table stickyHeader aria-label='sticky table' sx={{ overflow: "hidden" }}>
                         {isNoData && (
                             <Stack width='100%' alignItems={"center"} py={10}>
