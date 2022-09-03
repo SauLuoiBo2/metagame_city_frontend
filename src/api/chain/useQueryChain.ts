@@ -29,6 +29,7 @@ export function useQueryChain() {
                 enabled: !!query,
             }
         );
+        console.log(getQueryDetail);
 
         return { getQueryDetail, setQuery, query };
     }
