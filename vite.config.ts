@@ -10,8 +10,8 @@ export default defineConfig({
         eslint({
             emitWarning: true,
             emitError: true,
-            failOnError: false,
-            failOnWarning: false,
+            failOnError: true,
+            failOnWarning: true,
         }),
     ],
     build: {
