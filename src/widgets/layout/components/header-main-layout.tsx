@@ -61,7 +61,7 @@ const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
                                 </Stack>
                                 {/* modal */}
                                 {open.value && (
-                                    <Box sx={{ position: "absolute", right: "-2.5rem", top: "5.5rem" }}>
+                                    <Box sx={{ position: "absolute", right: "-2.5rem", top: "5.5rem", zIndex: 500 }}>
                                         <ButtonHeaderProfile />
                                     </Box>
                                 )}
