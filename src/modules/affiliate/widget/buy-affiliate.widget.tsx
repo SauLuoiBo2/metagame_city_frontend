@@ -33,7 +33,7 @@ const BuyAffiliateWidget: React.FC<BuyAffiliateWidgetProps> = () => {
                     </h3>
                     <ItemNftValueCom>
                         <p className='text_medium text_align_center'>
-                            You need to buy business agency rights with 1000 stars to receive the following benefits
+                            Get 500 stars for every time you successfully refer a new agent
                         </p>
                     </ItemNftValueCom>
                     <ItemNftValueCom>

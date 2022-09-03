@@ -49,8 +49,9 @@ const Style = {
         flex-direction: ${({ isLeft }) => (isLeft ? "row" : "row-reverse")};
         align-items: flex-end;
         transform: scale(1.5);
-        transform-origin: ${({ isLeft }) => (isLeft ? "left top" : "right top")};
+        transform-origin: ${({ isLeft }) => (isLeft ? "left center" : "right center")};
         color: white;
+        transform: scale(2);
 
         @media ${({ theme }) => theme.breakpoint.xl} {
             transform: scale(1.3);

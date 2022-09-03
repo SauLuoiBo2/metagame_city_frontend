@@ -22,6 +22,7 @@ export const GameBgWidget: React.FC<GameBgWidgetProps> = ({ isLeft, name, icon, 
                 direction={"row"}
                 justifyContent={isLeft ? "flex-start" : "flex-end"}
                 pt={{ xs: isTop ? 10 : 0, lg: isTop ? 15 : 0 }}
+                sx={{ minHeight: { xs: 400 } }}
             >
                 <CardGame name={name} icon={icon} linkGame={linkGame} isLeft={isLeft} />
             </Stack>
