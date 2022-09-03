@@ -5,7 +5,7 @@ import { QUERY_KEY } from "@/config";
 import { WalletLoginDto } from "@/models";
 import { ApiResponseData } from "@/models/api.model";
 import { usePersistStore } from "@/store/useBearStore";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 import { useApiWallet } from "./useApiWallet";
 import { handleAddBinanceMainNet } from "@/hooks/wallet";
@@ -34,12 +34,19 @@ export function useQueryWallet() {
                 const status: any = data.status;
 
                 if (status === "error") {
-                    toast.error(data.message);
+                    // toast.error(data.message);
                     return;
                 }
                 handleAddBinanceMainNet();
+                queryClient.refetchQueries([QUERY_KEY.USER.PROFILE_KEY]);
+
+                // const dataUser: ApiResponseData<UserProps> = {
+                //     status: "success",
+                //     message: "get user success",
+                //     data: data.data?.user,
+                // };
+                // queryClient.setQueryData([QUERY_KEY.USER.PROFILE_KEY], dataUser);
                 navigate("/");
-                queryClient.refetchQueries();
             },
         });
     }

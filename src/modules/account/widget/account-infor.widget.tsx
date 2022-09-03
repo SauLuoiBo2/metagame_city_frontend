@@ -65,7 +65,7 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                         >
                             <Stack>
                                 <Avatar
-                                    alt={user?.username || user?.profile?.username}
+                                    alt={user?.username}
                                     src={user?.avatar}
                                     sx={{
                                         width: { xs: 65, sm: 70, md: 90 },
@@ -85,11 +85,9 @@ export const AccountInforWidget: React.FC<AccountInforWidgetProps> = () => {
                             >
                                 <Stack alignItems={"flex-start"}>
                                     <h3 style={{ textOverflow: "ellipsis", wordBreak: "break-word" }}>
-                                        {user?.username || user?.profile?.username}
+                                        {user?.username}
                                     </h3>
-                                    <p style={{ textOverflow: "ellipsis", wordBreak: "break-word" }}>
-                                        {user?.email || user?.profile?.email}
-                                    </p>
+                                    <p style={{ textOverflow: "ellipsis", wordBreak: "break-word" }}>{user?.email}</p>
                                 </Stack>
                                 <CustomIconButton icon={ICONS_URL.BUTTON.LOGOUT} onClick={onLogout} />
                             </Stack>

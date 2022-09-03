@@ -37,11 +37,8 @@ export function useAssetBuy() {
 
     const handleSelectToken = useCallback(
         (name: any, id: any) => {
-            console.log(id, listDetailToken);
-
             setAddressId(id);
             const ha = listDetailToken?.find((item) => item.address === id);
-            console.log(ha);
 
             setToken(ha);
         },
@@ -68,7 +65,6 @@ export function useAssetBuy() {
         const signer = provider.getSigner();
 
         const chainId = window.ethereum.chainId;
-        console.log("chain ID: " + chainId);
 
         if (chainId !== token?.chainId) {
             //lam thao tac chuyen mang
@@ -89,7 +85,6 @@ export function useAssetBuy() {
             to: token?.address,
             value: payAmount, // neu la token base cua mang thi thay data = value: payAmount
         };
-        console.log(token);
 
         if (token) {
             if (!token?.isBase) {

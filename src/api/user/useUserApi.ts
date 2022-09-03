@@ -13,6 +13,8 @@ const {
     user_referral_url,
     user_update_photo_url,
     gg_setup_url,
+    user_update_username_url,
+    user_update_email_url,
 } = ApiUrl.user;
 
 export function useUserApi() {
@@ -31,11 +33,11 @@ export function useUserApi() {
     }
 
     function updateUsername(data: UsernameProps) {
-        return request({ url: user_update_url, method: "POST", data });
+        return request({ url: user_update_username_url, method: "POST", data });
     }
 
     function updateEmail(data: EmailProps) {
-        return request({ url: user_update_url, method: "POST", data });
+        return request({ url: user_update_email_url, method: "POST", data });
     }
 
     function updateProfilePhoto(photo: any) {
