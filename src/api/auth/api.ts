@@ -1,10 +1,18 @@
 import { useRequest } from "@/config";
-import { ActivationAccountProps, LoginProps, RegisterProps, ResendEmailProps, ResetPasswordProps } from "@/models";
+import {
+    ActivationAccountProps,
+    ChangePasswordProps,
+    LoginProps,
+    RegisterProps,
+    ResendEmailProps,
+    ResetPasswordProps,
+} from "@/models";
 
 import { ApiUrl } from "../apiUrl";
 
 // auth
-const { login_url, register_url, forgot_password_url, activation_url, resend_email_url } = ApiUrl.auth;
+const { login_url, register_url, forgot_password_url, activation_url, resend_email_url, change_password_url } =
+    ApiUrl.auth;
 
 export function useAuthApi() {
     const { request } = useRequest();
@@ -32,5 +40,9 @@ export function useAuthApi() {
         return request({ url: forgot_password_url, method: "POST", data });
     }
 
-    return { signin, register, activation, sendEmailForgot, resetPassword, resendEmailRegister };
+    function changePassword(data: ChangePasswordProps) {
+        return request({ url: change_password_url, method: "POST", data });
+    }
+
+    return { changePassword, signin, register, activation, sendEmailForgot, resetPassword, resendEmailRegister };
 }

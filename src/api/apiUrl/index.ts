@@ -6,6 +6,7 @@ export const ApiUrl = {
         resend_email_url: "auth/resendEmail",
         forgot_password_url: "auth/forgotPassword",
         reset_password_url: "auth/resetPassword",
+        change_password_url: "auth/changePassword",
     },
 
     auth_wallet: {

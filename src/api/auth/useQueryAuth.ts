@@ -2,7 +2,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { ActivationAccountProps, LoginProps, RegisterProps, ResendEmailProps, UserDtoProps } from "@/models";
+import {
+    ActivationAccountProps,
+    ChangePasswordProps,
+    LoginProps,
+    RegisterProps,
+    ResendEmailProps,
+    UserDtoProps,
+} from "@/models";
 import { ApiResponseData } from "@/models/api.model";
 import { usePersistStore } from "@/store/useBearStore";
 
@@ -98,5 +105,30 @@ export function useQueryAuth() {
         );
     }
 
-    return { useMutationLogin, useMutationRegister, sendActivation, sendForgotPassword, sendEmailRegister };
+    function useChangePassword() {
+        return useMutation<ApiResponseData, ApiResponseData, ChangePasswordProps>(
+            (body) => authApi.changePassword(body),
+            {
+                onSuccess: (data) => {
+                    if (data.status === "error") {
+                        toast.error(data.message);
+                    } else {
+                        toast.success(data.message);
+                    }
+                },
+                onError: (data) => {
+                    toast.error(data?.data?.message);
+                },
+            }
+        );
+    }
+
+    return {
+        useChangePassword,
+        useMutationLogin,
+        useMutationRegister,
+        sendActivation,
+        sendForgotPassword,
+        sendEmailRegister,
+    };
 }

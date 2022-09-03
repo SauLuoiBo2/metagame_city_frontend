@@ -43,6 +43,12 @@ export interface ResetPasswordProps {
     confrimPassword: string;
 }
 
+export interface ChangePasswordProps {
+    password: string;
+    newPassword: string;
+    confirmPassword: string;
+}
+
 // user
 
 export interface UserDtoProps {
