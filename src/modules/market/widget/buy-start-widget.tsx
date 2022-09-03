@@ -61,7 +61,7 @@ export const BuyStartWidget: React.FC<BuyStartWidgetProps> = () => {
                     handleChange={handleSelectToken}
                     options={listDetailTokenOptions}
                     placeholder='network'
-                    title='Netword'
+                    title='Network'
                 />
 
                 <CustomInput placeholder='Receive address' title='Receive address' value={addressId || ""} disabled />
