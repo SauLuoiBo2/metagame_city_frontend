@@ -36,12 +36,12 @@ const HeaderMainLayout: React.FC<HeaderMainLayoutProps> = () => {
                                     isActive ? (
                                         <Styles.ImgIcon.Basic
                                             src={HEADER.HOME}
-                                            style={{ transform: "scale(1.5)", transformOrigin: "left" }}
+                                            style={{ transform: "scale(1.5)", transformOrigin: "center" }}
                                         />
                                     ) : (
                                         <Styles.ImgIcon.Basic
                                             src={HEADER.HOME}
-                                            style={{ transform: "scale(1.4)", transformOrigin: "left" }}
+                                            style={{ transform: "scale(1.4)", transformOrigin: "center" }}
                                         />
                                     )
                                 }
@@ -116,7 +116,7 @@ const Style = {
         justify-content: space-between;
         align-items: center;
         transform: translateY(-0.5rem);
-        padding: 4rem 10%;
+        padding: 4rem 15%;
 
         @media ${(props) => props.theme.breakpoint.md} {
             padding: 2rem 10%;
@@ -129,7 +129,7 @@ const Style = {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-right: 3%;
+        /* padding-right: 3%; */
     `,
 
     NavLink: styled(NavLink)`

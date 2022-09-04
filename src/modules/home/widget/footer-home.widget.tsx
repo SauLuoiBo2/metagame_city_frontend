@@ -22,7 +22,7 @@ const FooterHomeWidget: React.FC<FooterHomeWidgetProps> = () => {
         <HomeSectionLayout bg_url={ASSETS.IMAGE_URL.BG.BG_7} style={{ padding: "5rem 0", minHeight: "fit-content" }}>
             <Style.Wrapper>
                 <Style.TextWrapper>
-                    <h1>METAGAMECITY</h1>
+                    <h1 style={{ fontSize: "60px" }}>METAGAMECITY</h1>
                 </Style.TextWrapper>
 
                 <Style.IconsWrapper>
@@ -47,6 +47,8 @@ const Style = {
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        padding: 2rem 0;
     `,
 
     TextWrapper: styled.div`

@@ -19,6 +19,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
                         {...game}
                         linkGame={getLinkGame(game.linkGame)}
                         isTop={i === 0}
+                        isComing={game.isComing}
                     />
                 );
             })}

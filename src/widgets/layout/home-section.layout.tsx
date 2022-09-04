@@ -40,7 +40,7 @@ const Style = {
         /* height: 100vh; */
         min-height: ${({ isAuth }) => (isAuth ? "100vh" : "50vh")};
         justify-content: center;
-        padding-top: ${({ isAuth }) => (isAuth ? "5rem" : "20rem")};
+        padding-top: ${({ isAuth }) => (isAuth ? "5rem" : "5rem")};
         padding-bottom: ${({ isAuth }) => (isAuth ? "5rem" : "20rem")};
         @media ${(props) => props.theme.breakpoint.md} {
             padding-top: 10rem;
