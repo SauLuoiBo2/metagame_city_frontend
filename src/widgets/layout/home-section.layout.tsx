@@ -31,6 +31,11 @@ const Style = {
         background-size: cover;
         background-position: center;
         min-height: ${({ isAlone }) => (isAlone ? "100vh" : null)};
+        padding-top: ${({ isAlone }) => (isAlone ? "10rem" : null)};
+
+        @media ${(props) => props.theme.breakpoint.sm} {
+            padding-top: ${({ isAlone }) => (isAlone ? "5rem" : null)};
+        }
     `,
 
     Inner: styled.div<HomeSectionLayoutProps>`
