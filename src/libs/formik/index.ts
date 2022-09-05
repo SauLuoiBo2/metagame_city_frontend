@@ -29,7 +29,7 @@ export const yupChema = {
         .oneOf([Yup.ref("newPassword"), null], "confirm password not match password"),
     passwordConfirm: Yup.string()
         .required("confirm password is required")
-        .oneOf([Yup.ref("newPassword"), null], "confirm password not match password"),
+        .oneOf([Yup.ref("password"), null], "confirm password not match password"),
     codeVerifyGoogle: Yup.string()
         .required("code is required")
         .matches(regCode, "a verify google code is only number character anh exactly 6 character"),
