@@ -17,7 +17,7 @@ export const CardImageGame: React.FC<CardGameProps> = ({ icon }) => {
                 <img src={icon || GAME.GAME_CARO} className='img_game' />
                 <div>
                     <h5>
-                        METAGAME <br></br> GAME
+                        METAGAME <br></br> CITY
                     </h5>
                 </div>
             </Style.ImgWrapper>

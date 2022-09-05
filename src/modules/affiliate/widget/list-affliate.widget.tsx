@@ -145,7 +145,7 @@ const Style = {
     `,
     Title: styled.div`
         position: relative;
-        z-index: 20;
+        z-index: 1;
         display: flex;
         justify-content: center;
         width: 100%;

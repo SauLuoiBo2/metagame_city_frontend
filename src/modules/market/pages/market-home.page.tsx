@@ -9,7 +9,7 @@ export interface MarketHomePageProps {}
 
 export const MarketHomePage: React.FC<MarketHomePageProps> = () => {
     return (
-        <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_MARKET}>
+        <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_MARKET} isAlone>
             <ListMarketWidget />
             <ListActionWidget />
             <ListHistoryWidget />

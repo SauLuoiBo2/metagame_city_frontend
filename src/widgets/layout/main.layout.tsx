@@ -17,7 +17,7 @@ export const MainLayout: React.FC<MainLayoutProps> = () => {
     return (
         <>
             <HeaderMainLayout />
-            <main style={{ width: "100%" }}>
+            <main style={{ width: "100%", background: "black" }}>
                 <React.Suspense
                     fallback={
                         <CenterApp>

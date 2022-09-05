@@ -3,6 +3,8 @@ import path from "path";
 import { defineConfig } from "vite";
 import eslint from "vite-plugin-eslint";
 
+const outDir = path.resolve(__dirname, "dist/mcg-web");
+
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
@@ -10,11 +12,12 @@ export default defineConfig({
         eslint({
             emitWarning: true,
             emitError: true,
-            failOnError: false,
+            failOnError: true,
             failOnWarning: false,
         }),
     ],
     build: {
+        outDir,
         chunkSizeWarningLimit: 1500,
     },
     resolve: {

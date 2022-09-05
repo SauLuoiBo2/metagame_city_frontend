@@ -14,10 +14,11 @@ export interface CardGameProps {
     icon?: any;
     linkGame?: string;
     isLeft?: boolean;
+    isComing?: boolean;
 }
 
 // href='http://google.vn' target={"_blank"}
-const CardGame: React.FC<CardGameProps> = ({ name, icon, linkGame, isLeft }) => {
+const CardGame: React.FC<CardGameProps> = ({ name, icon, linkGame, isLeft, isComing }) => {
     const { modalOnOpen } = useBearStore();
     const { user } = useQueryUser();
     function onGame() {
@@ -34,7 +35,7 @@ const CardGame: React.FC<CardGameProps> = ({ name, icon, linkGame, isLeft }) => 
         <Style.Wrapper isLeft={isLeft} onClick={onGame}>
             <CardImageGame icon={icon} />
             <Style.ButtonWrapper isLeft={isLeft}>
-                <CardNameGame name={name} />
+                <CardNameGame name={name} isComing={isComing} />
             </Style.ButtonWrapper>
         </Style.Wrapper>
     );
@@ -49,8 +50,9 @@ const Style = {
         flex-direction: ${({ isLeft }) => (isLeft ? "row" : "row-reverse")};
         align-items: flex-end;
         transform: scale(1.5);
-        transform-origin: ${({ isLeft }) => (isLeft ? "left top" : "right top")};
+        transform-origin: ${({ isLeft }) => (isLeft ? "left center" : "right center")};
         color: white;
+        /* transform: scale(2); */
 
         @media ${({ theme }) => theme.breakpoint.xl} {
             transform: scale(1.3);

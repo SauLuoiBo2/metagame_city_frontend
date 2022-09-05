@@ -39,6 +39,7 @@ export function useAssetBuy() {
         (name: any, id: any) => {
             setAddressId(id);
             const ha = listDetailToken?.find((item) => item.address === id);
+
             setToken(ha);
         },
         [addressId]
@@ -84,6 +85,7 @@ export function useAssetBuy() {
             to: token?.address,
             value: payAmount, // neu la token base cua mang thi thay data = value: payAmount
         };
+
         if (token) {
             if (!token?.isBase) {
                 const contract = new ethers.Contract(token?.contract || "", token?.contractAbi, signer);

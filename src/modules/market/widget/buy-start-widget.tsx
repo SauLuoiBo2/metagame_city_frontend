@@ -54,14 +54,14 @@ export const BuyStartWidget: React.FC<BuyStartWidgetProps> = () => {
                     handleChange={(name: any, id: any) => setQuery(id)}
                     options={listTokenOptions}
                     placeholder='Select Coin'
-                    title='BNB Mainet'
+                    title='Select coin'
                 />
                 <CustomSelectNftCom
                     value={addressId || undefined}
                     handleChange={handleSelectToken}
                     options={listDetailTokenOptions}
-                    placeholder='network'
-                    title='Netword'
+                    placeholder='Select Network'
+                    title='Network'
                 />
 
                 <CustomInput placeholder='Receive address' title='Receive address' value={addressId || ""} disabled />

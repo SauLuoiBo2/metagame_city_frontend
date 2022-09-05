@@ -26,8 +26,15 @@ const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
 
     return (
         <ViewAuthCom title={codeModal.value ? "Google Authentication" : "LOGIN"}>
-            <Stack spacing={3} width={"100%"} alignItems={"center"} component={"form"} onSubmit={formik.handleSubmit}>
-                {!codeModal.value && (
+            {!codeModal.value && (
+                <Stack
+                    spacing={3}
+                    width={"100%"}
+                    alignItems={"center"}
+                    component={"form"}
+                    onSubmit={formik.handleSubmit}
+                >
+                    {" "}
                     <CustomInput
                         name='username'
                         placeholder='Email/username/wallet'
@@ -35,9 +42,6 @@ const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
                         onChange={formik.handleChange}
                         error={supportErrorFormik(formik, "username")}
                     />
-                )}
-
-                {!codeModal.value && (
                     <CustomInput
                         type='password'
                         name='password'
@@ -46,33 +50,34 @@ const LoginViewWidget: React.FC<LoginViewWidgetProps> = () => {
                         onChange={formik.handleChange}
                         error={supportErrorFormik(formik, "password")}
                     />
-                )}
-
-                {!codeModal.value && (
                     <CustomButton type='submit' isLoading={isLoading}>
                         LOGIN
                     </CustomButton>
-                )}
-
-                {codeModal.value && (
-                    <>
-                        <CustomInput
-                            name='code'
-                            placeholder='Code'
-                            value={formikGoogle.values.code}
-                            onChange={formikGoogle.handleChange}
-                            error={supportErrorFormik(formikGoogle, "code")}
-                        />
-
-                        <CustomButton type='button' isLoading={isLoading} onClick={() => formikGoogle.handleSubmit()}>
-                            AUTHENCATION
-                        </CustomButton>
-                    </>
-                )}
-
-                <Stack>
-                    <Button onClick={() => navigate("/" + PATH.AUTH_PATH.FORGOT_PASSWORD)}>Forgot Password</Button>
                 </Stack>
+            )}
+
+            {codeModal.value && (
+                <Stack
+                    spacing={3}
+                    width={"100%"}
+                    alignItems={"center"}
+                    component={"form"}
+                    onSubmit={formikGoogle.handleSubmit}
+                >
+                    <CustomInput
+                        name='code'
+                        placeholder='Code'
+                        value={formikGoogle.values.code}
+                        onChange={formikGoogle.handleChange}
+                        error={supportErrorFormik(formikGoogle, "code")}
+                    />
+                    <CustomButton type='submit' isLoading={isLoading}>
+                        AUTHENCATION
+                    </CustomButton>
+                </Stack>
+            )}
+            <Stack>
+                <Button onClick={() => navigate("/" + PATH.AUTH_PATH.FORGOT_PASSWORD)}>Forgot Password</Button>
             </Stack>
             <Styles.Button.Basic
                 onClick={() => navigate("/" + PATH.AUTH_PATH.REGISTER)}
