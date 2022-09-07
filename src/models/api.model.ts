@@ -8,3 +8,10 @@ export interface RequestListProps {
     page?: number;
     size?: number;
 }
+
+export interface ResposeListProps<T = any> {
+    list: T[];
+    total: number;
+}
+
+export interface ApiResponseListData<D> extends ApiResponseData<ResposeListProps<D>> {}
