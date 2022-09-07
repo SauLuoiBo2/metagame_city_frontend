@@ -29,13 +29,19 @@ export const GiveStarWidget: React.FC<GiveStarWidgetProps> = () => {
     }
     return (
         <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_GIVE}>
-            <Stack {...styleStack} component={isInstalled ? "div" : "form"} onSubmit={formik.handleSubmit}>
+            <Stack
+                {...styleStack}
+                component={isInstalled ? "div" : "form"}
+                autoComplete='off'
+                onSubmit={formik.handleSubmit}
+            >
                 <CustomInput
                     name='receiver'
                     value={formik.values.receiver}
                     onChange={formik.handleChange}
                     error={supportErrorFormik(formik, "receiver")}
                     placeholder='Email/Username/Wallet'
+                    autoComplete='off'
                 />
                 <CustomInput
                     name='amount'
@@ -44,6 +50,7 @@ export const GiveStarWidget: React.FC<GiveStarWidgetProps> = () => {
                     error={supportErrorFormik(formik, "amount")}
                     type={"number"}
                     placeholder='Amount'
+                    autoComplete='off'
                 />
                 <CustomInput
                     name='code'
@@ -51,6 +58,7 @@ export const GiveStarWidget: React.FC<GiveStarWidgetProps> = () => {
                     onChange={formik.handleChange}
                     error={supportErrorFormik(formik, "code")}
                     placeholder='Google code'
+                    autoComplete='off'
                 />
                 <CustomInput
                     type={"password"}
@@ -59,6 +67,7 @@ export const GiveStarWidget: React.FC<GiveStarWidgetProps> = () => {
                     onChange={formik.handleChange}
                     error={supportErrorFormik(formik, "password")}
                     placeholder='Password'
+                    autoComplete='off'
                 />
 
                 <Stack sx={{ borderTop: "gray 2px solid" }} width={"100%"}>

@@ -1,4 +1,4 @@
-import { Grid, Stack } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
 import React, { useState } from "react";
 
 import { ICONS_URL } from "@/assets/icons";
@@ -15,7 +15,7 @@ export interface BuyStartWidgetProps {}
 const styleStack = {
     sx: { overflowY: "auto", maxHeight: "60%", width: "100%" },
     mx: { xs: "10%", md: "20%" },
-    pt: "10%",
+    pt: { xs: "20%", md: "10%" },
     alignItems: "center",
     spacing: 2,
 };
@@ -37,18 +37,20 @@ export const BuyStartWidget: React.FC<BuyStartWidgetProps> = () => {
     return (
         <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_BUY}>
             <Stack {...styleStack} spacing={1}>
-                <ItemNftValueCom>
-                    <Styles.Position.Center>
-                        <Stack direction={"row"} spacing={1}>
-                            <Styles.Text.BodyBig>
-                                <span>
-                                    <Styles.ImgIcon.Star />{" "}
-                                </span>
-                                = 0.1 USDT
-                            </Styles.Text.BodyBig>
-                        </Stack>
-                    </Styles.Position.Center>
-                </ItemNftValueCom>
+                <Box px={{ sm: 3, md: 5 }} width='100%'>
+                    <ItemNftValueCom>
+                        <Styles.Position.Center>
+                            <Stack direction={"row"} spacing={1}>
+                                <Styles.Text.CapText>
+                                    <span>
+                                        <Styles.ImgIcon.Star />{" "}
+                                    </span>
+                                    = 0.1 USDT
+                                </Styles.Text.CapText>
+                            </Stack>
+                        </Styles.Position.Center>
+                    </ItemNftValueCom>
+                </Box>
 
                 <CustomSelectNftCom
                     handleChange={(name: any, id: any) => setQuery(id)}
