@@ -7,6 +7,7 @@ import { IMAGE_URL } from "@/assets/images";
 import { FrameTableCom } from "@/components";
 import LabelButon from "@/components/label/label-buton";
 import MuiModal from "@/components/modal/mui-Modal";
+import { useBearStore } from "@/store/useBearStore";
 import { ButtonAction } from "@/widgets";
 
 import { BuyStartWidget } from "./buy-start-widget";
@@ -43,18 +44,18 @@ const BuyModalView = () => {
 };
 
 const GiveModalView = () => {
-    const open = useBoolean();
+    const { modalOnOpen } = useBearStore();
 
     return (
         <>
             <Grid item xs={4}>
-                <ButtonAction onClick={open.setTrue}>
+                <ButtonAction onClick={() => modalOnOpen(GiveStarWidget)}>
                     <LabelButon label='GIVE' preIcon={ICONS_URL.BUTTON.STAR} />
                 </ButtonAction>
             </Grid>
-            <MuiModal open={open.value} onClose={open.setFalse} widthModal={600}>
+            {/* <MuiModal open={open.value} onClose={open.setFalse} widthModal={600}>
                 <GiveStarWidget />
-            </MuiModal>
+            </MuiModal> */}
         </>
     );
 };

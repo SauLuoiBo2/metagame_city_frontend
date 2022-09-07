@@ -15,12 +15,8 @@ export interface RegisterViewWidgetProps {}
 const RegisterViewWidget: React.FC<RegisterViewWidgetProps> = () => {
     const navigate = useNavigate();
 
-    const { formik, ref } = useFormRegister();
+    const { formik, ref, isLoading } = useFormRegister();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // const [params, setParams] = useSearchParams();
-
-    // const ref = params.get("ref");
     return (
         <ViewAuthCom title={"REGISTER"}>
             <Stack
@@ -29,7 +25,7 @@ const RegisterViewWidget: React.FC<RegisterViewWidgetProps> = () => {
                 alignItems={"center"}
                 component={"form"}
                 onSubmit={formik.handleSubmit}
-                autoComplete='off'
+                autoComplete='nope'
             >
                 <CustomInput
                     name='username'
@@ -37,6 +33,7 @@ const RegisterViewWidget: React.FC<RegisterViewWidgetProps> = () => {
                     value={formik.values.username}
                     onChange={formik.handleChange}
                     error={supportErrorFormik(formik, "username")}
+                    autoComplete={"" + Math.random()}
                 />
                 <CustomInput
                     type='email'
@@ -53,6 +50,7 @@ const RegisterViewWidget: React.FC<RegisterViewWidgetProps> = () => {
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     error={supportErrorFormik(formik, "password")}
+                    autoComplete={"" + Math.random()}
                 />
                 <CustomInput
                     type='password'
@@ -69,7 +67,9 @@ const RegisterViewWidget: React.FC<RegisterViewWidgetProps> = () => {
                     value={formik.values.referral}
                     onChange={formik.handleChange}
                 />
-                <Styles.Button.Basic type='submit'>REGISTER</Styles.Button.Basic>
+                <Styles.Button.Basic type='submit' disabled={isLoading}>
+                    {isLoading ? "Loading..." : "REGISTER"}
+                </Styles.Button.Basic>
             </Stack>
 
             <Stack>

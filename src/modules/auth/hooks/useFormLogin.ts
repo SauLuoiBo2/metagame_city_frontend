@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { useEffect } from "react";
 import * as Yup from "yup";
 
 import { useQueryAuth } from "@/api";
@@ -46,6 +47,10 @@ export function useFormLogin() {
         },
         validateOnChange: false,
     });
+
+    useEffect(() => {
+        formikGoogle.setValues(initialCode);
+    }, [mutationLogin.isLoading]);
 
     return { formik, mutationLogin, formikGoogle };
 }

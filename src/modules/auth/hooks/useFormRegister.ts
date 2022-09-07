@@ -39,7 +39,7 @@ export function useFormRegister() {
         referral: ref || "",
     };
     const { useMutationRegister } = useQueryAuth();
-    const { mutate, isSuccess, data } = useMutationRegister();
+    const { mutate, isSuccess, data, isLoading } = useMutationRegister();
 
     useEffect(() => {
         if (isSuccess) {
@@ -59,5 +59,5 @@ export function useFormRegister() {
         validateOnChange: false,
     });
 
-    return { formik, useMutationRegister, ref };
+    return { formik, useMutationRegister, ref, isLoading };
 }

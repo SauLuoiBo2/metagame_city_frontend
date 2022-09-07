@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { useEffect } from "react";
 import * as Yup from "yup";
 
 import { useQueryUser } from "@/api";
@@ -39,6 +40,10 @@ export function useFormGive() {
         },
         validateOnChange: false,
     });
+
+    useEffect(() => {
+        formik.setValues(initialValues);
+    }, [sendStar.isLoading]);
 
     return { formik, sendStar, isInstalled, isOnTfa };
 }

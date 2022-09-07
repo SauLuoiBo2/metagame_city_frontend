@@ -1,10 +1,12 @@
 import { Stack } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { IMAGE_URL } from "@/assets/images";
 import { CustomButton, CustomInput, FrameTableCom } from "@/components";
 import { supportErrorFormik } from "@/libs";
+import { useBearStore } from "@/store/useBearStore";
 
 import { useFormGive } from "../hook";
 
@@ -20,13 +22,23 @@ const styleStack = {
 
 export const GiveStarWidget: React.FC<GiveStarWidgetProps> = () => {
     const { formik, sendStar, isInstalled } = useFormGive();
-    const { isLoading } = sendStar;
+    const { isLoading, isSuccess, data } = sendStar;
 
     const navigate = useNavigate();
 
     function handleGotoSet() {
         navigate("/" + "account");
     }
+    const { modalOnClose } = useBearStore();
+
+    useEffect(() => {
+        if (isSuccess) {
+            if (data.status === "success") {
+                toast.success("Give star successfully");
+                modalOnClose();
+            }
+        }
+    }, [isSuccess]);
     return (
         <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_GIVE}>
             <Stack

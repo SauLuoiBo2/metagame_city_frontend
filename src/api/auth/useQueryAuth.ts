@@ -36,6 +36,11 @@ export function useQueryAuth() {
                     toast.info("Google Authentication");
                     return;
                 }
+
+                if (status === 404) {
+                    toast.info(data.message);
+                    return;
+                }
                 navigate("/");
                 queryClient.refetchQueries();
             },

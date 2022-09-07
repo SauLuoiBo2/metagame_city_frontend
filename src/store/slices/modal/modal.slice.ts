@@ -11,9 +11,6 @@ export interface ModalStore {
     modal: ModalStateType;
     modalOnClose: () => void;
     modalOnOpen: (children: any) => void;
-    // themeColorOnToggle: () => void;
-    // themeColorOnLight: () => void;
-    // themeColorOnDark: () => void;
 }
 
 const modal: ModalStateType = {

@@ -1,5 +1,6 @@
 import { Box, Grid, Stack } from "@mui/material";
-import React, { useState } from "react";
+import _debounce from "lodash/debounce";
+import React, { useCallback, useState } from "react";
 
 import { ICONS_URL } from "@/assets/icons";
 import { IMAGE_URL } from "@/assets/images";
@@ -33,6 +34,8 @@ export const BuyStartWidget: React.FC<BuyStartWidgetProps> = () => {
             setAmount(value);
         }
     }
+
+    const handleBuyStarDebound = useCallback(_debounce(handleBuyStar, 1000), []);
 
     return (
         <FrameTableCom imgFrame={IMAGE_URL.FRAME.FRAME_BUY}>
@@ -100,7 +103,7 @@ export const BuyStartWidget: React.FC<BuyStartWidgetProps> = () => {
                 <Stack sx={{ borderTop: "gray 2px solid" }} width={"100%"}>
                     <Styles.Button.Basic
                         disabled={amount < 1000}
-                        onClick={() => handleBuyStar(amount)}
+                        onClick={() => handleBuyStarDebound(amount)}
                         style={{ marginTop: "2rem" }}
                     >
                         BUY
