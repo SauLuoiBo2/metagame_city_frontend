@@ -10,6 +10,7 @@ import { IMAGE_URL } from "@/assets/images";
 import MaxWidthCenterView from "@/components/views/position/max-width-center";
 import { ENV, QUERY_KEY } from "@/config";
 import { useQueryInvalidate } from "@/hooks/query";
+import { useQueryList } from "@/hooks/query/useQueryList";
 import { PATH } from "@/router/pathname";
 import { Styles } from "@/theme";
 import { CustomColumnTableProps, CustomTable } from "@/widgets/table/custom-table";
@@ -54,8 +55,10 @@ const columns: CustomColumnTableProps[] = [
 ];
 
 export const ListAffliateWidget: React.FC<ListAffliateWidgetProps> = () => {
-    const { useGetListCommission } = useQueryAffiliate();
-    const { data: list, isLoading } = useGetListCommission();
+    const { useGetListMember } = useQueryAffiliate();
+    const { data: list, isLoading } = useGetListMember();
+
+    const { query } = useQueryList();
     const { useGetUserReferral } = useQueryUser();
     const { data: referral } = useGetUserReferral();
 
