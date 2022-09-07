@@ -46,7 +46,7 @@ export function useQueryAuth() {
         return useMutation<ApiResponseData, ApiResponseData, RegisterProps>((body) => authApi.register(body), {
             onSuccess: (data) => {
                 // navigate("/login");
-                toast.success(data.message);
+                toast.info(data.message);
             },
             onError: (data) => {
                 toast.error(data?.data?.message);
