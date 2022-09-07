@@ -1,4 +1,4 @@
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import CheckIcon from "@mui/icons-material/Check";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { Box, Stack } from "@mui/material";
 import moment from "moment";
@@ -25,8 +25,8 @@ const columns: CustomColumnTableProps[] = [
         align: "left",
     },
     {
-        id: "refCode",
-        label: "Ref Code",
+        id: "username",
+        label: "Username",
         width: "25%",
         align: "center",
     },
@@ -37,13 +37,13 @@ const columns: CustomColumnTableProps[] = [
         align: "left",
         format: (value: number) => (
             <Stack direction={"row"} alignItems='center' justifyContent={"center"} spacing={1}>
-                {value > 0 ? <CheckBoxIcon sx={{ color: "green", fontSize: "30px" }} /> : null}
+                {value > 0 ? <CheckIcon sx={{ color: "white", fontSize: "30px" }} /> : null}
             </Stack>
         ),
     },
     {
-        id: "updated",
-        label: "Date",
+        id: "created",
+        label: "Time",
         width: "20%",
         align: "left",
         format: (value: any) => <>{moment(value).format("YYYY-MM-DD HH:mm:ss")}</>,
@@ -64,6 +64,7 @@ export const ListAffliateWidget: React.FC<ListAffliateWidgetProps> = () => {
         toast.info("Copied link affiliate");
     }
     useQueryInvalidate(QUERY_KEY.USER.PROFILE_REFERRAL_KEY);
+    useQueryInvalidate(QUERY_KEY.AFFILIATE.LIST_MEMBERS);
 
     return (
         <ViewFrameList title='List members'>

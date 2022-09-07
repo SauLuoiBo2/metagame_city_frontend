@@ -1,3 +1,4 @@
+import { Stack } from "@mui/material";
 import React from "react";
 
 import { IMAGE_URL } from "@/assets/images";
@@ -14,8 +15,10 @@ export const AffiliateHomePage: React.FC<AffiliateHomePageProps> = () => {
 
     return (
         <HomeSectionLayout bg_url={IMAGE_URL.BG.BG_MARKET} isAlone>
-            <ListAffliateWidget />
-            <ListCommisionWidget />
+            <Stack width={"100%"} spacing={5}>
+                <ListAffliateWidget />
+                <ListCommisionWidget />
+            </Stack>
         </HomeSectionLayout>
     );
 };

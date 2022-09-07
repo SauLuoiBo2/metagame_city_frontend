@@ -3,6 +3,8 @@ import moment from "moment";
 import React from "react";
 
 import { useQueryAffiliate } from "@/api";
+import { QUERY_KEY } from "@/config";
+import { useQueryInvalidate } from "@/hooks/query";
 import { useQueryList } from "@/hooks/query/useQueryList";
 import { Styles } from "@/theme";
 import { CustomColumnTableProps, CustomTable } from "@/widgets/table/custom-table";
@@ -33,17 +35,17 @@ const columns: CustomColumnTableProps[] = [
     },
     {
         id: "type",
-        label: "Stype",
+        label: "Bonus",
         width: "20%",
         align: "left",
         format: (value: number) => (
             <Stack direction={"row"} alignItems='center' justifyContent={"center"} spacing={1}>
-                {value === 2 ? "game bonus" : "affiliate"}
+                {value === 2 ? "Game" : "Agency"}
             </Stack>
         ),
     },
     {
-        id: "updated",
+        id: "created",
         label: "Time",
         width: "20%",
         align: "left",
@@ -62,6 +64,8 @@ export const ListCommisionWidget: React.FC<ListCommisionWidgetProps> = () => {
     const total = data?.data?.total || 1;
 
     const totalPage = total / query.size + 1;
+    useQueryInvalidate(QUERY_KEY.AFFILIATE.LIST_HISTOTRY);
+
     return (
         <ViewFrameList title='List commission'>
             <Stack width={"100%"} spacing={1}>
