@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 import { QUERY_KEY } from "@/config";
 import { MemberDto, PayAffiliateDto } from "@/models";
-import { ApiResponseData, ApiResponseListData } from "@/models/api.model";
+import { ApiResponseData, ApiResponseListData, RequestListProps } from "@/models/api.model";
 import { ModalBuySuccess } from "@/modules/affiliate/widget/modal-buy-success";
 import { useBearStore } from "@/store/useBearStore";
 
@@ -15,15 +15,15 @@ export function useQueryAffiliate() {
 
     const { modalOnOpen } = useBearStore();
     //
-    function useGetListCommission() {
+    function useGetListCommission(query: RequestListProps) {
         return useQuery<ApiResponseListData<PayAffiliateDto>, ApiResponseData>(
             [QUERY_KEY.AFFILIATE.LIST_HISTOTRY],
-            () => affiliateApi.getListHistories()
+            () => affiliateApi.getListHistories(query)
         );
     }
 
     function useGetListMember() {
-        return useQuery<ApiResponseListData<MemberDto>, ApiResponseData>([QUERY_KEY.AFFILIATE.LIST_MEMBERS], () =>
+        return useQuery<ApiResponseData<MemberDto>, ApiResponseData>([QUERY_KEY.AFFILIATE.LIST_MEMBERS], () =>
             affiliateApi.getListMembers()
         );
     }

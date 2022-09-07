@@ -31,6 +31,9 @@ import TW from "./social/tw.png";
 import WALLET_CONNECT from "./social/wallet_connect.png";
 import YT from "./social/yt.png";
 
+// social
+import CHECKBOX_CHECKED from "./label/checkbox_green.svg";
+
 // ########################
 const HEADER = {
     HOME,
@@ -68,4 +71,8 @@ const BUTTON = {
     LOGOUT,
 };
 
-export const ICONS_URL = { HEADER, SOCIAL, BUTTON };
+const LABEL = {
+    CHECKBOX_CHECKED,
+};
+
+export const ICONS_URL = { HEADER, SOCIAL, BUTTON, LABEL };
